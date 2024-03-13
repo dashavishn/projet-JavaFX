@@ -3,7 +3,7 @@ package bigbrain.java_bureau;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class Controller {
     @FXML
     private Label welcomeText;
 
