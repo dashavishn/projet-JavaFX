@@ -60,8 +60,8 @@ public class CSV {
                 float r2 = Float.parseFloat(row[2]);
                 double r4 = Double.parseDouble(row[4]);
                 double r5 = Double.parseDouble(row[5]);
-                Element elem = new Element("2345", "elem1", 2.000000f, "kg");
-                Stocks.ajouterElem(elem, r2);
+                Element elem = new Element("2345", "elem1", 2.000000f, "kg", 2.001f, 3.002f);
+                Stocks.ajouterElem(elem);
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -88,7 +88,9 @@ public class CSV {
                     Float quantite = Float.parseFloat(elemData[2]);
                     elemeEntree.put(elem, quantite);
                 }
-                ChaineProduction chaine = new ChaineProduction(row[0], row[1], elemeEntree);
+
+
+                ChaineProduction chaine = new ChaineProduction(row[0], row[1], elemEntree);
                 chaines.add(chaine);
             }
             reader.close();

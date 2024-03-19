@@ -2,12 +2,12 @@ package bigbrain.java_bureau;
 import java.util.ArrayList;
 
 public class Stocks {
-    private ArrayList<Element> ElemStocks;
+    private static ArrayList<Element> ElemStocks;
 
     public Stocks(){
         this.ElemStocks = new ArrayList<>();
     }
-    public void ajouterElem(Element e){
+    public static void ajouterElem(Element e){
         ElemStocks.add(e);
     }
 

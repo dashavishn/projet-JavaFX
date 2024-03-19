@@ -1,4 +1,5 @@
 package bigbrain.java_bureau;
+import java.lang.Boolean;
 
 public class Element {
     private String code;
@@ -53,10 +54,11 @@ public class Element {
         return prixVente;
     }
 
-    public boolean estDisponible(double quantite){
-        if (quantite>0)
-            return True;
-        return False;
+    public boolean estDisponible(double quantite) {
+        if (quantite > 0) {
+            return true;
+        }return false;
+
     }
 
 
