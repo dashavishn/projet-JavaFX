@@ -80,15 +80,15 @@ public class CSV {
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(";");
                 String[] elementsEntree = row[2].split(",");
-                HashMap<Element, Float> elementsEntreeMap = new HashMap<>();
+                HashMap<Element, Float> elemeEntree = new HashMap<>();
                 for (String data : elementsEntree) {
                     // Récupérer l'élément et sa quantité, puis les ajouter à la HashMap
                     String[] elemData = data.split(":");
                     Element elem = new Element(elemData[0], elemData[1]);
                     Float quantite = Float.parseFloat(elemData[2]);
-                    elementsEntreeMap.put(elem, quantite);
+                    elemeEntree.put(elem, quantite);
                 }
-                ChaineProduction chaine = new ChaineProduction(row[0], row[1], elementsEntreeMap);
+                ChaineProduction chaine = new ChaineProduction(row[0], row[1], elemeEntree);
                 chaines.add(chaine);
             }
             reader.close();
