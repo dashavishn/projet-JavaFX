@@ -60,7 +60,7 @@ public class CSV {
                 float r2 = Float.parseFloat(row[2]);
                 double r4 = Double.parseDouble(row[4]);
                 double r5 = Double.parseDouble(row[5]);
-                Element elem = new Element(row[0], row[1], r2, row[3], r4, r5);
+                Element elem = new Element("2345", "elem1", 2.000000f, "kg");
                 Stocks.ajouterElem(elem, r2);
             }
             reader.close();

@@ -7,7 +7,7 @@ public class Element {
     private String uniteMesure;
 
 
-    public void Element(String code, String nom, double quantiteStock, String uniteMesure) {
+    public Element(String code, String nom, double quantiteStock, String uniteMesure) {
         this.code=code;
         this.nom=nom;
         this.quantiteStock=quantiteStock;
