@@ -14,6 +14,19 @@ public class Element {
         this.uniteMesure=uniteMesure;
     }
 
+    public void ajouetrQuanite(double quantite){
+        this.quantiteStock += quantite;
+    }
+    public void retirerQuantite (double quantite){
+        this.quantiteStock -= quantite;
+
+    }
+
+    public boolean estDisponible(double quantite){
+        if (quantite>0)
+            return True;
+        return False;
+    }
 
 
 
