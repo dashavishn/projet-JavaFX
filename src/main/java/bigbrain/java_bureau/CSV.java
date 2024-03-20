@@ -72,7 +72,8 @@ public class CSV {
     }
 
     public void LireChaine() {
-        String file = "src/OneDrive/Hanja - MIAGE /FichierV1(2)/chaines.csv";
+        String file1 = "src/main/ressources/bigbrain/FichierV1(2)/chaines.csv";
+        String file2= "src/main/ressources/bigbrain/FichierV1(2)/elements.csv";
         String line = "";
 
         try {
