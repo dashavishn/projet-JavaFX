@@ -18,7 +18,7 @@
                 <Pane layoutX="0.7071179747581482" prefHeight="150.0" prefWidth="1080.0" styleClass="panel-principal">
                     <children>
                         <Line endX="1080.0001220703125" endY="150.39999389648438" startX="-1.1189778888365254E-5" startY="150.40000915527344" stroke="WHITE" />
-                        <Label layoutX="15.0" layoutY="15.0" text="Tournois Simple (16 joueurs)" textFill="WHITE">
+                        <Label layoutX="15.0" layoutY="15.0" text="Application" textFill="WHITE">
                             <font>
                                 <Font size="30.0" />
                             </font>
