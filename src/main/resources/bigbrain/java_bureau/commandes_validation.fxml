@@ -4,6 +4,7 @@
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -13,7 +14,7 @@
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="389.0">
           <children>
-            <TextArea cache="false" disable="false" editable="true" focusTraversable="true" layoutX="14.0" layoutY="14.0" mouseTransparent="false" pickOnBounds="false" prefHeight="59.0" prefWidth="358.0" text="Pour commander un nouveau produit, remplissez les champs suivantes :" visible="true" wrapText="true" />
+            <TextArea layoutX="14.0" layoutY="14.0" prefHeight="59.0" prefWidth="358.0" text="Pour commander un nouveau produit, remplissez les champs suivantes :" wrapText="true" />
             <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :">
               <font>
                 <Font size="22.0" fx:id="x1" />
@@ -47,11 +48,50 @@
     </SplitPane>
     <MenuBar prefHeight="45.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
-        <Menu mnemonicParsing="false" text="Stocks" />
-        <Menu mnemonicParsing="false" text="Chaîne de production" />
-        <Menu disable="false" mnemonicParsing="false" text="Commandes" visible="true" />
-        <Menu mnemonicParsing="false" text="Historique" />
+        <Menu mnemonicParsing="false" text="Stocks">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Chaîne de production">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu disable="false" mnemonicParsing="false" text="Commandes" visible="true">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Historique">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+          </items>
+        </Menu>
       </menus>
     </MenuBar>
+    <AnchorPane layoutX="166.0" layoutY="219.0" minHeight="167.0" prefHeight="167.0" prefWidth="445.0">
+      <children>
+        <TextArea prefHeight="223.0" prefWidth="442.0" text="                            Félicitations! &#10;       Votre commande a été effectuée avec succès." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <effect>
+            <InnerShadow color="#610000" height="31.808510638297875" radius="16.09308510638298" width="34.56382978723404">
+              <input>
+                <SepiaTone />
+              </input>
+            </InnerShadow>
+          </effect>
+        </TextArea>
+        <Button layoutX="14.0" layoutY="101.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" text="Nouvelle commande">
+          <font>
+            <Font name="Calibri Bold" size="18.0" />
+          </font>
+        </Button>
+        <Button layoutX="224.0" layoutY="101.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Retour">
+          <font>
+            <Font name="Calibri Bold" size="20.0" />
+          </font>
+        </Button>
+      </children>
+    </AnchorPane>
   </children>
 </AnchorPane>

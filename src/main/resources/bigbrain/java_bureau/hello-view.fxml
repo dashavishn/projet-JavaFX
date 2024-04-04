@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffcce4ff?>
 
-<AnchorPane prefHeight="643.0" prefWidth="792.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <MenuBar prefHeight="46.0" prefWidth="886.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <menus>
@@ -32,7 +32,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.9962025316455696" focusTraversable="true" orientation="HORIZONTAL" prefHeight="662.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+    <SplitPane dividerPositions="0.7014051522248244" focusTraversable="true" orientation="HORIZONTAL" prefHeight="662.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
       <items>
         <AnchorPane blendMode="SRC_OVER" disable="false" focusTraversable="false" minHeight="0.0" minWidth="0.0" mouseTransparent="false" prefHeight="615.0" prefWidth="602.0">
           <children>
@@ -107,9 +107,20 @@
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
           <children>
-            <SplitPane dividerPositions="" focusTraversable="true" orientation="VERTICAL" prefHeight="615.0" prefWidth="226.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
+            <SplitPane dividerPositions="0.44264943457189015" focusTraversable="true" orientation="VERTICAL" prefHeight="615.0" prefWidth="226.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <children>
+                    <Button layoutX="70.0" layoutY="185.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="106.0" text="Valider">
+                      <font>
+                        <Font name="System Bold" size="20.0" />
+                      </font>
+                    </Button>
+                    <TextField layoutX="10.0" layoutY="54.0" prefWidth="229.0" text="entrer une quantité" />
+                    <TextField layoutX="10.0" layoutY="114.0" prefWidth="229.0" text="entrer un code de produit" />
+                  </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="266.0000999999975" />
               </items>
             </SplitPane>
           </children>
