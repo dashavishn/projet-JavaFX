@@ -1,5 +1,5 @@
 package bigbrain.java_bureau;
-import java.lang.Boolean;
+
 
 public class Element {
     private String code;
@@ -28,7 +28,7 @@ public class Element {
 
     //retourne quantité actuelle du produit
 
-    public int getQuantiteStock(){
+    public double getQuantiteStock(){
         return quantiteStock;
 
     }
@@ -38,11 +38,11 @@ public class Element {
         return code;
     }
 //va mettre à jour le code d'un nouvel élément
-    public void setCode(Sring code){
-        this.code=code;
-    }
+public void setCode(String code){
+    this.code=code;
+}
 
-//retourne le nom d'un élément
+    //retourne le nom d'un élément
     public String getNom(){
         return nom;
     }
