@@ -20,30 +20,43 @@ public class Element {
         this.prixAchat=prixAchat;
         this.prixVente=prixVente;
     }
-
-    public void ajouterQuantite(double quantite){
-        this.quantiteStock += quantite;
-    }
-    public void retirerQuantite (double quantite){
-        this.quantiteStock -= quantite;
-
+//va mettre à jour la quantité
+    public void setQuantite(double quantite){
+        this.quantiteStock = quantite;
     }
 
-    public double getQuantiteStock(){
+
+    //retourne quantité actuelle du produit
+
+    public int getQuantiteStock(){
         return quantiteStock;
 
     }
+
+    //va retourner le code de l'élément
     public String getCode(){
         return code;
     }
+//va mettre à jour le code d'un nouvel élément
+    public void setCode(Sring code){
+        this.code=code;
+    }
 
-
+//retourne le nom d'un élément
     public String getNom(){
         return nom;
     }
-
+// va mettre à jour le nom d'un nouvel élément
+    public void setNom(String nom){
+        this.nom=nom;
+    }
+//retourne l'unité de mesure de l'élément
     public String getUniteMesure() {
         return uniteMesure;
+    }
+//met à jour l'unité de l'élément
+    public void setUniteMesure(String uniteMesure){
+        this.uniteMesure=uniteMesure;
     }
 
     public double getPrixAchat(){
@@ -54,15 +67,19 @@ public class Element {
         return prixVente;
     }
 
-    public boolean estDisponible(double quantite) {
-        if (quantite > 0) {
-            return true;
-        }return false;
 
+
+//la descrition de l'élément
+    public String toString() {
+        return "Element{" +
+                "quantite=" + quantiteStock +
+                ", code='" + code + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prixAchat=" + prixAchat +
+                ", prixVente=" + prixVente +
+                ", unite='" + uniteMesure + '\'' +
+                '}';
     }
-
-
-
 
 
 
