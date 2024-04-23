@@ -1,4 +1,4 @@
-package bigbrain.java_bureau;
+package bigbrain.java_bureau.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;

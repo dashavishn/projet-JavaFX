@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xffcce4ff?>
+
+<AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TextField alignment="CENTER" prefHeight="63.0" prefWidth="856.0" text="Application de bureau" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font size="24.0" />
+            </font></TextField>
+        <Button layoutX="360.0" layoutY="188.0" mnemonicParsing="false" text="Stock">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Button>
+        <Button layoutX="232.0" layoutY="295.0" mnemonicParsing="false" text="Chaîne de production">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Button>
+        <Button layoutX="304.0" layoutY="422.0" mnemonicParsing="false" text="Commandes">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Button>
+        <Button layoutX="321.0" layoutY="535.0" mnemonicParsing="false" text="Historique">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

@@ -30,6 +30,11 @@
             <MenuItem mnemonicParsing="false" text="Delete" />
           </items>
         </Menu>
+        <Menu mnemonicParsing="false" text="Page d'accueil">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
       </menus>
     </MenuBar>
     <SplitPane dividerPositions="0.9962025316455696" focusTraversable="true" orientation="HORIZONTAL" prefHeight="662.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">

@@ -13,4 +13,6 @@ module bigbrain.java_bureau {
 
     opens bigbrain.java_bureau to javafx.fxml;
     exports bigbrain.java_bureau;
+    exports bigbrain.java_bureau.controller;
+    opens bigbrain.java_bureau.controller to javafx.fxml;
 }
