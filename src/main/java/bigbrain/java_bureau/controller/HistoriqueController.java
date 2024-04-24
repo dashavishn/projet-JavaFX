@@ -1,19 +1,11 @@
 package bigbrain.java_bureau.controller;
-import bigbrain.java_bureau.Element;
-import bigbrain.java_bureau.Stocks;
+import bigbrain.java_bureau.classe_java.Element;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import java.io.IOException;
-import java.util.*;
 
 public class HistoriqueController {
     @FXML

@@ -1,15 +1,20 @@
 package bigbrain.java_bureau.controller;
+import bigbrain.java_bureau.classe_java.Element;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-
-import java.io.IOException;
-import java.util.*;
+import javafx.stage.Stage;
 
 
 public class StockController {
+
+    @FXML
+    private TableView<Element> tableStock;
     @FXML
     private TextField textQuantite;
 
@@ -57,4 +62,16 @@ public class StockController {
             return;
         }
     }
+
+    public void start(Stage primaryStage) {
+        Button btn = new Button("Click me");
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        Scene scene = new Scene(root, 300, 250);
+
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
 }

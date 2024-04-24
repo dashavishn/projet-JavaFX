@@ -1,4 +1,4 @@
-package bigbrain.java_bureau;
+package bigbrain.java_bureau.classe_java;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
