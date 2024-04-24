@@ -20,7 +20,11 @@ public class Element {
         this.prixAchat=prixAchat;
         this.prixVente=prixVente;
     }
-//va mettre à jour la quantité
+
+    public Element(String elemDatum, String elemDatum1) {
+    }
+
+    //va mettre à jour la quantité
     public void setQuantite(double quantite){
         this.quantiteStock = quantite;
     }
