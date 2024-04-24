@@ -1,4 +1,5 @@
-package bigbrain.java_bureau;
+package bigbrain.java_bureau.classe_java;
+
 import java.util.ArrayList;
 
 public class Stocks {

@@ -1,4 +1,4 @@
-package bigbrain.java_bureau;
+package bigbrain.java_bureau.classe_java;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -44,9 +44,6 @@ import java.util.HashMap;
     }
 }
 */
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CSV {
     public static ArrayList<ChaineProduction> chaines = new ArrayList<ChaineProduction>();
