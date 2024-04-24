@@ -1,6 +1,25 @@
 package bigbrain.java_bureau.classe_java;
 
 
+
+/**
+* Cette classe représente un produit du stock qui le décrit par :
+ * - un code unique
+ * - un nom
+ * - une quantité
+ * - Une unité de mesure
+ * - un prix d'achat
+ * - un prix de vente
+ * Des méthodes sont également présentes pour :
+ * - mettre à jour la quantité de stock
+ * - mettre à jour le code d'un élément (si c'est un nouveau)
+ * -calculer le prix de l'achat d'une quantité d'élément
+ * - vendre un élément puis mettre à jour la classe historique
+
+
+
+
+ */
 public class Element {
     private String code;
     private String nom;
@@ -20,7 +39,11 @@ public class Element {
         this.prixAchat=prixAchat;
         this.prixVente=prixVente;
     }
-//va mettre à jour la quantité
+
+    public Element(String elemDatum, String elemDatum1) {
+    }
+
+    //va mettre à jour la quantité
     public void setQuantite(double quantite){
         this.quantiteStock = quantite;
     }
@@ -67,6 +90,10 @@ public void setCode(String code){
         return prixVente;
     }
 
+    public double PrixaAchat(Element e, float quantiteStock){
+        return (e.prixAchat) * quantiteStock;
+    }
+
 
 
 //la descrition de l'élément
@@ -80,13 +107,6 @@ public void setCode(String code){
                 ", unite='" + uniteMesure + '\'' +
                 '}';
     }
-
-
-
-
-
-
-
 
 
 }
