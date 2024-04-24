@@ -93,24 +93,8 @@ public void setCode(String code){
     public double PrixaAchat(Element e, float quantiteStock){
         return (e.prixAchat) * quantiteStock;
     }
-    public static void Vendre(Element e, float quantiteVendue) {
-        for (Element a : Stocks.EStock) {
-            if (a.getCode().equals(e.getCode())) {
-                Stocks.enleverElem(a, quantiteVendue);
 
-            }
-        }
-        AjouterHistorique(e, quantiteVendue);
-    }
-    public static void Vendre(Element e, float quantiteVendue) {
-        for (Element a : Stocks.EStock) {
-            if (a.getCode().equals(e.getCode())) {
-                Stocks.enleverElem(a, quantiteVendue);
 
-            }
-        }
-        AjouterHistorique(e, quantiteVendue);
-    }
 
 //la descrition de l'élément
     public String toString() {
