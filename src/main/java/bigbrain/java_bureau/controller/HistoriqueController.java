@@ -1,51 +1,57 @@
 package bigbrain.java_bureau.controller;
 import bigbrain.java_bureau.classe_java.Element;
+import bigbrain.java_bureau.classe_java.ModificationStockElement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class HistoriqueController {
     @FXML
     TableView<Element> tab;
-    @FXML
-    TextField nom;
-    @FXML
-    TextField code;
-    @FXML
-    TextField quantite;
-    @FXML
-    TextField unite;
-    @FXML
-    TextField prixAchat;
-    @FXML
-    TextField prixVente;
-    @FXML
-    TableColumn<Element, String> noms;
-    @FXML
-    TableColumn<Element, String> prenoms;
-
     private final ObservableList<Element> elts = FXCollections.observableArrayList();
 
-    //Récupération des elements et sa affichage dans le tableau
-   /* public void initialize(URL location, ResourceBundle resources) {
-        elts.addAll(Stocks.tournoiActuel.getJoueurs());
-        noms.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenoms.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+    @FXML
+    private AnchorPane ap_Historique;
 
-        tableview.setItems(joueurs);
-    }
-    public void retourTournoi(){
-        if(AccueilApplication.tournoiActuel.getNbJoueurs()==8){
-            AccueilApplication.setFXMLForStage("affichageTournoi8.fxml");
-        }else if(AccueilApplication.tournoiActuel.getNbJoueurs()==16){
-            AccueilApplication.setFXMLForStage("affichageTournoi16.fxml");
-        }else if(AccueilApplication.tournoiActuel.getNbJoueurs()==32){
-            AccueilApplication.setFXMLForStage("affichageTournoi32.fxml");
-        }
-    } */
+    @FXML
+    private Button buttonChaine;
 
+    @FXML
+    private Button buttonStock;
+
+    @FXML
+    private Button buttonCommande;
+
+    @FXML
+    private Button buttonPageAccueil;
+
+    @FXML
+    private TableColumn<ModificationStockElement, String> nom_col;
+    @FXML
+    private TableColumn<ModificationStockElement, String> code_col;
+    @FXML
+    private TableColumn<ModificationStockElement, Float> quantite_col;
+
+    @FXML
+    private TableColumn<ModificationStockElement, String> unite_col;
+
+    @FXML
+    private TableColumn<ModificationStockElement, Double> prixA_col;
+
+    @FXML
+    private TableColumn<ModificationStockElement, Float> prixV_col;
 
 }
+
+

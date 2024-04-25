@@ -62,7 +62,7 @@ public class StockController {
             return;
         }
     }
-
+    //une méthode permettant de cliquer le bouton
     public void start(Stage primaryStage) {
         Button btn = new Button("Click me");
         StackPane root = new StackPane();

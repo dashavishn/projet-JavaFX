@@ -86,8 +86,6 @@ public class CSV {
                     Float quantite = Float.parseFloat(elemData[2]);
                     elemeEntree.put(elem, quantite);
                 }
-
-
                 ChaineProduction chaine = new ChaineProduction(row[0], row[1], elemEntree);
                 chaines.add(chaine);
             }
