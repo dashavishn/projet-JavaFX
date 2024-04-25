@@ -7,32 +7,32 @@ public class ChaineProduction {
     private String code;
     private String nom;
     public int niveauActivation ;
-  HashMap<Element, Double> elemEntree =new HashMap<>();
-  HashMap<Element, Double> elemSortie =new HashMap<>();
+  HashMap<Element, Float> ElementEntree =new HashMap<>();
+  HashMap<Element, Float> ElementSortie =new HashMap<>();
 
-    public ChaineProduction(String code, String nom, int niveauActivation, HashMap elemEntree, HashMap elemSortie){
+    public ChaineProduction(String code, String nom, HashMap ElementEntree, HashMap ElementSortie){
         this.code=code;
         this.nom=nom;
-        this.niveauActivation= niveauActivation;
-        this.elemEntree= elemEntree;
-        this.elemSortie= elemSortie;
+        this.niveauActivation= 0;
+        this.ElementEntree= ElementEntree;
+        this.ElementSortie= ElementSortie;
     }
 
-    public void ajouterElementEntree(Element element, double quantite) {
+    public void ajouterElementEntree(Element element, float quantite) {
 
-        elemEntree.put(element, quantite);
+        ElementEntree.put(element, quantite);
     }
 
-    public void ajouterElementSortie(Element element, double quantite) {
-        elemSortie.put(element, quantite);
+    public void ajouterElementSortie(Element element, float quantite) {
+        ElementSortie.put(element, quantite);
     }
 
     public void removeElemEntree(Element e) {
-        elemEntree.remove(e);
+        ElementEntree.remove(e);
     }
 
     public void removeElemSortie(Element e) {
-        elemSortie.remove(e);
+        ElementSortie.remove(e);
     }
 
     public String getCode(){
