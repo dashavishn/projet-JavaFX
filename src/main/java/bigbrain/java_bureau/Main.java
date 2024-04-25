@@ -1,5 +1,5 @@
 package bigbrain.java_bureau;
-
+import bigbrain.java_bureau.classe_java.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,9 +41,9 @@ public class Main extends Application {
     public static void main(String[] args) {
         CSV b = new CSV();
         b.LireElement();
-        b.LireHistorique();
+        //b.LireHistorique();
         b.LireChaine();
-        Stocks.copieStock();
+        //Stocks.copieStock();
         launch();
     }
 }
