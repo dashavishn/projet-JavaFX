@@ -90,9 +90,6 @@ public void setCode(String code){
         return prixVente;
     }
 
-    public double PrixaAchat(Element e, float quantiteStock){
-        return (e.prixAchat) * quantiteStock;
-    }
 
 
 
@@ -107,6 +104,47 @@ public void setCode(String code){
                 ", unite='" + uniteMesure + '\'' +
                 '}';
     }
+
+    public double prixAchat (Element e, float quantiteStock){
+
+        return (e.prixAchat) * quantiteStock;
+    }
+
+    public void Acheter(Element e, float quantiteCommandee) {
+        double Prix = prixAchat(e, quantiteCommandee);
+
+        Stocks.ajouterElem(e, quantiteCommandee);
+        Historique.ajouterChangement(new ModificationStockElement(e.getCode(), e.getNom(), quantiteCommandee, e.getUniteMesure(), Prix, 0));
+    }
+
+
+    public static Element trouverElement(String code) {
+        for (Element e : Stocks.ElemStocks) {
+            if (e.getCode().equals(code))
+                return e;
+        }
+        return null;
+    }
+
+    public void ajouterQuantite(float n) {
+        this.quantiteStock += n;
+    }
+    public static void Vendre(Element e, float quantiteVendue) {
+        for (Element a : Stocks.ElemStocks) {
+            if (a.getCode().equals(e.getCode())) {
+                Stocks.enleverElem(a, quantiteVendue);
+
+            }
+        }
+        AjouterHistorique(e, quantiteVendue);
+    }
+    public static void AjouterHistorique (Element e, float quantiteVendue) {
+
+        double Prix = (e.prixVente) * (quantiteVendue);
+
+        Historique.ajouterChangement(new ModificationStockElement(e.getCode(), e.getNom(), quantiteVendue, e.getUniteMesure(), 0, Prix));
+    }
+
 
 
 }

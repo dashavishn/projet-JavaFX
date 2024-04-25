@@ -1,21 +1,25 @@
 package bigbrain.java_bureau.classe_java;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class ChaineProduction {
     private String code;
     private String nom;
-    public int niveauActivation;
-    private HashMap<Element, Double> elemEntree;
-    private HashMap<Element, Double> elemSortie;
+    public int niveauActivation ;
+  HashMap<Element, Double> elemEntree =new HashMap<>();
+  HashMap<Element, Double> elemSortie =new HashMap<>();
 
-    public ChaineProduction(String code, String nom, int niveauActivation){
+    public ChaineProduction(String code, String nom, int niveauActivation, HashMap elemEntree, HashMap elemSortie){
         this.code=code;
         this.nom=nom;
-        this.niveauActivation=niveauActivation;
+        this.niveauActivation= niveauActivation;
+        this.elemEntree= elemEntree;
+        this.elemSortie= elemSortie;
     }
 
     public void ajouterElementEntree(Element element, double quantite) {
+
         elemEntree.put(element, quantite);
     }
 
