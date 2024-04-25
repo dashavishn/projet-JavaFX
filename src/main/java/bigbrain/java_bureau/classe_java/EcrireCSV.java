@@ -16,12 +16,6 @@ import java.util.ArrayList;
  */
 public class EcrireCSV {
 
-    /**
-     * Vide le contenu d'un fichier CSV existant.
-     *
-     * @param filePath Le chemin d'accès au fichier CSV.
-     * @throws IOException Une exception d'entrée/sortie peut être levée en cas d'erreur d'écriture.
-     */
     public static void clearCSVFile(String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             // Écriture d'une chaîne vide pour vider le contenu
@@ -33,14 +27,8 @@ public class EcrireCSV {
         }
     }
 
-    /**
-     * Écrit les données d'une liste d'éléments dans un fichier CSV.
-     *
-     * @param filePath Le chemin d'accès au fichier CSV.
-     * @param elements La liste d'éléments à écrire dans le fichier.
-     * @throws IOException Une exception d'entrée/sortie peut être levée en cas d'erreur d'écriture.
-     */
-    public static void writeCSVFile(String filePath, ArrayList<Element> elements) {
+
+    public static void ecrireCSVFile (String filePath, ArrayList<Element> elements) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             // Écriture des données de la liste dans le fichier CSV
             for (Element element : elements) {
@@ -58,20 +46,12 @@ public class EcrireCSV {
         }
     }
 
-    /**
-     * Écrit les données d'une liste d'objets ChangementStock dans un fichier CSV.
-     *
-     * @param filePath Le chemin d'accès au fichier CSV.
-     * @param changes La liste d'objets ChangementStock à écrire dans le fichier.
-     * @throws IOException Une exception d'entrée/sortie peut être levée en cas d'erreur d'écriture.
-     */
-    public static void writeChangesCSVFile(String filePath, ArrayList<ModificationStockElement> changes) {
+
+    public static void ecrireChangementCSV (String filePath, ArrayList<ModificationStockElement> Historique) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (ChangementStock change : changes) {
-                String csvLine = change.getCode
-                        () + ";" + change.getNomElement() + ";" + change.getQuantiteModifiee() +
-                        ";" + change.getUniteMesure() + ";" + change.getPrixAchat() + ";" + change.getPrixVente() +
-                        ";" + change.getOrigine();
+            for ( ModificationStockElement change : Historique) {
+                String csvLine = change.getCode() + ";" + change.getNom() + ";" + change.getQuantiteStockmodifiee() +
+                        ";" + change.getUniteMesure() + ";" + change.getPrixAchat() + ";" + change.getPrixVente();
 
                 writer.write(csvLine);
                 writer.newLine();
@@ -84,4 +64,3 @@ public class EcrireCSV {
     }
 }
 
-}
