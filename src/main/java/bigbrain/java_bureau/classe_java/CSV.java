@@ -3,52 +3,28 @@ package bigbrain.java_bureau.classe_java;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-/* public class CSV {
-    public static ArrayList<ChaineProduction> Chaine = new ArrayList<ChaineProduction>();
-
-    public void LireElement () {
-        String line = "";
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            While((line = reader.readLine()) != null) {
-                String[] row = line.split(regex:";");
-                float r2 = Float.parseFloat(row[2]);
-                double r4 = Double.parseDouble(row[4]);
-                double r5 = Double.parseDouble(row[5]);
-                Element elem = new Element(row[0], row[1], r2, row[3], r4, r5);
-                Stocks.ajouterElem(elem, r2);
-            }
-        } catsh(FileNotFoundException e) {
-            e.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    public void LireChaine(){
-        String file = "src/OneDrive/Hanja - MIAGE /FichierV1(2)/chaines.csv";
-        String line ="";
-    }
-
-    try {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        While((line = reader.readLine()) != null) {
-            String[] row = line.split(regex:";");
-
-            HashMap<Element, Float> ElementEntree = new HashMap<Element, Float>();
-            String [] elementEntree = row[2].split(regex: ",");
-            for (String data : elementEntree){
-
-            }
-
-    }
-}
-*/
-
+/**
+ * Cette classe gère la lecture de données à partir de fichiers CSV (Comma-Separated Values).
+ * Elle fournit des méthodes pour lire des éléments, des chaînes de production et l'historique des changements
+ * à partir de fichiers CSV spécifiques.
+ *
+ * @author HanjaRajaobelison
+ */
 public class CSV {
-    public static ArrayList<ChaineProduction> chaines = new ArrayList<ChaineProduction>();
 
-    public void lireElement(String file) {
+    public static ArrayList<ChaineProduction> Chaines = new ArrayList<ChaineProduction>();
+
+    /**
+     * Lit les informations sur les éléments d'un fichier CSV et les ajoute au stock.
+     *
+     * @throws FileNotFoundException Si le fichier CSV d'éléments n'est pas trouvé.
+     * @throws IOException           En cas d'erreur de lecture du fichier CSV.
+     */
+    public void LireElement () {
+        String file = "src/main/ressources/bigbrain/FichiersV1(2)/elements.csv";
+
         String line = "";
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -57,10 +33,11 @@ public class CSV {
                 float r2 = Float.parseFloat(row[2]);
                 double r4 = Double.parseDouble(row[4]);
                 double r5 = Double.parseDouble(row[5]);
-                Element elem = new Element("2345", "elem1", 2.000000f, "kg", 2.001f, 3.002f);
-                Stocks.ajouterElem(elem);
+                Element elem = new Element(row[0], row[1], r2, row[3], r4, r5);
+                Stocks.ajouterElem(elem, r2);
+
+
             }
-            reader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,27 +46,45 @@ public class CSV {
     }
 
     public void LireChaine() {
-        String file1 = "src/main/ressources/bigbrain/FichierV1(2)/chaines.csv";
-        String file2= "src/main/ressources/bigbrain/FichierV1(2)/elements.csv";
+        String file = "src/main/ressources/bigbrain/FichiersV1(2)/elements.csv";
         String line = "";
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(";");
-                String[] elementsEntree = row[2].split(",");
-                HashMap<Element, Float> elemeEntree = new HashMap<>();
-                for (String data : elementsEntree) {
-                    // Récupérer l'élément et sa quantité, puis les ajouter à la HashMap
-                    String[] elemData = data.split(":");
-                    Element elem = new Element(elemData[0], elemData[1]);
-                    Float quantite = Float.parseFloat(elemData[2]);
-                    elemeEntree.put(elem, quantite);
+
+                HashMap<Element, Float> ElementEntree = new HashMap<Element, Float>();
+                String[] elementEntree = row[2].split(",");
+                for (String data : elementEntree) {
+                    data = data.replaceAll("[()\\s]+", "");
+                    String[] info = data.split(":");
+                    String code = info[0];
+                    float quantite = Float.parseFloat(info[1]);
+                    Element e = Element.trouverElement(code);
+                    ElementEntree.put(e, quantite);
+                    e.setQuantite(quantite);
+
                 }
-                ChaineProduction chaine = new ChaineProduction(row[0], row[1], elemEntree);
-                chaines.add(chaine);
+                HashMap<Element, Float> ElementSortie = new HashMap<Element, Float>();
+                String[] elementSortie = row[3].split(",");
+                for (String data : elementSortie) {
+                    data = data.replaceAll("[()\\s]+", "");
+                    String[] info = data.split(":");
+                    String code = info[0];
+                    float quantite = Float.parseFloat(info[1]);
+                    Element e = Element.trouverElement(code);
+                    ElementSortie.put(e, quantite);
+                    e.setQuantite(quantite);
+
+                }
+
+
+                ChaineProduction chaine = new ChaineProduction(row[0], row[1], ElementEntree, ElementSortie);
+                Chaines.add(chaine);
+
             }
-            reader.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
