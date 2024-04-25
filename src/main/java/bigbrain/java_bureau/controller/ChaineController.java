@@ -1,12 +1,34 @@
 package bigbrain.java_bureau.controller;
+import bigbrain.java_bureau.classe_java.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
-public class ChaineController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+
+public class ChaineController implements Initializable{
     @FXML
+    private AnchorPane bChaine;
+
+    @FXML
+
+
     private TextField textFieldCodeEntree;
 
     @FXML
@@ -34,7 +56,7 @@ public class ChaineController {
 
         // Vérifier si les champs sont vides
         if (codeEntree.isEmpty() || quantiteEntreeText.isEmpty() || codeSortie.isEmpty() || quantiteSortieText.isEmpty()) {
-            textResultat.setText("Veuillez remplir tous les champs.");
+            textResultat.setTextContent("Veuillez remplir tous les champs.");
             return;
         }
 
@@ -45,7 +67,7 @@ public class ChaineController {
             quantiteEntree = Integer.parseInt(quantiteEntreeText);
             quantiteSortie = Integer.parseInt(quantiteSortieText);
         } catch (NumberFormatException e) {
-            textResultat.setText("Veuillez saisir des nombres valides pour les quantités.");
+            textResultat.setTextContent("Veuillez saisir des nombres valides pour les quantités.");
             return;
         }
 
@@ -53,6 +75,12 @@ public class ChaineController {
         // Par exemple, vous pouvez appeler des méthodes de vos classes de modèle pour manipuler les données
 
         // Afficher un message de succès
-        textResultat.setText("Données validées avec succès !");
+        textResultat.setTextContent("Données validées avec succès !");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
     }
 }

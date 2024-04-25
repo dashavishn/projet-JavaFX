@@ -1,4 +1,6 @@
 package bigbrain.java_bureau.controller;
+
+import bigbrain.java_bureau.classe_java.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -39,9 +41,9 @@ public class Commandes_ValidationController {
             if (code.isEmpty() || nom.isEmpty() || unite.isEmpty() || quantite.isEmpty()) {
                 messageTextArea.setText("Veuillez remplir tous les champs.");
             } else {
-                // Ajoutez ici la logique pour traiter la commande
+
                 messageTextArea.setText("Commande effectuée avec succès !");
-                // Réinitialiser les champs après la commande
+
                 codeTextField.clear();
                 nomTextField.clear();
                 uniteTextField.clear();
