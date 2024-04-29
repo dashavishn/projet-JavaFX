@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class ChaineController implements Initializable{
     @FXML
-    private AnchorPane bChaine;
+    private AnchorPane Chaine;
 
     @FXML
 
@@ -54,13 +54,13 @@ public class ChaineController implements Initializable{
         String codeSortie = textFieldCodeSortie.getText();
         String quantiteSortieText = textFieldQuantiteSortie.getText();
 
-        // Vérifier si les champs sont vides
+        // je vais vérifier si les champs sont vides
         if (codeEntree.isEmpty() || quantiteEntreeText.isEmpty() || codeSortie.isEmpty() || quantiteSortieText.isEmpty()) {
             textResultat.setTextContent("Veuillez remplir tous les champs.");
             return;
         }
 
-        // Convertir les quantités en entiers
+        // c'est pour convertir les quantités en entiers
         int quantiteEntree;
         int quantiteSortie;
         try {
@@ -71,10 +71,6 @@ public class ChaineController implements Initializable{
             return;
         }
 
-        // Effectuer des actions avec les données saisies
-        // Par exemple, vous pouvez appeler des méthodes de vos classes de modèle pour manipuler les données
-
-        // Afficher un message de succès
         textResultat.setTextContent("Données validées avec succès !");
     }
 

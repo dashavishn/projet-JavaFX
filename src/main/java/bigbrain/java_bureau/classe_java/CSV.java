@@ -3,7 +3,6 @@ package bigbrain.java_bureau.classe_java;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Cette classe gère la lecture de données à partir de fichiers CSV (Comma-Separated Values).
@@ -23,11 +22,11 @@ public class CSV {
      * @throws IOException           En cas d'erreur de lecture du fichier CSV.
      */
     public void LireElement () {
-        String file = "/ressources/bigbrain/FichiersV1(2)/elements.csv";
+        String file = "elements.csv";
 
         String line = "";
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            BufferedReader reader = new BufferedReader(new FileReader(getClass().getResource(file).toString()));
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(";");
                 float r2 = Float.parseFloat(row[2]);
