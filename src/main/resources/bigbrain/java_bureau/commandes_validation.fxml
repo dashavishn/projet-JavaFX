@@ -1,48 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="548.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.Commandes_ValidationController">
+<AnchorPane prefHeight="548.0" prefWidth="780.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.Commandes_ValidationController">
   <children>
-    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-      <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="389.0">
-          <children>
-            <TextArea layoutX="14.0" layoutY="14.0" prefHeight="59.0" prefWidth="358.0" text="Pour commander un nouveau produit, remplissez les champs suivantes :" wrapText="true" />
-            <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :">
-              <font>
-                <Font size="22.0" fx:id="x1" />
-              </font>
-            </Text>
-            <Text font="$x1" layoutX="15.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
-            <Text font="$x1" layoutX="14.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unité :" />
-            <Text font="$x1" layoutX="10.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité :" />
-            <Button layoutX="151.0" layoutY="378.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="145.0" text="Commander">
-              <font>
-                <Font size="20.0" fx:id="x2" />
-              </font>
-            </Button>
-            <TextField layoutX="116.0" layoutY="102.0" prefWidth="200.0" />
-            <TextField layoutX="116.0" layoutY="173.0" prefWidth="200.0" />
-            <TextField layoutX="116.0" layoutY="236.0" prefWidth="200.0" />
-            <TextField layoutX="116.0" layoutY="297.0" prefWidth="200.0" />
-          </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-          <children>
-            <TextArea layoutX="14.0" layoutY="14.0" prefHeight="59.0" prefWidth="370.0" text="Pour commander un produit existant, remplissez les champs suivantes :" wrapText="true" />
-            <Text font="$x1" layoutX="32.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :" />
-            <Text font="$x1" layoutX="35.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
-            <TextField layoutX="123.0" layoutY="150.0" prefWidth="200.0" />
-            <TextField layoutX="123.0" layoutY="257.0" prefWidth="200.0" />
-            <Button font="$x2" layoutX="135.0" layoutY="377.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="145.0" text="Commander" textFill="BLACK" />
-          </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="780.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
+      <children>
+        <Text layoutX="233.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :">
+          <font>
+            <Font size="22.0" fx:id="x1" />
+          </font>
+        </Text>
+        <Text font="$x1" layoutX="233.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
+        <Text font="$x1" layoutX="219.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unité :" />
+        <Text font="$x1" layoutX="186.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité :" />
+        <Button layoutX="327.0" layoutY="401.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="145.0" text="Commander">
+          <font>
+            <Font size="20.0" fx:id="x2" />
+          </font>
+        </Button>
+        <TextField layoutX="337.0" layoutY="167.0" prefWidth="200.0" />
+        <TextField layoutX="337.0" layoutY="236.0" prefWidth="200.0" />
+        <TextField layoutX="344.0" layoutY="312.0" prefWidth="200.0" />
+        <TextArea layoutX="0.0" layoutY="52.0" prefHeight="59.0" prefWidth="780.0" text="Pour commander un produit existant, remplissez les champs suivantes :" wrapText="true" />
+        <TextArea prefHeight="167.0" prefWidth="445.0" text="                            Félicitations! &#10;       Votre commande a été effectuée avec succès." wrapText="true" AnchorPane.bottomAnchor="122.5" AnchorPane.leftAnchor="186.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="258.5">
+          <effect>
+            <InnerShadow blurType="TWO_PASS_BOX" height="33.18617021276596" radius="16.4375" width="34.56382978723404">
+              <input>
+                <SepiaTone />
+              </input>
+            </InnerShadow>
+          </effect>
+        </TextArea>
+        <Button layoutX="202.0" layoutY="348.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" text="Nouvelle commande">
+          <font>
+            <Font name="Calibri Bold" size="18.0" />
+          </font>
+        </Button>
+        <Button layoutX="399.0" layoutY="348.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Retour">
+          <font>
+            <Font name="Calibri Bold" size="20.0" />
+          </font>
+        </Button>
+      </children>
+    </AnchorPane>
     <MenuBar prefHeight="45.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
         <Menu mnemonicParsing="false" text="Stocks" />
@@ -51,28 +56,5 @@
         <Menu mnemonicParsing="false" text="Historique" />
       </menus>
     </MenuBar>
-    <AnchorPane layoutX="166.0" layoutY="219.0" minHeight="167.0" prefHeight="167.0" prefWidth="445.0">
-      <children>
-        <TextArea prefHeight="223.0" prefWidth="442.0" text="                            Félicitations! &#10;       Votre commande a été effectuée avec succès." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-          <effect>
-            <InnerShadow color="#610000" height="31.808510638297875" radius="16.09308510638298" width="34.56382978723404">
-              <input>
-                <SepiaTone />
-              </input>
-            </InnerShadow>
-          </effect>
-        </TextArea>
-        <Button layoutX="14.0" layoutY="101.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" text="Nouvelle commande">
-          <font>
-            <Font name="Calibri Bold" size="18.0" />
-          </font>
-        </Button>
-        <Button layoutX="224.0" layoutY="101.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Retour">
-          <font>
-            <Font name="Calibri Bold" size="20.0" />
-          </font>
-        </Button>
-      </children>
-    </AnchorPane>
   </children>
 </AnchorPane>

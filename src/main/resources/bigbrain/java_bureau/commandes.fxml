@@ -1,50 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="548.0" prefWidth="780.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.CommandesController">
   <children>
-    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-      <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="389.0">
-          <children>
-            <TextArea cache="false" disable="false" editable="true" focusTraversable="true" layoutX="14.0" layoutY="14.0" mouseTransparent="false" pickOnBounds="false" prefHeight="59.0" prefWidth="358.0" text="Pour commander un nouveau produit, remplissez les champs suivantes :" visible="true" wrapText="true" />
-            <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :">
-              <font>
-                <Font size="22.0" fx:id="x1" />
-              </font>
-            </Text>
-            <Text font="$x1" layoutX="15.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
-            <Text font="$x1" layoutX="14.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unité :" />
-            <Text font="$x1" layoutX="10.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité :" />
-            <Button layoutX="151.0" layoutY="378.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="145.0" text="Commander">
-              <font>
-                <Font size="20.0" fx:id="x2" />
-              </font>
-            </Button>
-            <TextField layoutX="116.0" layoutY="102.0" prefWidth="200.0" />
-            <TextField layoutX="116.0" layoutY="173.0" prefWidth="200.0" />
-            <TextField layoutX="116.0" layoutY="236.0" prefWidth="200.0" />
-            <TextField layoutX="116.0" layoutY="297.0" prefWidth="200.0" />
-          </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-          <children>
-            <TextArea layoutX="14.0" layoutY="14.0" prefHeight="59.0" prefWidth="370.0" text="Pour commander un produit existant, remplissez les champs suivantes :" wrapText="true" />
-            <Text font="$x1" layoutX="32.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :" />
-            <Text font="$x1" layoutX="35.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
-            <TextField layoutX="123.0" layoutY="150.0" prefWidth="200.0" />
-            <TextField layoutX="123.0" layoutY="257.0" prefWidth="200.0" />
-            <Button font="$x2" layoutX="135.0" layoutY="377.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="145.0" text="Commander" textFill="BLACK" />
-          </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
     <MenuBar prefHeight="45.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
         <Menu mnemonicParsing="false" text="Stocks" />
@@ -53,5 +15,23 @@
         <Menu mnemonicParsing="false" text="Historique" />
       </menus>
     </MenuBar>
+    <TextArea prefHeight="548.0" prefWidth="780.0" text="Pour commander un produit existant, remplissez les champs suivantes : " wrapText="true" AnchorPane.bottomAnchor="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+    <Text layoutX="234.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :">
+      <font>
+        <Font size="28.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Text layoutX="234.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+      <font>
+        <Font name="Arial" size="28.0" />
+      </font>
+    </Text>
+    <Text fill="BLACK" font="$x1" layoutX="234.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unité :" />
+    <Text font="$x1" layoutX="234.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité :" />
+    <TextField layoutX="377.0" layoutY="156.0" prefWidth="200.0" />
+    <TextField layoutX="377.0" layoutY="229.0" prefWidth="200.0" />
+    <TextField layoutX="377.0" layoutY="306.0" prefWidth="200.0" />
+    <TextField layoutX="377.0" layoutY="381.0" prefWidth="200.0" />
+    <Button font="$x1" layoutX="288.0" layoutY="450.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="205.0" text="Commander" />
   </children>
 </AnchorPane>
