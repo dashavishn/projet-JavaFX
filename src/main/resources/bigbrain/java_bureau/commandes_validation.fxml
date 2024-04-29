@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="548.0" prefWidth="780.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.Commandes_ValidationController">
+<AnchorPane prefHeight="548.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.Commandes_ValidationController">
   <children>
     <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
       <items>
@@ -48,26 +45,10 @@
     </SplitPane>
     <MenuBar prefHeight="45.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
-        <Menu mnemonicParsing="false" text="Stocks">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Close" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Chaîne de production">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
-          </items>
-        </Menu>
-        <Menu disable="false" mnemonicParsing="false" text="Commandes" visible="true">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Historique">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-          </items>
-        </Menu>
+        <Menu mnemonicParsing="false" text="Stocks" />
+        <Menu mnemonicParsing="false" text="Chaîne de production" />
+        <Menu disable="false" mnemonicParsing="false" text="Commandes" visible="true" />
+        <Menu mnemonicParsing="false" text="Historique" />
       </menus>
     </MenuBar>
     <AnchorPane layoutX="166.0" layoutY="219.0" minHeight="167.0" prefHeight="167.0" prefWidth="445.0">
