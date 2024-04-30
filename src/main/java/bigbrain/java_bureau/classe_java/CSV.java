@@ -45,7 +45,7 @@ public class CSV {
     }
 
     public void LireChaine() {
-        String file = "/ressources/bigbrain/FichiersV1(2)/elements.csv";
+        String file = "chaine.csv";
         String line = "";
 
         try {

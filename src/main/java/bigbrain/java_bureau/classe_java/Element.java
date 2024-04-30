@@ -21,6 +21,7 @@ package bigbrain.java_bureau.classe_java;
 
  */
 public class Element {
+
     private String code;
     private String nom;
     private double quantiteStock;
@@ -29,7 +30,9 @@ public class Element {
     private double prixAchat;
 
     private double prixVente;
-
+    /* ===========================================
+     * Le constructeur et les fonctions dont on a besoin
+     * =========================================== */
 
     public Element(String code, String nom, double quantiteStock, String uniteMesure, double prixAchat, double prixVente) {
         this.code=code;
@@ -40,60 +43,78 @@ public class Element {
         this.prixVente=prixVente;
     }
 
-    public Element(String elemDatum, String elemDatum1) {
+    /** public Element(String elemDatum, String elemDatum1) {
     }
+*/
 
-    //va mettre à jour la quantité
-    public void setQuantite(double quantite){
-        this.quantiteStock = quantite;
-    }
+    /* ===========================================
+     * Les Getteur et Setteur
+     * =========================================== */
 
 
-    //retourne quantité actuelle du produit
+    /** retourne quantité actuelle du produit */
 
     public double getQuantiteStock(){
         return quantiteStock;
 
     }
 
-    //va retourner le code de l'élément
+    /** Met à jour la quantité */
+
+    public void setQuantiteStock(){
+        this.quantiteStock=quantiteStock;
+    }
+    /** va mettre à jour la quantité */
+    public void setQuantite(double quantite){
+        this.quantiteStock = quantite;
+    }
+
+    /** va retourner le code de l'élément */
     public String getCode(){
         return code;
     }
-//va mettre à jour le code d'un nouvel élément
-public void setCode(String code){
-    this.code=code;
-}
+    /**va mettre à jour le code d'un nouvel élément */
+    public void setCode(String code){
+        this.code=code;
+    }
 
-    //retourne le nom d'un élément
+/** retourne le nom d'un élément */
     public String getNom(){
         return nom;
     }
-// va mettre à jour le nom d'un nouvel élément
+/** va mettre à jour le nom d'un nouvel élément */
     public void setNom(String nom){
         this.nom=nom;
     }
-//retourne l'unité de mesure de l'élément
+/** retourne l'unité de mesure de l'élément */
     public String getUniteMesure() {
         return uniteMesure;
     }
-//met à jour l'unité de l'élément
+/** met à jour l'unité de l'élément */
     public void setUniteMesure(String uniteMesure){
         this.uniteMesure=uniteMesure;
     }
-
+    /** retourne le prix d'achat */
     public double getPrixAchat(){
         return prixAchat;
     }
+    /** Met à jour le prix d'achat */
+    public void setPrixAchat(){
+        this.prixAchat=prixAchat;
+    }
+    /** Retourne le prix de vente */
 
     public double getPrixVente() {
         return prixVente;
     }
+    /** Met à jour le prix de vente */
+    public void setPrixVente(){
+        this.prixVente=prixVente;
+    }
 
 
 
-
-//la descrition de l'élément
+/** va retourner la descrition de l'élément */
     public String toString() {
         return "Element{" +
                 "quantite=" + quantiteStock +
@@ -129,6 +150,7 @@ public void setCode(String code){
     public void ajouterQuantite(float n) {
         this.quantiteStock += n;
     }
+
     public static void Vendre(Element e, float quantiteVendue) {
         for (Element a : Stocks.ElemStocks) {
             if (a.getCode().equals(e.getCode())) {
