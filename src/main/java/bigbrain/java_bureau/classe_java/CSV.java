@@ -21,21 +21,26 @@ public class CSV {
      * @throws FileNotFoundException Si le fichier CSV d'éléments n'est pas trouvé.
      * @throws IOException           En cas d'erreur de lecture du fichier CSV.
      */
-    public void LireElement () {
-        String file = "elements.csv";
 
+    public void LireElement() {
+        String file = "/bigbrain/fichierscsv/elements.csv";
         String line = "";
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(getClass().getResource(file).toString()));
+            // Utilisation de getResourceAsStream() pour obtenir un InputStream à partir d'une ressource
+            InputStream is = getClass().getResourceAsStream(file);
+            if (is == null) {
+                throw new FileNotFoundException("Le fichier n'a pas été trouvé dans les ressources.");
+            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            // Lire et ignorer la première ligne (souvent utilisée pour les en-têtes)
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(";");
                 float r2 = Float.parseFloat(row[2]);
-                double r4 = Double.parseDouble(row[4]);
-                double r5 = Double.parseDouble(row[5]);
+                double r4 = getDouble(row[4]);
+                double r5 = getDouble(row[5]);
                 Element elem = new Element(row[0], row[1], r2, row[3], r4, r5);
                 Stocks.ajouterElem(elem, r2);
-
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -45,14 +50,19 @@ public class CSV {
     }
 
     public void LireChaine() {
-        String file = "chaine.csv";
+        String file = "/bigbrain/fichierscsv/chaines.csv";
         String line = "";
-
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            // Utilisation de getResourceAsStream() pour obtenir un InputStream à partir d'une ressource
+            InputStream is = getClass().getResourceAsStream(file);
+            if (is == null) {
+                throw new FileNotFoundException("Le fichier n'a pas été trouvé dans les ressources.");
+            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            // Lire et ignorer la première ligne (souvent utilisée pour les en-têtes)
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] row = line.split(";");
-
                 HashMap<Element, Float> ElementEntree = new HashMap<Element, Float>();
                 String[] elementEntree = row[2].split(",");
                 for (String data : elementEntree) {
@@ -63,7 +73,6 @@ public class CSV {
                     Element e = Element.trouverElement(code);
                     ElementEntree.put(e, quantite);
                     e.setQuantite(quantite);
-
                 }
                 HashMap<Element, Float> ElementSortie = new HashMap<Element, Float>();
                 String[] elementSortie = row[3].split(",");
@@ -75,19 +84,25 @@ public class CSV {
                     Element e = Element.trouverElement(code);
                     ElementSortie.put(e, quantite);
                     e.setQuantite(quantite);
-
                 }
-
 
                 ChaineProduction chaine = new ChaineProduction(row[0], row[1], ElementEntree, ElementSortie);
                 Chaines.add(chaine);
-
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private double getDouble(String value) {
+        double doubleValue;
+        try {
+            doubleValue = Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            doubleValue = 0;
+        }
+        return doubleValue;
     }
 }

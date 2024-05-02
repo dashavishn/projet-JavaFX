@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("stock.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chaine.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);
@@ -39,11 +39,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        CSV b = new CSV();
-        b.LireElement();
-        //b.LireHistorique();
-        b.LireChaine();
-        //Stocks.copieStock();
+        CSV csv = new CSV();
+        csv.LireElement();
+        csv.LireChaine();
         launch();
     }
 }
