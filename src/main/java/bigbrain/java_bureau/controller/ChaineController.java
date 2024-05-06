@@ -24,13 +24,11 @@ import java.util.ResourceBundle;
 import static bigbrain.java_bureau.Main.primaryStage;
 
 
-public class ChaineController implements Initializable{
+public class ChaineController implements Initializable {
     @FXML
     private AnchorPane Chaine;
 
     @FXML
-
-
     private TextField textFieldCodeEntree;
 
     @FXML
@@ -90,10 +88,50 @@ public class ChaineController implements Initializable{
         textResultat.setTextContent("Données validées avec succès !");
     }
 
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*
+        textFieldCodeEntree.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colNomE2.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colNomE3.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colNomS1.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colNomS2.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colNomS3.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colQE1.setCellValueFactory(new PropertyValueFactory<>("quantiteEnProd"));
+        colQE2.setCellValueFactory(new PropertyValueFactory<>("quantiteEnProd"));
+        colQE3.setCellValueFactory(new PropertyValueFactory<>("quantiteEnProd"));
+        colQS1.setCellValueFactory(new PropertyValueFactory<>("quantiteEnProd"));
+        colQS2.setCellValueFactory(new PropertyValueFactory<>("quantiteEnProd"));
+        colQS3.setCellValueFactory(new PropertyValueFactory<>("quantiteEnProd"));
 
+        ObservableList<Element> dataE1 = FXCollections.observableArrayList();
+        ObservableList<Element> dataE2 = FXCollections.observableArrayList();
+        ObservableList<Element> dataE3 = FXCollections.observableArrayList();
+        ObservableList<Element> dataS1 = FXCollections.observableArrayList();
+        ObservableList<Element> dataS2 = FXCollections.observableArrayList();
+        ObservableList<Element> dataS3 = FXCollections.observableArrayList();
 
+        for (ChaineProduction c : CSV.Chaines){
+            if(c.getCode().equals("C001")){
+                dataE1.addAll(c.getElementsEntreeKeys());
+                dataS1.addAll(c.getElementsSortieKeys());
+                TabChaineE1.setItems(dataE1);
+                TabChaineS1.setItems(dataS1);
+            }
+            if(c.getCode().equals("C002")){
+                dataE2.addAll(c.getElementsEntreeKeys());
+                dataS2.addAll(c.getElementsSortieKeys());
+                TabChaineE2.setItems(dataE2);
+                TabChaineS2.setItems(dataS2);
+            }
+            if(c.getCode().equals("C003")){
+                dataE3.addAll(c.getElementsEntreeKeys());
+                dataS3.addAll(c.getElementsSortieKeys());
+                TabChaineE3.setItems(dataE3);
+                TabChaineS3.setItems(dataS3);
+            }
+        }
+    }
+*/
     }
 }
 //ON ACTION

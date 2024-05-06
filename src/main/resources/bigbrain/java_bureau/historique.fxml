@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?scenebuilder-background-color 0xffcce4ff?>
 
-<AnchorPane prefHeight="643.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="643.0" prefWidth="792.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <MenuBar prefHeight="46.0" prefWidth="886.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
       <menus>
@@ -33,43 +34,22 @@
                                   <children>
                                     <SplitPane focusTraversable="true" prefHeight="609.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <items>
-                                        <SplitPane id="SplitPane">
+                                        <SplitPane id="SplitPane" dividerPositions="">
                                           <items>
-                                            <GridPane alignment="TOP_CENTER" gridLinesVisible="true">
-                                              <children>
-                                                <TextArea prefWidth="200.0" text="Nom" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                                                <TextArea prefWidth="200.0" text="Code" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                                                <TextArea prefWidth="200.0" text="Quantité" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-                                                <TextArea prefWidth="200.0" text="Unité" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-                                                <TextArea prefWidth="200.0" text="Prix Achat" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-                                                <TextArea prefWidth="200.0" text="Prix Vente" wrapText="true" GridPane.columnIndex="5" GridPane.rowIndex="0" />
-                                              </children>
-                                              <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="126.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.0" minWidth="10.0" prefWidth="70.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="98.0" />
-                                              </columnConstraints>
-                                              <rowConstraints>
-                                                <RowConstraints maxHeight="39.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                                              </rowConstraints>
-                                            </GridPane>
+                                            <SplitPane id="SplitPane">
+                                              <items>
+                                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="144.0" text="Nom" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="117.0" text="Code" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="121.0" text="Quantité" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="121.0" text="Unité" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="Prix Achat" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Prix Vente" />
+                                                  </columns>
+                                                </TableView>
+                                              </items>
+                                            </SplitPane>
                                           </items>
                                         </SplitPane>
                                       </items>
