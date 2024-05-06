@@ -15,14 +15,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chaine.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("commandes_validation.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         primaryStage.setTitle("Hello!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public void ChargerPage(String page) throws IOException {
+    public void chargerPage(String page) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
         Parent root = null;
         try {
