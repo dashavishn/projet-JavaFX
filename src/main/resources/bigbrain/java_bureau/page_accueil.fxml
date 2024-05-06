@@ -11,22 +11,22 @@
             <font>
                 <Font size="24.0" />
             </font></TextField>
-        <Button layoutX="360.0" layoutY="188.0" mnemonicParsing="false" text="Stock">
+        <Button layoutX="415.0" layoutY="188.0" mnemonicParsing="false" text="Stock">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button layoutX="232.0" layoutY="295.0" mnemonicParsing="false" text="Chaîne de production">
+        <Button layoutX="287.0" layoutY="295.0" mnemonicParsing="false" text="Chaîne de production">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button layoutX="304.0" layoutY="422.0" mnemonicParsing="false" text="Commandes">
+        <Button layoutX="359.0" layoutY="428.0" mnemonicParsing="false" text="Commandes">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button layoutX="321.0" layoutY="535.0" mnemonicParsing="false" text="Historique">
+        <Button layoutX="377.0" layoutY="542.0" mnemonicParsing="false" text="Historique">
             <font>
                 <Font size="36.0" />
             </font>

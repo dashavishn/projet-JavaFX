@@ -21,6 +21,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static bigbrain.java_bureau.Main.primaryStage;
+
 
 public class ChaineController implements Initializable{
     @FXML
@@ -45,6 +47,20 @@ public class ChaineController implements Initializable{
 
     @FXML
     private Button buttonValider;
+
+    public void ChargerPage(String page) {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(page)));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
 
     // Méthode pour valider les données saisies et effectuer des actions correspondantes
     @FXML
