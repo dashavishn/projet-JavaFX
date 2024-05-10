@@ -39,6 +39,10 @@ public class CSV {
                 float r2 = Float.parseFloat(row[2]);
                 double r4 = getDouble(row[4]);
                 double r5 = getDouble(row[5]);
+                System.out.println("Ligne lue : " + line);
+                for (String value : row) {
+                    System.out.println("Valeur : " + value);
+                }
                 Element elem = new Element(row[0], row[1], r2, row[3], r4, r5);
                 Stocks.ajouterElem(elem, r2);
             }
