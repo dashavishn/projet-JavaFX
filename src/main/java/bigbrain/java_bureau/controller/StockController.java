@@ -1,17 +1,35 @@
 package bigbrain.java_bureau.controller;
 import bigbrain.java_bureau.classe_java.Element;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 public class StockController {
+    /* ===========================================
+     *Ces boutons permettent d'accèder à la barre de navigation
+     * =========================================== */
+    @FXML
+    private Button boutonChaine;
+    @FXML
+    private Button boutonHistorique;
+
+    @FXML
+    private Button boutonCommande;
+
 
     @FXML
     private TableView<Element> tableStock;
@@ -74,4 +92,18 @@ public class StockController {
         primaryStage.show();
     }
 
+    /* public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colAchat.setCellValueFactory(new PropertyValueFactory<>("prixAchat"));
+        colVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
+        colQte.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+        colUnite.setCellValueFactory(new PropertyValueFactory<>("uniteMesure"));
+
+        ObservableList<Element> data = FXCollections.observableArrayList();
+        data.addAll(Stocks.EStock);
+        tableViewStock.setItems(data);
+    }
+*/
 }
