@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -7,29 +6,29 @@
 
 <AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.StockController">
   <children>
-    <MenuBar prefHeight="46.0" prefWidth="886.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
-      <menus>
-        <Menu mnemonicParsing="false" text="Stock" />
-        <Menu mnemonicParsing="false" text="Chaine de production" />
-        <Menu mnemonicParsing="false" text="Commandes" />
-        <Menu mnemonicParsing="false" text="Historique" />
-      </menus>
-    </MenuBar>
-    <TableView fx:id="tableStock" layoutX="50" layoutY="50" prefHeight="200.0" prefWidth="800.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+    <VBox spacing="10" layoutX="20" layoutY="20">
+      <children>
+        <Button text="Accueil" onAction="#Page_Accueil" minWidth="200" />
+        <Button text="Voir Stock" onAction="#Page_Stock" minWidth="200" />
+        <Button text="Chaine de production" onAction="#Page_Chaine" minWidth="200" />
+        <Button text="Commandes" onAction="#Page_Commandes" minWidth="200" />
+        <Button text="Historique" onAction="#Page_Historique" minWidth="200" />
+      </children>
+    </VBox>
+    <TableView fx:id="tableStock" layoutX="240" layoutY="50" prefHeight="200.0" prefWidth="600.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
       <columns>
-        <TableColumn fx:id="colNom" maxWidth="5000.0" minWidth="10.0" prefWidth="110.0" text="Nom" />
-        <TableColumn fx:id="colCode" maxWidth="5000.0" minWidth="10.0" prefWidth="85.0" text="Code" />
-        <TableColumn fx:id="colQuantite" maxWidth="5000.0" minWidth="10.0" prefWidth="101.0" text="Quantité" />
-        <TableColumn fx:id="colUnite" prefWidth="75.0" text="Unité" />
-        <TableColumn fx:id="colPrixAchat" maxWidth="5000.0" minWidth="10.0" prefWidth="104.0" text="Prix Achat" />
-        <TableColumn fx:id="colPrixVente" maxWidth="5000.0" minWidth="10.0" prefWidth="117.0" text="Prix Vente" />
+        <TableColumn fx:id="colNom" maxWidth="5000.0" minWidth="10.0" prefWidth="120.0" text="Nom" />
+        <TableColumn fx:id="colCode" maxWidth="5000.0" minWidth="10.0" prefWidth="95.0" text="Code" />
+        <TableColumn fx:id="colQuantite" maxWidth="5000.0" minWidth="10.0" prefWidth="120.0" text="Quantité" />
+        <TableColumn fx:id="colUnite" prefWidth="90.0" text="Unité" />
+        <TableColumn fx:id="colPrixAchat" maxWidth="5000.0" minWidth="10.0" prefWidth="115.0" text="Prix Achat" />
+        <TableColumn fx:id="colPrixVente" maxWidth="5000.0" minWidth="10.0" prefWidth="130.0" text="Prix Vente" />
       </columns>
     </TableView>
-    <TextField layoutX="20" layoutY="300" prefWidth="200" promptText="Entrer une quantité" text="" />
-    <TextField layoutX="20" layoutY="350" prefWidth="200" promptText="Entrer un code de produit" text="" />
-    <Text layoutX="20.0" layoutY="289.0" text="Quantité:" />
-    <Text layoutX="20.0" layoutY="338.0" text="Code Produit:" />
-    <Button layoutX="20" layoutY="400" mnemonicParsing="false" onAction="#valider" prefWidth="200" text="Valider" />
-    <!-- Vous pouvez ajouter d'autres composants ici -->
+    <TextField layoutX="240" layoutY="300" prefWidth="200" promptText="Entrer une quantité" />
+    <TextField layoutX="240" layoutY="350" prefWidth="200" promptText="Entrer un code de produit" />
+    <Text layoutX="240.0" layoutY="289.0" text="Quantité:" />
+    <Text layoutX="240.0" layoutY="338.0" text="Code Produit:" />
+    <Button layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#valider" prefWidth="200" text="Valider" />
   </children>
 </AnchorPane>
