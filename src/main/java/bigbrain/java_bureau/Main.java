@@ -22,7 +22,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void chargerPage(String page) throws IOException {
+    public void ChargerPage(String page) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
         Parent root = null;
         try {
@@ -44,4 +44,6 @@ public class Main extends Application {
         csv.LireChaine();
         launch();
     }
+
+
 }

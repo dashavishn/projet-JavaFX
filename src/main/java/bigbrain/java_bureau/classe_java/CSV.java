@@ -3,6 +3,9 @@ package bigbrain.java_bureau.classe_java;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  * Cette classe gère la lecture de données à partir de fichiers CSV (Comma-Separated Values).
@@ -76,7 +79,7 @@ public class CSV {
                     float quantite = Float.parseFloat(info[1]);
                     Element e = Element.trouverElement(code);
                     ElementEntree.put(e, quantite);
-                    e.setQuantite(quantite);
+                    e.setQuantiteStock(quantite);
                 }
                 HashMap<Element, Float> ElementSortie = new HashMap<Element, Float>();
                 String[] elementSortie = row[3].split(",");
@@ -87,7 +90,7 @@ public class CSV {
                     float quantite = Float.parseFloat(info[1]);
                     Element e = Element.trouverElement(code);
                     ElementSortie.put(e, quantite);
-                    e.setQuantite(quantite);
+                    e.setQuantiteStock(quantite);
                 }
 
                 ChaineProduction chaine = new ChaineProduction(row[0], row[1], ElementEntree, ElementSortie);

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class Stocks {
     //une liste qui contient les élements disponibles en stock
-    protected static ArrayList<Element> ElemStocks=new ArrayList<>();
+    public static ArrayList<Element> ElemStocks=new ArrayList<>();
+
 
 
     public Stocks(){
@@ -22,7 +23,7 @@ public class Stocks {
             }
         }
         else{
-            e.setQuantite(n);
+            e.setQuantiteStock(n);
             ElemStocks.add(e);
         }
     }

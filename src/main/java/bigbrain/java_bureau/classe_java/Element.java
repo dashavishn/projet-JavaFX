@@ -38,6 +38,7 @@ public class Element {
         this.code=code;
         this.nom=nom;
         this.quantiteStock=quantiteStock;
+
         this.uniteMesure=uniteMesure;
         this.prixAchat=prixAchat;
         this.prixVente=prixVente;
@@ -61,11 +62,8 @@ public class Element {
 
     /** Met à jour la quantité */
 
-    public void setQuantiteStock(){
-        this.quantiteStock=quantiteStock;
-    }
     /** va mettre à jour la quantité */
-    public void setQuantite(double quantite){
+    public void setQuantiteStock(double quantite){
         this.quantiteStock = quantite;
     }
 

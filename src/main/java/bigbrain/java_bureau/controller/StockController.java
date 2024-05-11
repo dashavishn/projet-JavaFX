@@ -4,9 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,11 +17,21 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import static bigbrain.java_bureau.Main.primaryStage;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import static java.lang.String.valueOf;
+import bigbrain.java_bureau.classe_java.Stocks;
 
 
-public class StockController {
+
+public class StockController implements Initializable {
+
+    @FXML
+    private TableView<Element> tableStock;
     /* ===========================================
      *Ces boutons permettent d'accèder à la barre de navigation
      * =========================================== */
@@ -30,9 +43,6 @@ public class StockController {
     @FXML
     private Button boutonCommande;
 
-
-    @FXML
-    private TableView<Element> tableStock;
     @FXML
     private TextField textQuantite;
 
@@ -46,10 +56,37 @@ public class StockController {
     private Text textResultat;
     private ActionEvent actionEvent;
 
-    public StockController(Button boutonValider, Text textResultat) {
-        this.boutonValider = boutonValider;
-        this.textResultat = textResultat;
+    /**
+     * les table colonne .
+     */
+    @FXML
+    private TableColumn<Element, Float> colPrixAchat;
+    @FXML
+    private TableColumn<Element, String> colCode;
+
+    @FXML
+    private TableColumn<Element, String> colNom;
+
+    @FXML
+    private TableColumn<Element, Float> colQuantite;
+
+    @FXML
+    private TableColumn<Element, String> colUnite;
+
+    @FXML
+    private TableColumn<Element, Float> colPrixVente;
+
+
+    /**
+     * Champ de texte permettant de saisir le code de l'élément à vendre.
+     */
+    @FXML
+    private TextField textecode;
+
+    public void PageStock() {
+        ChargerPage("stock.fxml");
     }
+
 
     //Validation les données saisies
     @FXML
@@ -80,6 +117,20 @@ public class StockController {
             return;
         }
     }
+
+    public void ChargerPage(String page) {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(page)));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     //une méthode permettant de cliquer le bouton
     public void start(Stage primaryStage) {
         Button btn = new Button("Click me");
@@ -92,18 +143,24 @@ public class StockController {
         primaryStage.show();
     }
 
-    /* public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Ajoutez des instructions d'impression pour vérifier les données chargées
+        System.out.println("Nombre d'éléments dans la liste ElemStocks : " + Stocks.ElemStocks.size());
+        for (Element element : Stocks.ElemStocks) {
+            System.out.println("Nom : " + element.getNom() + ", Code : " + element.getCode() + ", Quantité : " + element.getQuantiteStock());
 
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
-        colAchat.setCellValueFactory(new PropertyValueFactory<>("prixAchat"));
-        colVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
-        colQte.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        colUnite.setCellValueFactory(new PropertyValueFactory<>("uniteMesure"));
+            colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+            colPrixAchat.setCellValueFactory(new PropertyValueFactory<>("prixAchat"));
+            colPrixVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
+            colQuantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+            colUnite.setCellValueFactory(new PropertyValueFactory<>("uniteMesure"));
 
-        ObservableList<Element> data = FXCollections.observableArrayList();
-        data.addAll(Stocks.EStock);
-        tableViewStock.setItems(data);
+            ObservableList<Element> data = FXCollections.observableArrayList();
+            data.addAll(Stocks.ElemStocks);
+            tableStock.setItems(data);
+        }
+
+
     }
-*/
 }
