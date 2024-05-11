@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffcce4ff?>
 
-<AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.Accueil_Controller">
     <children>
         <TextField alignment="CENTER" prefHeight="63.0" prefWidth="856.0" text="Application de bureau" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <font>
                 <Font size="24.0" />
-            </font></TextField>
-        <Button layoutX="415.0" layoutY="188.0" mnemonicParsing="false" text="Stock">
+            </font>
+        </TextField>
+        <Button fx:id="stock" layoutX="415.0" layoutY="188.0" mnemonicParsing="false" text="Stock" onAction="#Page_Stock">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button layoutX="287.0" layoutY="295.0" mnemonicParsing="false" text="Chaîne de production">
+        <Button fx:id="chaine" layoutX="287.0" layoutY="295.0" mnemonicParsing="false" text="Chaîne de production" onAction="#Page_Chaine">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button layoutX="359.0" layoutY="428.0" mnemonicParsing="false" text="Commandes">
+        <Button fx:id="commandes" layoutX="359.0" layoutY="428.0" mnemonicParsing="false" text="Commandes" onAction="#Page_Commandes">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button layoutX="377.0" layoutY="542.0" mnemonicParsing="false" text="Historique">
+        <Button fx:id="historique" layoutX="377.0" layoutY="542.0" mnemonicParsing="false" text="Historique" onAction="#Page_Historique">
             <font>
                 <Font size="36.0" />
             </font>
