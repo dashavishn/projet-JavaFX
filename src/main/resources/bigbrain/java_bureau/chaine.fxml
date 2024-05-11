@@ -8,6 +8,15 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="690.0" prefWidth="858.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.ChaineController">
+  <!-- Ajout de la HBox pour les boutons de navigation -->
+  <HBox spacing="10" layoutX="20" layoutY="10" prefHeight="35.0" prefWidth="858.0">
+    <children>
+      <Button text="Accueil" onAction="#Page_Accueil" />
+      <Button text="Stock" onAction="#Page_Stock" />
+      <Button text="Commandes" onAction="#Page_Commandes" />
+      <Button text="Historique" onAction="#Page_Historique" />
+    </children>
+  </HBox>
   <children>
     <SplitPane dividerPositions="0.5007776049766719" focusTraversable="true" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
       <items>
@@ -127,13 +136,6 @@
         </AnchorPane>
       </items>
     </SplitPane>
-    <MenuBar prefHeight="45.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <menus>
-        <Menu mnemonicParsing="false" text="Stocks" />
-        <Menu mnemonicParsing="false" text="Chaîne de production" />
-        <Menu disable="false" mnemonicParsing="false" text="Commandes" visible="true" />
-        <Menu mnemonicParsing="false" text="Historique" />
-      </menus>
-    </MenuBar>
+
   </children>
 </AnchorPane>
