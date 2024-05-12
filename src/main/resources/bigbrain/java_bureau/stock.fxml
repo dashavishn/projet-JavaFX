@@ -4,6 +4,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffcce4ff?>
 
+
 <AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.StockController">
   <children>
     <VBox spacing="10" layoutX="20" layoutY="20">
