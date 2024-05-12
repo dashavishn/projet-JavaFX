@@ -3,33 +3,81 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?scenebuilder-background-color 0xffcce4ff?>
 
-<AnchorPane prefHeight="643.0" prefWidth="792.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.HistoriqueController">
+<AnchorPane prefHeight="643.0" prefWidth="792.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <VBox spacing="10" layoutX="20" layoutY="20">
-      <children>
-        <Button text="Accueil" onAction="#Page_Accueil" minWidth="200" />
-        <Button text="Voir Stock" onAction="#Page_Stock" minWidth="200" />
-        <Button text="Chaine de production" onAction="#Page_Chaine" minWidth="200" />
-        <Button text="Commandes" onAction="#Page_Commandes" minWidth="200" />
-        <Button text="Historique" onAction="#Page_Historique" minWidth="200" />
-      </children>
-    </VBox>
-    <TableView fx:id="tableStock" layoutX="20" layoutY="150" prefHeight="200.0" prefWidth="752.0">
-      <columns>
-        <TableColumn fx:id="colNom" text="Nom" prefWidth="125.0"/>
-        <TableColumn fx:id="colCode" text="Code" prefWidth="125.0"/>
-        <TableColumn fx:id="colQuantite" text="Quantité" prefWidth="125.0"/>
-        <TableColumn fx:id="colUnite" text="Unité" prefWidth="125.0"/>
-        <TableColumn fx:id="colPrixAchat" text="Prix Achat" prefWidth="125.0"/>
-        <TableColumn fx:id="colPrixVente" text="Prix Vente" prefWidth="125.0"/>
-      </columns>
-    </TableView>
-    <Text fx:id="textResultat" layoutX="20" layoutY="360" text="test" strokeType="OUTSIDE" strokeWidth="0.0">
-      <font>
-        <Font size="16.0"/>
-      </font>
-    </Text>
+    <MenuBar prefHeight="46.0" prefWidth="886.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="Stock" />
+        <Menu mnemonicParsing="false" text="Chaine de production" />
+        <Menu mnemonicParsing="false" text="Commandes" />
+        <Menu mnemonicParsing="false" text="Historique" />
+        <Menu mnemonicParsing="false" text="Page d'accueil" />
+      </menus>
+    </MenuBar>
+    <SplitPane dividerPositions="0.9962025316455696" focusTraversable="true" orientation="HORIZONTAL" prefHeight="662.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+      <items>
+        <AnchorPane blendMode="SRC_OVER" disable="false" focusTraversable="false" minHeight="0.0" minWidth="0.0" mouseTransparent="false" prefHeight="615.0" prefWidth="602.0">
+          <children>
+            <SplitPane focusTraversable="true" prefHeight="615.0" prefWidth="623.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                    <SplitPane focusTraversable="true" prefHeight="613.0" prefWidth="511.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                          <children>
+                            <SplitPane focusTraversable="true" prefHeight="611.0" prefWidth="397.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                  <children>
+                                    <SplitPane focusTraversable="true" prefHeight="609.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <SplitPane id="SplitPane" dividerPositions="">
+                                          <items>
+                                            <SplitPane id="SplitPane">
+                                              <items>
+                                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="144.0" text="Nom" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="117.0" text="Code" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="121.0" text="Quantité" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="121.0" text="Unité" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="Prix Achat" />
+                                                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="137.0" text="Prix Vente" />
+                                                  </columns>
+                                                </TableView>
+                                              </items>
+                                            </SplitPane>
+                                          </items>
+                                        </SplitPane>
+                                      </items>
+                                    </SplitPane>
+                                  </children>
+                                </AnchorPane>
+                              </items>
+                            </SplitPane>
+                          </children>
+                        </AnchorPane>
+                      </items>
+                    </SplitPane>
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <children>
+            <SplitPane focusTraversable="true" orientation="VERTICAL" prefHeight="615.0" prefWidth="226.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
   </children>
 </AnchorPane>
