@@ -9,9 +9,9 @@
 
 <AnchorPane prefHeight="690.0" prefWidth="858.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.ChaineController">
   <children>
-    <SplitPane dividerPositions="0.5007776049766719" focusTraversable="true" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+    <SplitPane dividerPositions="0.5023328149300156" focusTraversable="true" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="389.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="366.0" prefWidth="856.0">
           <children>
             <Text layoutX="63.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ELEMENTS EN ENTREE">
               <font>
@@ -83,5 +83,10 @@
         </AnchorPane>
       </items>
     </SplitPane>
+    <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" text="Accueil" />
+    <Button layoutX="124.0" layoutY="13.0" mnemonicParsing="false" text="Chaine de production" />
+    <Button layoutX="339.0" layoutY="13.0" mnemonicParsing="false" text="Commandes" />
+    <Button layoutX="479.0" layoutY="13.0" mnemonicParsing="false" text="Historiques" />
+    <Button layoutX="608.0" layoutY="14.0" mnemonicParsing="false" text="Voir Stock" />
   </children>
 </AnchorPane>
