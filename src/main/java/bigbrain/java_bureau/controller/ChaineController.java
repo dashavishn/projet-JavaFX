@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import bigbrain.java_bureau.classe_java.ChaineProduction;
+import bigbrain.java_bureau.classe_java.*;
+
 
 import static bigbrain.java_bureau.Main.primaryStage;
 
@@ -46,6 +49,12 @@ public class ChaineController {
         ChargerPage("/bigbrain/java_bureau/historique.fxml");
     }
 
+    @FXML
+   /* public void updateNiveauActivation(int nouveauNiveau) {
+        ChaineProduction.setNiveauActivation(nouveauNiveau);
+        simulerEtAfficherResultats();  // Méthode qui simule la production et affiche les résultats
+    }
+*/
     private void ChargerPage(String page) {
         try {
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(page)));
@@ -80,4 +89,7 @@ public class ChaineController {
             textResultat.setText("Veuillez saisir des nombres valides pour les quantités.");
         }
     }
+
+
+
 }
