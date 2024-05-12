@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xffcce4ff?>
 
-
 <AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.Accueil_Controller">
     <children>
-        <TextField alignment="CENTER" prefHeight="63.0" prefWidth="856.0" text="Application de bureau" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </TextField>
-        <Button fx:id="stock" layoutX="415.0" layoutY="188.0" mnemonicParsing="false" text="Stock" onAction="#Page_Stock">
+        <Button fx:id="stock" layoutX="415.0" layoutY="188.0" mnemonicParsing="false" onAction="#Page_Stock" text="Stock">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button fx:id="chaine" layoutX="287.0" layoutY="295.0" mnemonicParsing="false" text="Chaîne de production" onAction="#Page_Chaine">
+        <Button fx:id="chaine" layoutX="287.0" layoutY="295.0" mnemonicParsing="false" onAction="#Page_Chaine" text="Chaîne de production">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button fx:id="commandes" layoutX="359.0" layoutY="428.0" mnemonicParsing="false" text="Commandes" onAction="#Page_Commandes">
+        <Button fx:id="commandes" layoutX="359.0" layoutY="428.0" mnemonicParsing="false" onAction="#Page_Commandes" text="Commandes">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
-        <Button fx:id="historique" layoutX="377.0" layoutY="542.0" mnemonicParsing="false" text="Historique" onAction="#Page_Historique">
+        <Button fx:id="historique" layoutX="377.0" layoutY="542.0" mnemonicParsing="false" onAction="#Page_Historique" text="Historique">
             <font>
                 <Font size="36.0" />
             </font>
         </Button>
+      <Text layoutX="299.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application de bureau">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
