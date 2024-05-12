@@ -83,10 +83,10 @@
         </AnchorPane>
       </items>
     </SplitPane>
-    <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" text="Accueil" />
-    <Button layoutX="124.0" layoutY="13.0" mnemonicParsing="false" text="Chaine de production" />
-    <Button layoutX="339.0" layoutY="13.0" mnemonicParsing="false" text="Commandes" />
-    <Button layoutX="479.0" layoutY="13.0" mnemonicParsing="false" text="Historiques" />
-    <Button layoutX="608.0" layoutY="14.0" mnemonicParsing="false" text="Voir Stock" />
+    <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" text="Accueil" onAction="#Page_Accueil" />
+    <Button layoutX="124.0" layoutY="13.0" mnemonicParsing="false" text="Chaine de production" onAction="#Page_Stock"/>
+    <Button layoutX="339.0" layoutY="13.0" mnemonicParsing="false" text="Commandes" onAction="#Page_Commandes" />
+    <Button layoutX="479.0" layoutY="13.0" mnemonicParsing="false" text="Historiques" onAction="#Page_Historique" />
+    <Button layoutX="608.0" layoutY="14.0" mnemonicParsing="false" text="Voir Stock" onAction="#Page_Stock"/>
   </children>
 </AnchorPane>
