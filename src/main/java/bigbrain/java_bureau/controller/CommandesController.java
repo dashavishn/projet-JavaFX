@@ -1,99 +1,108 @@
 package bigbrain.java_bureau.controller;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import java.util.*;
-import static bigbrain.java_bureau.Main.getPrimaryStage;
-import static bigbrain.java_bureau.Main.primaryStage;
 
 import java.io.IOException;
-import java.util.Objects;
 
+import static bigbrain.java_bureau.Main.primaryStage;
 
 public class CommandesController {
 
-    //Champ de texte pour saisir le code de produit
     @FXML
-    private TextField code_text;
-//champ de texte pour saisir le nom de produit
-    @FXML
-    private TextField nom_text;
-//champ de texte pour saisir l'unité
-    @FXML
-    private TextField unite_text;
-
-    //champ de texte pour saisir la quantité de produit
-    @FXML
-    private TextField qt_text;
+    private TextArea textArea;
 
     @FXML
-    private Button commander_Button;
-
-     // Ancre pour contenir les composants de la page de gestion des commandes.
+    private TextField textFieldCode;
     @FXML
-    private AnchorPane ap_commande;
-
-     // Bouton pour accéder au stock.
+    private TextField textFieldNom;
     @FXML
-    private Button button_stock;
-
-
-     //Bouton pour accéder à la chaine de production.
+    private TextField textFieldUnite;
     @FXML
-    private Button button_chaine;
+    private TextField textFieldQuantite;
 
- // Bouton pour accéder à l'historique.
     @FXML
-    private Button button_Historique;
+    private Text textStatus;
 
-
-
-     // Méthode permettant de charger la page de l'historique
     @FXML
-    private void PageHistorique() {
-        ChargerPage("historique.fxml");
+    private Button buttonCommander;
+
+    // Navigation methods
+    @FXML
+    private void Page_Accueil() {
+        loadPage("/bigbrain/java_bureau/page_accueil.fxml");
     }
 
-     // Méthode permettant de charger la page de la chaîne de production
     @FXML
-    private void PageChaine() {
-        ChargerPage("chaine.fxml");
-    }
-    //méthode permettant de charger la page du stock
-    @FXML
-    private void PageStock() {
-        ChargerPage("stock.fxml");
+    private void Page_Stock() {
+        loadPage("/bigbrain/java_bureau/stock.fxml");
     }
 
-    public void ChargerPage(String page) {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(page)));
-        Parent root = null;
+    @FXML
+    private void Page_Chaine() {
+        loadPage("/bigbrain/java_bureau/chaine.fxml");
+    }
+
+    @FXML
+    private void Page_Commandes() {
+        loadPage("/bigbrain/java_bureau/commandes.fxml");
+    }
+
+    @FXML
+    private void Page_Historique() {
+        loadPage("/bigbrain/java_bureau/historique.fxml");
+    }
+
+    // Method to load pages
+    private void loadPage(String path) {
         try {
-            root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            textStatus.setText("Error loading the page: " + e.getMessage());
         }
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
-
-
-
-    // Méthode appelée lorsque le bouton est cliqué
+    // Method to handle the 'Commander' action
     @FXML
-    private void handleAction() {
-        String texte = nom_text.getText();
-        System.out.println("Texte saisi : " + texte);
-        // Ajoutez ici la logique de votre application en réponse à l'action de l'utilisateur
+    private void handleCommand() {
+        String code = textFieldCode.getText();
+        String nom = textFieldNom.getText();
+        String unite = textFieldUnite.getText();
+        String quantite = textFieldQuantite.getText();
+
+        if (code.isEmpty() || nom.isEmpty() || unite.isEmpty() || quantite.isEmpty()) {
+            textStatus.setText("Please fill in all fields.");
+            return;
+        }
+
+        try {
+            int qty = Integer.parseInt(quantite);
+            if (qty <= 0) {
+                textStatus.setText("Quantity must be positive.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            textStatus.setText("Invalid quantity format.");
+            return;
+        }
+
+        // Assume a successful command submission
+        textStatus.setText("Command submitted successfully.");
+        // Clear fields after submission
+        textFieldCode.clear();
+        textFieldNom.clear();
+        textFieldUnite.clear();
+        textFieldQuantite.clear();
     }
-
-    // Vous pouvez ajouter d'autres méthodes et attributs selon les besoins de votre application
-
 }
