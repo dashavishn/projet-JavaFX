@@ -1,10 +1,12 @@
 package bigbrain.java_bureau.classe_java;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Stocks {
     private static final Stocks instance = new Stocks();
+    public static ArrayList<Element> EStock = new ArrayList<Element>(); //liste qui contient les élts en stock
     public static Map<String, Element> stockItems = new HashMap<>();
 
     private Stocks() {

@@ -1,10 +1,11 @@
 package bigbrain.java_bureau.classe_java;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CSV {
-
+    public static ArrayList<ChaineProduction> liste = new ArrayList<ChaineProduction>();
     private static final String ELEMENTS_FILE_PATH = "/bigbrain/fichierscsv/elements.csv";
     private static final String CHAINES_FILE_PATH = "/bigbrain/fichierscsv/chaines.csv";
 
