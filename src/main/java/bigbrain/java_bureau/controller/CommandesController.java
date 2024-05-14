@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandesController {
@@ -44,21 +45,18 @@ public class CommandesController {
     public void achatEx(ActionEvent event) {
         Element elem = trouverElement(valueOf(saisieCodeEx.getText()));
         float qte = Float.parseFloat(saisieQteEX.getText());
-       if(elem != null){
-        elem.acheter(elem, qte);
-        EcrireCSV a = new EcrireCSV();
-        a.clearCSVFile("/bigbrain/fichierscsv/elements.csv");
-        a.writeElementsToCSV("/bigbrain/fichierscsv/elements.csv", (List<Element>) Stocks.stockItems);
-        a.clearCSVFile("/bigbrain/fichierscsv/historique.csv");
-        a.writeModificationsToCSV("/bigbrain/fichierscsv/historique.csv", Historique.historiqueModifications );
-        showAlert(AlertType.INFORMATION, "Achat réussi", "Commande existante réussie.");
-       }
-       else {
-           showAlert(AlertType.ERROR, "Erreur", "Élément non trouvé.");
-       }
+        if (elem != null) {
+            elem.acheter(qte);
+            EcrireCSV a = new EcrireCSV();
+            a.clearCSVFile("/bigbrain/fichierscsv/elements.csv");
+            a.writeElementsToCSV("/bigbrain/fichierscsv/elements.csv", (List<Element>) Stocks.stockItems);
+            a.clearCSVFile("/bigbrain/fichierscsv/historique.csv");
+            a.writeModificationsToCSV("/bigbrain/fichierscsv/historique.csv", Historique.historiqueModifications);
+            showAlert(AlertType.INFORMATION, "Achat réussi", "Commande existante réussie.");
+        } else {
+            showAlert(AlertType.ERROR, "Erreur", "Élément non trouvé.");
+        }
     }
-
-
     @FXML
     private void achatNew(ActionEvent event) {
         String code = saisieCodeNew.getText();
@@ -67,11 +65,30 @@ public class CommandesController {
         double prixAchat = Double.parseDouble(saisiePrixAchat.getText());
         double quantite = Double.parseDouble(saisieQteNew.getText());
 
-        Element nouveauElement = new Element(code, nom, quantite, unite, prixAchat, prixAchat * 1.1);  // Assume a 10% markup for selling price
-        Stocks.ajouterElem(nouveauElement, quantite);
-        showAlert(AlertType.INFORMATION, "Nouvelle commande", "Nouvelle commande ajoutée avec succès.");
+        Element existingElement = Stocks.getElement(code);
+        if (existingElement != null) {
+            existingElement.acheter(quantite); // cette méthode met à jour la quantité en stock
+            showAlert(AlertType.INFORMATION, "Commande mise à jour", "Quantité ajoutée à l'élément existant.");
+        } else {
+            // Créer un nouvel élément si aucun élément existant n'est trouvé avec ce code
+            Element newElement = new Element(code, nom, quantite, unite, prixAchat, prixAchat * 1.1);
+            Stocks.ajouterElem(newElement, quantite);
+            showAlert(AlertType.INFORMATION, "Nouvelle commande", "Nouvelle commande ajoutée avec succès.");
+        }
 
+        // Mise à jour des fichiers CSV
+        try {
+            String elementsPath = "/bigbrain/fichierscsv/elements.csv";
+            String historiquePath = "/bigbrain/fichierscsv/elements.csv";
+            EcrireCSV.clearCSVFile(elementsPath);
+            EcrireCSV.writeElementsToCSV(elementsPath, new ArrayList<>(Stocks.getStockItems().values()));
+            EcrireCSV.clearCSVFile(historiquePath);
+            EcrireCSV.writeModificationsToCSV(historiquePath, Historique.getHistoriqueModifications());
+        } catch (Exception e) {
+            showAlert(AlertType.ERROR, "Erreur CSV", "Impossible de mettre à jour les fichiers CSV: " + e.getMessage());
+        }
     }
+
 
     @FXML
     private void Page_Accueil() {
