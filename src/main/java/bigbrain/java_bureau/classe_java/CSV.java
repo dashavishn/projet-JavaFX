@@ -30,6 +30,10 @@ public class CSV {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(";");
+                if (data.length < 4) {
+                    System.err.println("Ligne incomplète ou mal formée: " + line);
+                    continue; // Ignorer cette ligne et continuer avec la suivante
+                }
                 HashMap<Element, Float> entree = parseElements(data[2]);
                 HashMap<Element, Float> sortie = parseElements(data[3]);
 
@@ -45,14 +49,23 @@ public class CSV {
 
     private HashMap<Element, Float> parseElements(String elementData) {
         HashMap<Element, Float> elements = new HashMap<>();
+        if (elementData.isEmpty()) return elements;  // Retourner une map vide si la chaîne est vide
+
         elementData = elementData.replaceAll("[()]", ""); // Enlever les parenthèses
         for (String part : elementData.split(",")) {
             String[] detail = part.split(":");
+            if (detail.length < 2) {
+                System.err.println("Détail d'élément incomplet: " + part);
+                continue; // Ignorer cette partie et continuer avec la suivante
+            }
             Element el = Stocks.getInstance().getElement(detail[0]);
             if (el != null) {
                 elements.put(el, Float.parseFloat(detail[1]));
+            } else {
+                System.err.println("Élément non trouvé: " + detail[0]);
             }
         }
         return elements;
     }
+
 }
