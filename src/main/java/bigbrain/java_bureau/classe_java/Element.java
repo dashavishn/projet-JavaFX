@@ -83,10 +83,11 @@ public class Element {
     }
 */
     public void acheter(double quantite) {
-        this.quantiteStock += quantite;
+        // je n'ajuste pas quantiteStock ici, c'est  Stocks qui va gérer ça
         Stocks.ajouterElem(this, quantite);
         Historique.ajouterChangement(new ModificationStockElement(code, nom, quantite, uniteMesure, quantite * prixAchat, 0, "acheter"));
     }
+
 
 
 

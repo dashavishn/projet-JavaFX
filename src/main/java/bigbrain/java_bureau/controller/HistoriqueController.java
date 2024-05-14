@@ -76,7 +76,7 @@ public class HistoriqueController implements Initializable {
         colCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         colPrixAchat.setCellValueFactory(new PropertyValueFactory<>("prixAchat"));
         colPrixVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
-        colQuantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+        colQuantite.setCellValueFactory(new PropertyValueFactory<>("quantiteStock"));
         colUnite.setCellValueFactory(new PropertyValueFactory<>("uniteMesure"));
 
         ObservableList<Element> elementsObservable = FXCollections.observableArrayList(Stocks.getInstance().getStockItems().values());

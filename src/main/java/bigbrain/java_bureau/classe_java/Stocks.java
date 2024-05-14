@@ -23,14 +23,15 @@ public class Stocks {
     public static void ajouterElem(Element e, double quantite) {
         stockItems.compute(e.getCode(), (code, element) -> {
             if (element == null) {
-                e.setQuantiteStock(e.getQuantiteStock() + quantite);
+                e.setQuantiteStock(quantite); // Juste définir si l'élément est nouveau
                 return e;
             } else {
-                element.setQuantiteStock(element.getQuantiteStock() + quantite);
+                element.setQuantiteStock(element.getQuantiteStock() + quantite); // Augmenter seulement ici pour éviter les doublons
                 return element;
             }
         });
     }
+
 
     public static void enleverElem(String code, double quantite) throws Exception {
         Element element = stockItems.get(code);
@@ -41,7 +42,13 @@ public class Stocks {
     }
 
     public static Element getElement(String code) {
-        return stockItems.get(code);
+        Element foundElement = stockItems.get(code);
+        if (foundElement == null) {
+            System.out.println("Élément non trouvé pour le code: " + code);
+        } else {
+            System.out.println("Élément trouvé: " + foundElement);
+        }
+        return foundElement;
     }
 
     public static boolean verifierDisponibilite(String code, double quantiteNecessaire) {
