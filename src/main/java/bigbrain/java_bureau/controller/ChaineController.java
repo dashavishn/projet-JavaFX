@@ -1,18 +1,13 @@
 package bigbrain.java_bureau.controller;
-import javafx.scene.control.Alert;
+import bigbrain.java_bureau.classe_java.*;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import bigbrain.java_bureau.classe_java.ChaineProduction;
-import bigbrain.java_bureau.classe_java.Element;
-import bigbrain.java_bureau.classe_java.Stocks;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
@@ -24,17 +19,20 @@ public class ChaineController {
     @FXML private TableView<Element> tableInputElements;
     @FXML private TableView<Element> tableOutputElements;
     @FXML private ChoiceBox<Integer> activationLevel;
-    @FXML private TableColumn<Element, String> codeColumnInput;
+    @FXML private TableColumn<Element, String> nomColumnInput;
     @FXML private TableColumn<Element, Float> quantityColumnInput;
-    @FXML private TableColumn<Element, String> codeColumnOutput;
+    @FXML private TableColumn<Element, String> nomColumnOutput;
     @FXML private TableColumn<Element, Float> quantityColumnOutput;
+    @FXML private Label error1;
+    @FXML private Label error2;
+    @FXML private Label error3;
 
     private ChaineProduction chaineProduction;
 
     @FXML
     public void initialize() {
-        setupTable(tableInputElements, codeColumnInput, quantityColumnInput);
-        setupTable(tableOutputElements, codeColumnOutput, quantityColumnOutput);
+        setupTable(tableInputElements, nomColumnInput, quantityColumnInput);
+        setupTable(tableOutputElements, nomColumnOutput, quantityColumnOutput);
         setupChoiceBox();
         chaineProduction = new ChaineProduction("DefaultCode", "DefaultChaine");
     }
@@ -122,5 +120,37 @@ public class ChaineController {
             System.err.println("Fichier FXML non trouvé: " + page);
             e.printStackTrace();
         }
+    }
+
+    public void Valider1() throws Exception {
+        int i = Integer.parseInt(activationLevel.getValue().toString());
+        if (0 <= i && i <= 9){
+            for (ChaineProduction c : CSV.liste) {
+                if(c.getCode().equals("C001")) {
+                    c.setNiveauActivation(i);
+
+                    if (!c.valider()){
+                        error1.setText("Stock insuffisant");
+                    }
+                    else{
+                        error1.setText("Commande validée");
+
+
+                    }
+                }
+
+            }
+            EcrireCSV a = new EcrireCSV();
+
+            a.clearCSVFile("src/main/ressources/fichierscsv/elements.csv");
+            a.writeElementsToCSV("src/main/ressources/fichierscsv/elements.csv", Stocks.EStock);
+            a.clearCSVFile("src/main/ressources/fichierscsv/historique.csv");
+            a.writeModificationsToCSV("src/main/ressources/fichierscsv/historique.csv", Historique.historiqueModifications);
+        }
+        else {
+            error1.setText("Niveau d'activation incorrect");
+        }
+
+
     }
 }

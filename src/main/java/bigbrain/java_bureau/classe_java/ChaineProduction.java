@@ -79,4 +79,42 @@ public class ChaineProduction {
         // Retourner 0 si tout est suffisant, signifiant aucun coût d'achat supplémentaire n'est nécessaire
         return totalAchat;
     }
+
+    public Boolean valider() throws Exception {
+        for (HashMap.Entry<Element, Float> m : elementEntree.entrySet()) {
+            for (Element e : Stocks.EStock) {
+                if (e == (Element) m.getKey()) {
+                    if (e.getQuantiteStock() < (Float) m.getValue() * this.niveauActivation) {
+
+                        return false;
+                    }
+                }
+            }
+        }
+        for (HashMap.Entry<Element, Float> m : elementEntree.entrySet()) {
+            for (Element e : Stocks.EStock) {
+                if (e == (Element) m.getKey()) {
+                    Stocks.enleverElem(e.getCode(), (Float) m.getValue() * Float.parseFloat(String.valueOf(this.niveauActivation)));
+                    Historique.ajouterChangement(new ModificationStockElement(e.getCode(), e.getNom(), (Float) m.getValue() * Float.parseFloat(String.valueOf(this.niveauActivation)), e.getUniteMesure(), 0, 0, "Mis en production"));
+                }
+            }
+        }
+        for (Map.Entry<Element, Float> m : elementSortie.entrySet()) {
+            if (Stocks.EStock.contains((Element) m.getKey())) {
+                for (Element e : Stocks.EStock) {
+                    if (e == (Element) m.getKey()) {
+                        Stocks.ajouterElem((Element) m.getKey(), (Float) m.getValue() * Float.parseFloat(String.valueOf(this.niveauActivation)));
+                        Historique.ajouterChangement(new ModificationStockElement(e.getCode(), e.getNom(), (Float) m.getValue() * Float.parseFloat(String.valueOf(this.niveauActivation)), e.getUniteMesure(), 0, 0, "Produit"));
+                    }
+                }
+            } else {
+                Element f = (Element) m.getKey();
+                Stocks.ajouterElem((Element) m.getKey(), (Float) m.getValue() * Float.parseFloat(String.valueOf(this.niveauActivation)));
+                Historique.ajouterChangement(new ModificationStockElement(f.getCode(), f.getNom(), (Float) m.getValue() * Float.parseFloat(String.valueOf(this.niveauActivation)), f.getUniteMesure(), 0, 0, "Produit"));
+            }
+        }
+
+        this.niveauActivation = 0;
+        return true;
+    }
 }
