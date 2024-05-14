@@ -30,8 +30,7 @@ public class StockController implements Initializable {
     private TableColumn<Element, Double> colPrixAchat, colPrixVente, colQuantite;
     @FXML
     private TableColumn<Element, String> colCode, colNom, colUnite;
-    @FXML
-    private TableView<Element> tableViewStock;
+
     @FXML
     private TextField inputCode;
     @FXML
@@ -89,7 +88,7 @@ public class StockController implements Initializable {
             } else {
                 Stocks.retirerStock(code, quantite);
                 errorLabel.setText("Vente réalisée avec succès.");
-                tableViewStock.refresh(); // Mettre à jour l'affichage du tableau, si nécessaire
+                tableStock.refresh(); // Mettre à jour l'affichage du tableau, si nécessaire
             }
         } catch (NumberFormatException e) {
             errorLabel.setText("Veuillez saisir un nombre valide pour la quantité.");

@@ -7,7 +7,8 @@ public class Stocks {
     private static final Stocks instance = new Stocks();
     public static Map<String, Element> stockItems = new HashMap<>();
 
-    private Stocks() {}
+    private Stocks() {
+    }
 
     public static Stocks getInstance() {
         return instance;
@@ -50,6 +51,10 @@ public class Stocks {
         instance.enleverElem(code, quantite);
     }
 
+
+
+
+    /*
     public static void ajouterStock(Element e, double quantite) {
         instance.ajouterElem(e, quantite);
     }
@@ -85,4 +90,6 @@ public class Stocks {
         }
         System.out.println("Simulation de suppression pour " + code + ": " + simulation.get(code));
     }
+}
+*/
 }

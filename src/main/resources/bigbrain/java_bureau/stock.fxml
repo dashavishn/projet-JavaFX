@@ -26,10 +26,10 @@
         <TableColumn fx:id="colPrixVente" maxWidth="5000.0" minWidth="10.0" prefWidth="130.0" text="Prix Vente" />
       </columns>
     </TableView>
-    <TextField layoutX="240" layoutY="300" prefWidth="200" promptText="Entrer une quantité" />
-    <TextField layoutX="240" layoutY="350" prefWidth="200" promptText="Entrer un code de produit" />
+    <TextField fx:id="inputCode" layoutX="240" layoutY="300" prefWidth="200" promptText="Entrer une quantité" />
+    <TextField fx:id="inputQuantity" layoutX="240" layoutY="350" prefWidth="200" promptText="Entrer un code de produit" />
     <Text layoutX="240.0" layoutY="289.0" text="Quantité:" />
     <Text layoutX="240.0" layoutY="338.0" text="Code Produit:" />
-    <Button layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#valider" prefWidth="200" text="Vendre" />
+    <Button layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#vendreElement" prefWidth="200" text="Vendre" />
   </children>
 </AnchorPane>
