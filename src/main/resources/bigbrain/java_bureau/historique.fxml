@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="643.0" prefWidth="792.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.HistoriqueController">
+<AnchorPane prefHeight="643.0" prefWidth="792.0" style="-fx-background-color: lightblue" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.HistoriqueController">
   <children>
-    <VBox spacing="10" layoutX="20" layoutY="20">
+    <VBox layoutX="20" layoutY="20" spacing="10">
       <children>
-        <Button text="Accueil" onAction="#Page_Accueil" minWidth="200" />
-        <Button text="Voir Stock" onAction="#Page_Stock" minWidth="200" />
-        <Button text="Chaine de production" onAction="#Page_Chaine" minWidth="200" />
-        <Button text="Commandes" onAction="#Page_Commandes" minWidth="200" />
-        <Button text="Historique" onAction="#Page_Historique" minWidth="200" />
+        <Button minWidth="200" onAction="#Page_Accueil" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Accueil" />
+        <Button minWidth="200" onAction="#Page_Stock" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Voir Stock" />
+        <Button minWidth="200" onAction="#Page_Chaine" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Chaine de production" />
+        <Button minWidth="200" onAction="#Page_Commandes" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Commandes" />
+        <Button minWidth="200" onAction="#Page_Historique" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Historique" />
       </children>
     </VBox>
-    <TableView fx:id="tableStock" layoutX="20" layoutY="150" prefHeight="200.0" prefWidth="752.0">
+    <TableView fx:id="tableStock" layoutX="20.0" layoutY="236.0" prefHeight="200.0" prefWidth="752.0">
       <columns>
-        <TableColumn fx:id="colNom" text="Nom" prefWidth="125.0"/>
-        <TableColumn fx:id="colCode" text="Code" prefWidth="125.0"/>
-        <TableColumn fx:id="colQuantite" text="Quantité" prefWidth="125.0"/>
-        <TableColumn fx:id="colUnite" text="Unité" prefWidth="125.0"/>
-        <TableColumn fx:id="colPrixAchat" text="Prix Achat" prefWidth="125.0"/>
-        <TableColumn fx:id="colPrixVente" text="Prix Vente" prefWidth="125.0"/>
+        <TableColumn fx:id="colNom" prefWidth="125.0" text="Nom" />
+        <TableColumn fx:id="colCode" prefWidth="125.0" text="Code" />
+        <TableColumn fx:id="colQuantite" prefWidth="125.0" text="Quantité" />
+        <TableColumn fx:id="colUnite" prefWidth="125.0" text="Unité" />
+        <TableColumn fx:id="colPrixAchat" prefWidth="125.0" text="Prix Achat" />
+        <TableColumn fx:id="colPrixVente" prefWidth="125.0" text="Prix Vente" />
       </columns>
     </TableView>
-    <Text fx:id="textResultat" layoutX="20" layoutY="360" text="test" strokeType="OUTSIDE" strokeWidth="0.0">
+    <Text fx:id="textResultat" layoutX="20" layoutY="360" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
       <font>
-        <Font size="16.0"/>
+        <Font size="16.0" />
       </font>
     </Text>
   </children>

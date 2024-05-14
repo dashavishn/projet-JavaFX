@@ -5,15 +5,15 @@
 <?scenebuilder-background-color 0xffcce4ff?>
 
 
-<AnchorPane prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.StockController">
+<AnchorPane style="-fx-background-color: lightblue" prefHeight="668.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.StockController">
   <children>
     <VBox spacing="10" layoutX="20" layoutY="20">
       <children>
-        <Button text="Accueil" onAction="#Page_Accueil" minWidth="200" />
-        <Button text="Voir Stock" onAction="#Page_Stock" minWidth="200" />
-        <Button text="Chaine de production" onAction="#Page_Chaine" minWidth="200" />
-        <Button text="Commandes" onAction="#Page_Commandes" minWidth="200" />
-        <Button text="Historique" onAction="#Page_Historique" minWidth="200" />
+        <Button style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Accueil" onAction="#Page_Accueil" minWidth="200" />
+        <Button style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Voir Stock" onAction="#Page_Stock" minWidth="200" />
+        <Button style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Chaine de production" onAction="#Page_Chaine" minWidth="200" />
+        <Button style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Commandes" onAction="#Page_Commandes" minWidth="200" />
+        <Button style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Historique" onAction="#Page_Historique" minWidth="200" />
       </children>
     </VBox>
     <TableView fx:id="tableStock" layoutX="240" layoutY="50" prefHeight="200.0" prefWidth="600.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
@@ -30,6 +30,6 @@
     <TextField fx:id="inputQuantity" layoutX="240" layoutY="350" prefWidth="200" promptText="Entrer un code de produit" />
     <Text layoutX="240.0" layoutY="289.0" text="Quantité:" />
     <Text layoutX="240.0" layoutY="338.0" text="Code Produit:" />
-    <Button layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#vendreElement" prefWidth="200" text="Vendre" />
+    <Button style="-fx-background-color: darkblue; -fx-text-fill: white;" layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#vendreElement" prefWidth="200" text="Vendre" />
   </children>
 </AnchorPane>
