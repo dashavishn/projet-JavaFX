@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 
-<AnchorPane prefHeight="548.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.CommandesController">
+<?import javafx.scene.shape.Rectangle?>
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.CommandesController">
   <children>
-    <VBox layoutX="20" layoutY="20" spacing="10" />
-    <TextArea layoutX="1.0" layoutY="32.0" prefHeight="548.0" prefWidth="780.0" text="Pour commander un produit existant, remplissez les champs suivantes : " wrapText="true" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="32.0" />
-    <Text layoutX="234.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code :">
-      <font>
-        <Font size="28.0" fx:id="x1" />
-      </font>
-    </Text>
-    <Text layoutX="234.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
-      <font>
-        <Font name="Arial" size="28.0" />
-      </font>
-    </Text>
-    <Text fill="BLACK" font="$x1" layoutX="234.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unité :" />
-    <Text font="$x1" layoutX="234.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité :" />
-    <TextField layoutX="377.0" layoutY="156.0" prefWidth="200.0" />
-    <TextField layoutX="377.0" layoutY="229.0" prefWidth="200.0" />
-    <TextField layoutX="377.0" layoutY="306.0" prefWidth="200.0" />
-    <TextField layoutX="377.0" layoutY="381.0" prefWidth="200.0" />
-    <Button font="$x1" layoutX="288.0" layoutY="450.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="205.0" text="Commander" />
-<Button layoutX="20.0" layoutY="203.0" minWidth="200" onAction="#Page_Historique" text="Historique" />
-<Button layoutX="20.0" layoutY="168.0" minWidth="200" onAction="#Page_Commandes" text="Commandes" />
-<Button layoutX="20.0" layoutY="133.0" minWidth="200" onAction="#Page_Chaine" text="Chaine de production" />
-<Button layoutX="20.0" layoutY="97.0" minWidth="200" onAction="#Page_Accueil" text="Accueil" />
-<Button layoutX="20.0" layoutY="242.0" minWidth="200" onAction="#Page_Stock" text="Voir Stock" />
+    <Rectangle fill="#35424d" height="584.0" layoutX="603.0" layoutY="137.0" stroke="BLACK" strokeType="INSIDE" width="478.0" />
+    <Rectangle fill="#35424d" height="584.0" layoutX="164.0" layoutY="137.0" stroke="BLACK" strokeType="INSIDE" width="437.0" />
+    <Label alignment="CENTER" layoutX="431.0" layoutY="34.0" prefHeight="41.0" prefWidth="375.0" text="Commande" style="-fx-font-size: 36; -fx-text-fill: black;" />
+    <Rectangle fill="#272e38" height="720.0" stroke="#cdcdcd" strokeType="INSIDE" width="166.0" />
+    <VBox layoutX="200" layoutY="200" spacing="15">
+      <TextField fx:id="saisieCodeEx" promptText="Code existant" prefWidth="200.0" />
+      <TextField fx:id="saisieQteEX" promptText="Quantité" prefWidth="200.0" />
+      <Button text="Achat existant" onAction="#achatEx" style="-fx-background-color: darkblue; -fx-text-fill: white;" prefWidth="200.0" />
+    </VBox>
+    <VBox layoutX="700" layoutY="200" spacing="15">
+      <TextField fx:id="saisieCodeNew" promptText="Code nouveau" prefWidth="200.0" />
+      <TextField fx:id="saisieNom" promptText="Nom" prefWidth="200.0" />
+      <TextField fx:id="saisieUnite" promptText="Unité" prefWidth="200.0" />
+      <TextField fx:id="saisieQteNew" promptText="Quantité" prefWidth="200.0" />
+      <TextField fx:id="saisiePrixAchat" promptText="Prix d'achat" prefWidth="200.0" />
+      <Button text="Achat nouveau" onAction="#achatNew" style="-fx-background-color: darkblue; -fx-text-fill: white;" prefWidth="200.0" />
+    </VBox>
+    <HBox layoutX="20.0" layoutY="650.0" spacing="10">
+      <Button fx:id="btnPageAccueil" text="Accueil" onAction="#Page_Accueil"  />
+      <Button text="Commandes" onAction="#Page_Commandes" />
+      <Button text="Historiques" onAction="#Page_Historique" />
+      <Button text="Voir Stock" onAction="#Page_Stock" />
+      <Button text="Chaine " onAction="#Page_Chaine" />
+    </HBox>
   </children>
 </AnchorPane>

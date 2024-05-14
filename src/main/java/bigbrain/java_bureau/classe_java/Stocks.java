@@ -1,113 +1,88 @@
 package bigbrain.java_bureau.classe_java;
-import java.util.ArrayList;
-//une classe qui permet de gérer les stocks des articles
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Stocks {
-    //une liste qui contient les élements disponibles en stock
-    public static ArrayList<Element> ElemStocks=new ArrayList<>();
-    public Stocks(){
-        this.ElemStocks = new ArrayList<>();
+    private static final Stocks instance = new Stocks();
+    public static Map<String, Element> stockItems = new HashMap<>();
+
+    private Stocks() {}
+
+    public static Stocks getInstance() {
+        return instance;
     }
-//méthode qui permet d'ajouter un élément dans la liste ElemStocks
-    public static void ajouterElem(Element e,float n) {
-        if (ElemStocks.contains(e)) {
-            for (Element a : ElemStocks){
-                if (a.getCode().equals(e.getCode())){
-                    a.ajouterQuantite(n);
-                }
-            }
-        }
-        else{
-            e.setQuantiteStock(n);
-            ElemStocks.add(e);
-        }
+
+    public static Map<String, Element> getStockItems() {
+        return stockItems;
     }
-//une méthode qui permet de supprimer un élément de la liste ElemStocks
-    public void supprimerElement(Element e) {
-        ElemStocks.remove(e);
-    }
-    public static void enleverElem(Element e, float n) {
-        for (Element a : ElemStocks){
-            if (a.getCode().equals(e.getCode())){
-                if(a.getQuantiteStock()<n){
-                    System.err.println("Stock insuffisant");
-                }
-                else {
-                    a.ajouterQuantite(-n);
-                }
-            }
-        }
-    }
-    //une méthode qui permet de récupérer et renvoyer l'élément de la liste
-    public Element getQElemStocks(String code) {
-        for (Element e : ElemStocks) {
-            if (e.getCode().equals(code)) {
-                return e;
-            }
-        }
-// Retourne null si l'élément avec le code donné n'est pastrouvé
-        return null;
-    }
-    // Vérifie si la quantité nécessaire d'un élément est disponible en stock
-    public static boolean verifierDisponibilite(Element e, double
-            quantiteNecessaire) {
-        Element foundElement = trouverElement(e.getCode());
-        return foundElement != null &&
-                foundElement.getQuantiteStock() >= quantiteNecessaire;
-    }
-    // Retire une quantité spécifiée d'un élément du stock
-    public static void retirerStock(Element e, double quantite) {
-        Element foundElement = trouverElement(e.getCode());
-        if (foundElement != null) {
-            double newQuantity = foundElement.getQuantiteStock() -
-                    quantite;
-            if (newQuantity >= 0) {
-                foundElement.setQuantiteStock(newQuantity);
-            } else {
-                System.err.println("Stock insuffisant pour l'élément: " + e.getNom());
-            }
-        }
-    }
-    // Ajoute une quantité spécifiée à un élément dans le stock
-    public static void ajouterStock(Element e, double quantite) {
-        Element foundElement = trouverElement(e.getCode());
-        if (foundElement != null) {
-            foundElement.setQuantiteStock(foundElement.getQuantiteStock() +
-                    quantite);
-        } else {
-            e.setQuantiteStock(quantite);
-            ElemStocks.add(e);
-        }
-    }
-    // Trouve un élément par son code
-    public static Element trouverElement(String code) {
-        for (Element elem : ElemStocks) {
-            if (elem.getCode().equals(code)) {
-                return elem;
-            }
-        }
-        return null; // Retourne null si l'élément avec le coddonné n'est pas trouvé
-    }
-    // Ajoute un élément au stock, s'il n'est pas déjà présent
+
     public static void ajouterElem(Element e, double quantite) {
-        Element foundElement = trouverElement(e.getCode());
-        if (foundElement != null) {
-            foundElement.ajouterQuantite((float) quantite);
-        } else {
-            e.setQuantiteStock(quantite);
-            ElemStocks.add(e);
-        }
-    }
-    // Enlève un élément du stock
-    public static void enleverElem(Element e, double quantite) {
-        Element foundElement = trouverElement(e.getCode());
-        if (foundElement != null) {
-            double newQuantity = foundElement.getQuantiteStock() -
-                    quantite;
-            if (newQuantity >= 0) {
-                foundElement.setQuantiteStock(newQuantity);
+        stockItems.compute(e.getCode(), (code, element) -> {
+            if (element == null) {
+                e.setQuantiteStock(e.getQuantiteStock() + quantite);
+                return e;
             } else {
-                System.err.println("Stock insuffisant pour retirer la quantité demandée");
+                element.setQuantiteStock(element.getQuantiteStock() + quantite);
+                return element;
             }
+        });
+    }
+
+    public static void enleverElem(String code, double quantite) throws Exception {
+        Element element = stockItems.get(code);
+        if (element == null || element.getQuantiteStock() < quantite) {
+            throw new Exception("Stock insuffisant pour " + code);
         }
+        element.setQuantiteStock(element.getQuantiteStock() - quantite);
+    }
+
+    public static Element getElement(String code) {
+        return stockItems.get(code);
+    }
+
+    public static boolean verifierDisponibilite(String code, double quantiteNecessaire) {
+        Element foundElement = getElement(code);
+        return foundElement != null && foundElement.getQuantiteStock() >= quantiteNecessaire;
+    }
+
+    public static void retirerStock(String code, double quantite) throws Exception {
+        instance.enleverElem(code, quantite);
+    }
+
+    public static void ajouterStock(Element e, double quantite) {
+        instance.ajouterElem(e, quantite);
+    }
+
+    // Ajoute les méthodes pour simuler les opérations sur le stock
+    public Map<String, Double> simulerOperation() {
+        Map<String, Double> simulation = new HashMap<>();
+        for (Map.Entry<String, Element> entry : stockItems.entrySet()) {
+            simulation.put(entry.getKey(), entry.getValue().getQuantiteStock());
+        }
+        return simulation;
+    }
+
+
+    // Méthode pour simuler l'ajout de stock sans affecter le stock réel
+    public void simulerAjout(String code, double quantite) {
+        Map<String, Double> simulation = simulerOperation();
+        if (simulation.containsKey(code)) {
+            simulation.put(code, simulation.get(code) + quantite);
+        } else {
+            simulation.put(code, quantite);
+        }
+        System.out.println("Simulation d'ajout pour " + code + ": " + simulation.get(code));
+    }
+
+    // Méthode pour simuler la suppression de stock sans affecter le stock réel
+    public void simulerSuppression(String code, double quantite) throws Exception {
+        Map<String, Double> simulation = simulerOperation();
+        if (simulation.containsKey(code) && simulation.get(code) >= quantite) {
+            simulation.put(code, simulation.get(code) - quantite);
+        } else {
+            throw new Exception("Simulation échouée, stock insuffisant pour " + code);
+        }
+        System.out.println("Simulation de suppression pour " + code + ": " + simulation.get(code));
     }
 }

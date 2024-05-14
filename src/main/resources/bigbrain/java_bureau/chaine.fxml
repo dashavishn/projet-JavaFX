@@ -1,92 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <AnchorPane prefHeight="690.0" prefWidth="858.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="bigbrain.java_bureau.controller.ChaineController">
   <children>
-    <SplitPane dividerPositions="0.5023328149300156" focusTraversable="true" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-      <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="366.0" prefWidth="856.0">
-          <children>
-            <Text layoutX="63.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ELEMENTS EN ENTREE">
-              <font>
-                <Font name="System Bold" size="18.0" fx:id="x1" />
-              </font>
-            </Text>
-            <Line endX="102.0" endY="1.0" layoutX="397.0" layoutY="139.0" startX="-100.0" strokeWidth="1.7" />
-            <Line endX="-6.0" endY="57.0" layoutX="505.0" layoutY="84.0" startX="-69.0" startY="32.0" strokeWidth="1.7" />
-            <Line endX="88.0" endY="-30.0" layoutX="407.0" layoutY="172.0" startX="30.0" startY="-11.0" strokeWidth="1.7" />
-            <Text font="$x1" layoutX="586.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ELEMENTS EN SORTIE" />
-            <Button font="$x1" layoutX="364.0" layoutY="231.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" text="VALIDER" />
-            <ChoiceBox layoutX="383.0" layoutY="59.0" prefWidth="76.0">
-              <items>
-                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="0" />
-                  <String fx:value="1" />
-                  <String fx:value="2" />
-                  <String fx:value="3" />
-                </FXCollections>
-              </items>
-            </ChoiceBox>
-            <Text layoutX="345.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau d'activation" />
-            <TableView layoutX="63.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0">
+    <VBox alignment="CENTER" spacing="10" layoutX="204.0" layoutY="45.0">
+      <children>
+        <Label text="Chaîne de production" style="-fx-font-size: 24px; -fx-text-fill: black;"/>
+        <HBox spacing="15">
+          <VBox spacing="10">
+            <TableView fx:id="tableInputElements" prefHeight="200.0" prefWidth="300.0">
               <columns>
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="92.0" text="Code" />
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Quantité" />
+                <TableColumn fx:id="codeColumnInput" prefWidth="150.0" text="Code" />
+                <TableColumn fx:id="quantityColumnInput" prefWidth="150.0" text="Quantité" />
               </columns>
             </TableView>
-            <TableView layoutX="595.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0">
+          </VBox>
+          <VBox spacing="10">
+            <TableView fx:id="tableOutputElements" prefHeight="200.0" prefWidth="300.0">
               <columns>
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="92.0" text="Code" />
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Quantité" />
+                <TableColumn fx:id="codeColumnOutput" prefWidth="150.0" text="Code" />
+                <TableColumn fx:id="quantityColumnOutput" prefWidth="150.0" text="Quantité" />
               </columns>
             </TableView>
-          </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="328.0" prefWidth="844.0">
-          <children>
-            <Text font="$x1" layoutX="67.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ELEMENTS EN ENTREE" />
-            <Line endX="102.0" endY="1.0" layoutX="427.0" layoutY="165.0" startX="-100.0" strokeWidth="1.7" />
-            <Line endX="-6.0" endY="57.0" layoutX="535.0" layoutY="109.0" startX="-69.0" startY="32.0" strokeWidth="1.7" />
-            <Line endX="88.0" endY="-30.0" layoutX="441.0" layoutY="198.0" startX="30.0" startY="-11.0" strokeWidth="1.7" />
-            <Text font="$x1" layoutX="590.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ELEMENTS EN SORTIE" />
-            <Button font="$x1" layoutX="355.0" layoutY="227.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="114.0" text="VALIDER" />
-            <Text layoutX="336.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau d'activation" />
-            <ChoiceBox layoutX="374.0" layoutY="75.0" prefWidth="76.0">
-              <items>
-                <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="0" />
-                  <String fx:value="1" />
-                  <String fx:value="2" />
-                  <String fx:value="3" />
-                </FXCollections>
-              </items>
-            </ChoiceBox>
-            <TableView layoutX="67.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="92.0" text="Code" />
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Quantité" />
-              </columns>
-            </TableView>
-            <TableView layoutX="590.0" layoutY="61.0" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="92.0" text="Code" />
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="107.0" text="Quantité" />
-              </columns>
-            </TableView>
-          </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
-    <Button layoutX="25.0" layoutY="13.0" mnemonicParsing="false" text="Accueil" onAction="#Page_Accueil" />
-    <Button layoutX="124.0" layoutY="13.0" mnemonicParsing="false" text="Chaine de production" onAction="#Page_Stock"/>
-    <Button layoutX="339.0" layoutY="13.0" mnemonicParsing="false" text="Commandes" onAction="#Page_Commandes" />
-    <Button layoutX="479.0" layoutY="13.0" mnemonicParsing="false" text="Historiques" onAction="#Page_Historique" />
-    <Button layoutX="608.0" layoutY="14.0" mnemonicParsing="false" text="Voir Stock" onAction="#Page_Stock"/>
+          </VBox>
+        </HBox>
+        <HBox spacing="10">
+          <Label text="Niveau d'activation :" style="-fx-font-size: 16px; -fx-text-fill: black;"/>
+          <ChoiceBox fx:id="activationLevel" prefWidth="100.0">
+            <items>
+              <FXCollections fx:factory="observableArrayList">
+                <String fx:value="0" />
+                <String fx:value="1" />
+                <String fx:value="2" />
+                <String fx:value="3" />
+              </FXCollections>
+            </items>
+          </ChoiceBox>
+        </HBox>
+        <Button text="Valider" onAction="#validateProduction" style="-fx-background-color: darkblue; -fx-text-fill: white;"/>
+      </children>
+    </VBox>
+    <HBox spacing="10" layoutX="50.0" layoutY="600.0">
+        <Button text="Accueil" onAction="#Page_Accueil"/>
+        <Button text="Commandes" onAction="#Page_Commandes"/>
+        <Button text="Historiques" onAction="#Page_Historique"/>
+        <Button text="Voir Stock" onAction="#Page_Stock"/>
+    </HBox>
   </children>
 </AnchorPane>

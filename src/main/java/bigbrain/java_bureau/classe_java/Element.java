@@ -1,214 +1,100 @@
 package bigbrain.java_bureau.classe_java;
 
+import java.util.ArrayList;
 
-
-
-
-
-/**
- * Cette classe représente un produit du stock qui le décrit par :
- * - un code unique
- * - un nom
- * - une quantité
- * - Une unité de mesure
- * - un prix d'achat
- * - un prix de vente
- * Des méthodes sont également présentes pour :
- * - mettre à jour la quantité de stock
- * - mettre à jour le code d'un élément (si c'est un nouveau)
- * -calculer le prix de l'achat d'une quantité d'élément
- * - vendre un élément puis mettre à jour la classe historique
-
-
-
-
-
-
-
-
- */
 public class Element {
-
-
     private String code;
-    private static String nom;
+    private String nom;
     private double quantiteStock;
-    private static String uniteMesure;
-
-
+    private String uniteMesure;
     private double prixAchat;
-
-
     private double prixVente;
-    /* ===========================================
-     * Le constructeur et les fonctions dont on a besoin
-     * =========================================== */
-
+    private double quantiteEnProduction;  // Quantité en cours de production
 
     public Element(String code, String nom, double quantiteStock, String uniteMesure, double prixAchat, double prixVente) {
-        this.code=code;
-        this.nom=nom;
-        this.quantiteStock=quantiteStock;
-
-
-        this.uniteMesure=uniteMesure;
-        this.prixAchat=prixAchat;
-        this.prixVente=prixVente;
+        this.code = code;
+        this.nom = nom;
+        this.quantiteStock = quantiteStock;
+        this.uniteMesure = uniteMesure;
+        this.prixAchat = prixAchat;
+        this.prixVente = prixVente;
+        this.quantiteEnProduction = 0; // Initialisé à 0
     }
 
-
-    /** public Element(String elemDatum, String elemDatum1) {
-     }
-     */
-
-
-    /* ===========================================
-     * Les Getteur et Setteur
-     * =========================================== */
-
-
-
-
-    /** retourne quantité actuelle du produit */
-
-
-    public double getQuantiteStock(){
-        return this.quantiteStock;
-
-
-    }
-
-
-    /** Met à jour la quantité */
-
-
-    /** va mettre à jour la quantité */
-    public void setQuantiteStock(double quantite){
-        this.quantiteStock = quantite;
-    }
-
-
-    /** va retourner le code de l'élément */
-    public String getCode(){
+    // Getters
+    public String getCode() {
         return code;
     }
-    /**va mettre à jour le code d'un nouvel élément */
-    public void setCode(String code){
-        this.code=code;
-    }
 
-
-    /** retourne le nom d'un élément */
-    public static String getNom(){
+    public String getNom() {
         return nom;
     }
-    /** va mettre à jour le nom d'un nouvel élément */
-    public void setNom(String nom){
-        this.nom=nom;
+
+    public double getQuantiteStock() {
+        return quantiteStock;
     }
-    /** retourne l'unité de mesure de l'élément */
+
     public String getUniteMesure() {
-        return this.uniteMesure;
+        return uniteMesure;
     }
-    /** met à jour l'unité de l'élément */
-    public void setUniteMesure(String uniteMesure){
-        this.uniteMesure=uniteMesure;
-    }
-    /** retourne le prix d'achat */
-    public double getPrixAchat(){
+
+    public double getPrixAchat() {
         return prixAchat;
     }
-    /** Met à jour le prix d'achat */
-    public void setPrixAchat(){
-        this.prixAchat=prixAchat;
-    }
-    /** Retourne le prix de vente */
-
 
     public double getPrixVente() {
         return prixVente;
     }
-    /** Met à jour le prix de vente */
-    public void setPrixVente(){
-        this.prixVente=prixVente;
+
+    public double getQuantiteEnProduction() {
+        return quantiteEnProduction;
     }
 
-
-
-
-
-
-    /** va retourner la descrition de l'élément */
-    public String toString() {
-        return "Element{" +
-                "quantite=" + quantiteStock +
-                ", code='" + code + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prixAchat=" + prixAchat +
-                ", prixVente=" + prixVente +
-                ", unite='" + uniteMesure + '\'' +
-                '}';
+    // Setters
+    public void setQuantiteStock(double quantite) {
+        this.quantiteStock = quantite;
     }
 
-
-    public double prixAchat (Element e, float quantiteStock){
-
-
-        return (e.prixAchat) * quantiteStock;
+    public void setQuantiteEnProduction(double quantite) {
+        this.quantiteEnProduction = quantite;
     }
 
-
-    public void Acheter(Element e, float quantiteCommandee) {
-        double Prix = prixAchat(e, quantiteCommandee);
-
-
-        Stocks.ajouterElem(e, quantiteCommandee);
-        Historique.ajouterChangement(new ModificationStockElement(e.getCode(), e.getNom(), quantiteCommandee, e.getUniteMesure(), Prix, 0));
+    public void ajouterQuantite(double quantite) {
+        this.quantiteStock += quantite;
     }
 
-
-
+    private static ArrayList<Element> elements = new ArrayList<>();
 
     public static Element trouverElement(String code) {
-        for (Element e : Stocks.ElemStocks) {
-            if (e.getCode().equals(code))
-                return e;
+        for (Element elem : elements) {
+            if (elem.getCode().equals(code)) {
+                return elem;
+            }
         }
         return null;
     }
 
-
-    public void ajouterQuantite(float n) {
-        this.quantiteStock += n;
+    // Méthodes d'affaires
+    public void acheter(Element elem, double quantite) {
+        this.quantiteStock += quantite;
+        Stocks.ajouterElem(this, quantite);
+        Historique.ajouterChangement(new ModificationStockElement(code, nom, quantite, uniteMesure, quantite * prixAchat, 0, "acheter"));
     }
 
 
-    public static void Vendre(Element e, float quantiteVendue) {
-        for (Element a : Stocks.ElemStocks) {
-            if (a.getCode().equals(e.getCode())) {
-                Stocks.enleverElem(a, quantiteVendue);
 
-
-            }
+    public void vendre(double quantite) throws Exception {
+        if (quantite > quantiteStock) {
+            throw new IllegalArgumentException("Quantité demandée excède le stock disponible.");
         }
-        AjouterHistorique(e, quantiteVendue);
-    }
-    public static void AjouterHistorique (Element e, float quantiteVendue) {
-
-
-        double Prix = (e.prixVente) * (quantiteVendue);
-
-
-        Historique.ajouterChangement(new ModificationStockElement(e.getCode(), e.getNom(), quantiteVendue, e.getUniteMesure(), 0, Prix));
+        this.quantiteStock -= quantite;
+        Stocks.enleverElem(String.valueOf(this), quantite);
+        Historique.ajouterChangement(new ModificationStockElement(code, nom, -quantite, uniteMesure, 0, quantite * prixVente, "vente"));
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return String.format("Element{code='%s', nom='%s', quantiteStock=%f, uniteMesure='%s', prixAchat=%f, prixVente=%f, quantiteEnProduction=%f}",
+                code, nom, quantiteStock, uniteMesure, prixAchat, prixVente, quantiteEnProduction);
+    }
 }
-
-
-
-

@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import static bigbrain.java_bureau.Main.primaryStage;
+
 public class Accueil_Controller implements Initializable {
 
     @FXML
@@ -50,15 +52,18 @@ public class Accueil_Controller implements Initializable {
         ChargerPage("/bigbrain/java_bureau/historique.fxml");
     }
 
-    private void ChargerPage(String page) {
+    public void ChargerPage(String page) {
         try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource(page)));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            Stage stage = (Stage) stock.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de la page: " + page);
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.err.println("Fichier FXML non trouvé: " + page);
             e.printStackTrace();
         }
     }

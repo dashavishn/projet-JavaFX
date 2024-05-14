@@ -15,35 +15,36 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Main.primaryStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("page_accueil.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/bigbrain/java_bureau/page_accueil.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        primaryStage.setTitle("Hello!");
+        primaryStage.setTitle("Gestion de Chaînes de Production");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public void ChargerPage(String page) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void main(String[] args) {
+        initialiserDonnees();
+        launch(args);
+    }
+
+    private static void initialiserDonnees() {
+        CSV csv = new CSV();
+        csv.lireElements();
+        csv.lireChaines();
+        Historique.initialiserHistorique();
+    }
+
+    public static void chargerPage(String page) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource(page));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    public static Stage getPrimaryStage(){
+
+    /*public static Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public static void main(String[] args) {
-        CSV csv = new CSV();
-        csv.LireElement();
-        csv.LireChaine();
-        launch();
-    }
-
-
+     */
 }

@@ -1,108 +1,115 @@
 package bigbrain.java_bureau.controller;
 
+import bigbrain.java_bureau.classe_java.EcrireCSV;
+import bigbrain.java_bureau.classe_java.Element;
+import bigbrain.java_bureau.classe_java.Stocks;
+import bigbrain.java_bureau.classe_java.Historique;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import static bigbrain.java_bureau.Main.primaryStage;
+import static bigbrain.java_bureau.classe_java.Element.trouverElement;
+import static java.lang.String.valueOf;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
+import java.io.IOException;
+import java.util.List;
 
 public class CommandesController {
 
     @FXML
-    private TextArea textArea;
+    private TextField saisieCodeEx, saisieCodeNew, saisieNom, saisieUnite, saisiePrixAchat, saisieQteEX, saisieQteNew;
+
 
     @FXML
-    private TextField textFieldCode;
-    @FXML
-    private TextField textFieldNom;
-    @FXML
-    private TextField textFieldUnite;
-    @FXML
-    private TextField textFieldQuantite;
+    private void initialize() {
+    }
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);  // Pas de header text, peut être mis à null.
+        alert.setContentText(content);
+        alert.showAndWait();  // Affiche le popup et attend que l'utilisateur le ferme.
+    }
+
 
     @FXML
-    private Text textStatus;
+    public void achatEx(ActionEvent event) {
+        Element elem = trouverElement(valueOf(saisieCodeEx.getText()));
+        float qte = Float.parseFloat(saisieQteEX.getText());
+       if(elem != null){
+        elem.acheter(elem, qte);
+        EcrireCSV.clearCSVFile("src/main/resources/bigbrain/fichierscsv/elements.csv");
+        EcrireCSV.writeElementsToCSV("src/main/resources/bigbrain/fichierscsv/elements.cs", (List<Element>) Stocks.stockItems);
+        EcrireCSV.clearCSVFile("src/main/resources/bigbrain/fichierscsv/historique.csv");
+        EcrireCSV.writeModificationsToCSV("src/main/resources/bigbrain/fichierscsv/historique.csv", Historique.historiqueModifications );
+        showAlert(AlertType.INFORMATION, "Achat réussi", "Commande existante réussie.");
+       }
+       else {
+           showAlert(AlertType.ERROR, "Erreur", "Élément non trouvé.");
+       }
+    }
+
 
     @FXML
-    private Button buttonCommander;
+    private void achatNew(ActionEvent event) {
+        String code = saisieCodeNew.getText();
+        String nom = saisieNom.getText();
+        String unite = saisieUnite.getText();
+        double prixAchat = Double.parseDouble(saisiePrixAchat.getText());
+        double quantite = Double.parseDouble(saisieQteNew.getText());
 
-    // Navigation methods
+        Element nouveauElement = new Element(code, nom, quantite, unite, prixAchat, prixAchat * 1.1);  // Assume a 10% markup for selling price
+        Stocks.ajouterElem(nouveauElement, quantite);
+        showAlert(AlertType.INFORMATION, "Nouvelle commande", "Nouvelle commande ajoutée avec succès.");
+
+    }
+
     @FXML
     private void Page_Accueil() {
-        loadPage("/bigbrain/java_bureau/page_accueil.fxml");
-    }
-
-    @FXML
-    private void Page_Stock() {
-        loadPage("/bigbrain/java_bureau/stock.fxml");
-    }
-
-    @FXML
-    private void Page_Chaine() {
-        loadPage("/bigbrain/java_bureau/chaine.fxml");
+        ChargerPage("/bigbrain/java_bureau/page_accueil.fxml");
     }
 
     @FXML
     private void Page_Commandes() {
-        loadPage("/bigbrain/java_bureau/commandes.fxml");
+        ChargerPage("/bigbrain/java_bureau/commandes.fxml");
+    }
+
+    @FXML
+    private void Page_Chaine() {
+        ChargerPage("/bigbrain/java_bureau/chaine.fxml");
     }
 
     @FXML
     private void Page_Historique() {
-        loadPage("/bigbrain/java_bureau/historique.fxml");
+        ChargerPage("/bigbrain/java_bureau/Historique.fxml");
     }
 
-    // Method to load pages
-    private void loadPage(String path) {
+    @FXML
+    private void Page_Stock() {
+        ChargerPage("/bigbrain/java_bureau/Stock.fxml");
+    }
+
+    public void ChargerPage(String page) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(page));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            textStatus.setText("Error loading the page: " + e.getMessage());
+            System.err.println("Erreur lors du chargement de la page: " + page);
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.err.println("Fichier FXML non trouvé: " + page);
+            e.printStackTrace();
         }
-    }
-
-    // Method to handle the 'Commander' action
-    @FXML
-    private void handleCommand() {
-        String code = textFieldCode.getText();
-        String nom = textFieldNom.getText();
-        String unite = textFieldUnite.getText();
-        String quantite = textFieldQuantite.getText();
-
-        if (code.isEmpty() || nom.isEmpty() || unite.isEmpty() || quantite.isEmpty()) {
-            textStatus.setText("Please fill in all fields.");
-            return;
-        }
-
-        try {
-            int qty = Integer.parseInt(quantite);
-            if (qty <= 0) {
-                textStatus.setText("Quantity must be positive.");
-                return;
-            }
-        } catch (NumberFormatException e) {
-            textStatus.setText("Invalid quantity format.");
-            return;
-        }
-
-        // Assume a successful command submission
-        textStatus.setText("Command submitted successfully.");
-        // Clear fields after submission
-        textFieldCode.clear();
-        textFieldNom.clear();
-        textFieldUnite.clear();
-        textFieldQuantite.clear();
     }
 }

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 public class HistoriqueController implements Initializable {
     @FXML
@@ -33,6 +35,37 @@ public class HistoriqueController implements Initializable {
     @FXML
     private TableColumn<Element, String> colCode, colNom, colUnite;
 
+    @FXML
+    private void valider() {
+        String quantiteS = textQuantite.getText();
+        String codeProduit = textcode.getText();
+        if (quantiteS.isEmpty() || codeProduit.isEmpty()) {
+            textResultat.setText("Veuillez remplir tous les champs.");
+            return;
+        }
+        try {
+            double quantite = Double.parseDouble(quantiteS);
+            if (quantite < 0) {
+                textResultat.setText("Quantité doit être supérieur à 0");
+                return;
+            }
+
+            // Utilisation du code produit pour vérifier la disponibilité et pour l'opération de stock
+            if (Stocks.getInstance().verifierDisponibilite(codeProduit, quantite)) {
+                Stocks.getInstance().enleverElem(codeProduit, quantite);
+                textResultat.setText("Commande effectuée avec succès !");
+                textQuantite.clear();
+                textcode.clear();
+            } else {
+                textResultat.setText("Stock insuffisant pour cet élément.");
+            }
+        } catch (NumberFormatException e) {
+            textResultat.setText("Veuillez saisir des nombres valides pour les quantités.");
+        } catch (Exception e) {
+            textResultat.setText(e.getMessage());
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupTable();
@@ -45,30 +78,11 @@ public class HistoriqueController implements Initializable {
         colPrixVente.setCellValueFactory(new PropertyValueFactory<>("prixVente"));
         colQuantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
         colUnite.setCellValueFactory(new PropertyValueFactory<>("uniteMesure"));
-        tableStock.setItems(FXCollections.observableArrayList(Stocks.ElemStocks));
+
+        ObservableList<Element> elementsObservable = FXCollections.observableArrayList(Stocks.getInstance().getStockItems().values());
+        tableStock.setItems(elementsObservable);
     }
 
-    @FXML
-    private void valider() {
-        String quantiteS = textQuantite.getText();
-        String codeProduit = textcode.getText();
-        if (quantiteS.isEmpty() || codeProduit.isEmpty()) {
-            textResultat.setText("Veuillez remplir tous les champs.");
-            return;
-        }
-        try {
-            int quantite = Integer.parseInt(quantiteS);
-            if (quantite < 0) {
-                textResultat.setText("Quantité doit être supérieur à 0");
-                return;
-            }
-            textResultat.setText("Commande effectuée avec succès !");
-            textQuantite.clear();
-            textcode.clear();
-        } catch (NumberFormatException e) {
-            textResultat.setText("Veuillez saisir des nombres valides pour les quantités.");
-        }
-    }
 
     // Navigation methods
     @FXML

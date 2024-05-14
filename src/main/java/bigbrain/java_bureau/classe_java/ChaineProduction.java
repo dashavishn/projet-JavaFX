@@ -1,139 +1,82 @@
 package bigbrain.java_bureau.classe_java;
 
-
 import java.util.HashMap;
-import java.util.HashSet;
-
+import java.util.Map;
 
 public class ChaineProduction {
     private String code;
     private String nom;
-    public int niveauActivation;
-    HashMap<Element, Float> elementEntree = new HashMap<>();
-    HashMap<Element, Float> elementSortie = new HashMap<>();
+    private int niveauActivation;
+    private Map<Element, Float> elementEntree;
+    private Map<Element, Float> elementSortie;
 
-
-    public ChaineProduction(String code, String nom, HashMap<Element, Float> elementEntree, HashMap<Element, Float> elementSortie) {
+    public ChaineProduction(String code, String nom) {
         this.code = code;
         this.nom = nom;
-        this.niveauActivation = 0;
-        this.elementEntree = elementEntree;
-        this.elementSortie = elementSortie;
+        this.elementEntree = new HashMap<>();
+        this.elementSortie = new HashMap<>();
     }
-
 
     public void ajouterElementEntree(Element element, float quantite) {
-        elementEntree.put(element, quantite);
+        this.elementEntree.put(element, quantite);
     }
-
 
     public void ajouterElementSortie(Element element, float quantite) {
-        elementSortie.put(element, quantite);
+        this.elementSortie.put(element, quantite);
     }
-
-
-    public void removeElemEntree(Element e) {
-        elementEntree.remove(e);
-    }
-
-
-    public void removeElemSortie(Element e) {
-        elementSortie.remove(e);
-    }
-
 
     public String getCode() {
-        return this.code;
+        return code;
     }
-
 
     public String getNom() {
-        return this.nom;
+        return nom;
     }
-
 
     public int getNiveauActivation() {
-        return this.niveauActivation;
+        return niveauActivation;
     }
 
-
-    public void setNiveauActivation(int niveauA) {
-        this.niveauActivation = niveauA;
+    public void setNiveauActivation(int niveauActivation) {
+        this.niveauActivation = niveauActivation;
     }
 
-
-    /* public HashMap<Element, Float> simulerProduction() {
-         HashMap<Element, Float> productionResultat = new HashMap<>();
-         for (Element e : elementEntree.keySet()) {
-             float quantiteNecessaire = elementEntree.get(e) * this.niveauActivation;
-             if (Stocks.verifierDisponibilite(e, quantiteNecessaire)) {
-                 Stocks.retirerStock(e, quantiteNecessaire);
-             } else {
-                 System.out.println("Stock insuffisant pour " + e.getNom());
-                 return null; // Arrête la production si le stock est insuffisant
-             }
-         }
-
-
-         for (Element e : elementSortie.keySet()) {
-             float quantiteProduite = elementSortie.get(e) * this.niveauActivation;
-             productionResultat.put(e, quantiteProduite);
-             Stocks.ajouterStock(e, quantiteProduite);
-         }
-         return productionResultat;
-     }
-
-
-     */
-    public void simulerEtAfficherResultats() {
-        HashMap<Element, Float> resultats = simulerProduction();
-        if (resultats == null) {
-            System.out.println("Simulation arrêtée en raison d'un manque de stock.");
-        } else {
-            System.out.println("Résultats de la production:");
-            resultats.forEach((element, quantite) ->
-                    System.out.println(element.getNom() + ": " + quantite + " " + element.getUniteMesure())
-            );
-        }
-    }
-
-    public HashMap<Element, Float> simulerProduction() {
-        HashMap<Element, Float> productionResultat = new HashMap<>();
+    // Simulation de la production qui calcule le coût des éléments manquants
+    public double simulerProduction() {
+        double totalAchat = 0.0;
         boolean stockSuffisant = true;
+        Stocks stocksInstance = Stocks.getInstance(); // Obtenir l'instance du singleton
 
-
-        // Vérifie d'abord la disponibilité de tous les éléments nécessaires
-        for (Element e : elementEntree.keySet()) {
-            float quantiteNecessaire = elementEntree.get(e) * this.niveauActivation;
-            if (!Stocks.verifierDisponibilite(e, quantiteNecessaire)) {
-                System.out.println("Stock insuffisant pour " + e.getNom());
+        // Vérifier chaque élément d'entrée pour la disponibilité et calculer le coût des achats nécessaires
+        for (Map.Entry<Element, Float> entry : elementEntree.entrySet()) {
+            Element element = entry.getKey();
+            float quantiteNecessaire = entry.getValue() * niveauActivation;
+            if (!stocksInstance.verifierDisponibilite(element.getCode(), quantiteNecessaire)) {
+                double quantiteManquante = quantiteNecessaire - element.getQuantiteStock();
+                totalAchat += quantiteManquante * element.getPrixAchat();
                 stockSuffisant = false;
-                break;
             }
         }
 
-
-        if (stockSuffisant) {
-            // Consomme les éléments d'entrée
-            for (Element e : elementEntree.keySet()) {
-                float quantiteNecessaire = elementEntree.get(e) * this.niveauActivation;
-                Stocks.retirerStock(e, quantiteNecessaire);
-            }
-
-
-            // Produit et ajoute les éléments de sortie au stock
-            for (Element e : elementSortie.keySet()) {
-                float quantiteProduite = elementSortie.get(e) * this.niveauActivation;
-                productionResultat.put(e, quantiteProduite);
-                Stocks.ajouterStock(e, quantiteProduite);
-            }
-        } else {
-            return null;  // Retourne null si le stock était insuffisant pour une ou plusieurs entrées
+        if (!stockSuffisant) {
+            // Si le stock n'est pas suffisant pour au moins un élément, retourner le coût total sans modifier les stocks
+            return totalAchat;
         }
 
+        // Si le stock est suffisant, simuler les modifications de stock (ceci est hypothétique, sans effet réel sur le stock)
+        for (Map.Entry<Element, Float> entry : elementEntree.entrySet()) {
+            Element element = entry.getKey();
+            float quantiteNecessaire = entry.getValue() * niveauActivation;
+            // Pas de modification réelle du stock ici, juste une simulation
+        }
 
-        return productionResultat;
+        for (Map.Entry<Element, Float> entry : elementSortie.entrySet()) {
+            Element element = entry.getKey();
+            float quantiteProduite = entry.getValue() * niveauActivation;
+            // Pas de modification réelle du stock ici, juste une simulation
+        }
+
+        // Retourner 0 si tout est suffisant, signifiant aucun coût d'achat supplémentaire n'est nécessaire
+        return totalAchat;
     }
-
-
 }

@@ -30,6 +30,6 @@
     <TextField layoutX="240" layoutY="350" prefWidth="200" promptText="Entrer un code de produit" />
     <Text layoutX="240.0" layoutY="289.0" text="Quantité:" />
     <Text layoutX="240.0" layoutY="338.0" text="Code Produit:" />
-    <Button layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#valider" prefWidth="200" text="Valider" />
+    <Button layoutX="240" layoutY="400" mnemonicParsing="false" onAction="#valider" prefWidth="200" text="Vendre" />
   </children>
 </AnchorPane>
