@@ -43,15 +43,16 @@ public class CommandesController {
 
     @FXML
     public void achatEx(ActionEvent event) {
-        Element elem = trouverElement(valueOf(saisieCodeEx.getText()));
+        String code = saisieCodeEx.getText();
         float qte = Float.parseFloat(saisieQteEX.getText());
+        Element elem = Stocks.getElement(code);  // Utilisation directe de la méthode de Stocks
+
         if (elem != null) {
             elem.acheter(qte);
-            EcrireCSV a = new EcrireCSV();
-            a.clearCSVFile("/bigbrain/fichierscsv/elements.csv");
-            a.writeElementsToCSV("/bigbrain/fichierscsv/elements.csv", (List<Element>) Stocks.stockItems);
-            a.clearCSVFile("/bigbrain/fichierscsv/historique.csv");
-            a.writeModificationsToCSV("/bigbrain/fichierscsv/historique.csv", Historique.historiqueModifications);
+            EcrireCSV.clearCSVFile("/bigbrain/fichierscsv/elements.csv");
+            EcrireCSV.writeElementsToCSV("/bigbrain/fichierscsv/elements.csv", new ArrayList<>(Stocks.getStockItems().values()));
+            EcrireCSV.clearCSVFile("/bigbrain/fichierscsv/historique.csv");
+            EcrireCSV.writeModificationsToCSV("/bigbrain/fichierscsv/historique.csv", Historique.getHistoriqueModifications());
             showAlert(AlertType.INFORMATION, "Achat réussi", "Commande existante réussie.");
         } else {
             showAlert(AlertType.ERROR, "Erreur", "Élément non trouvé.");
