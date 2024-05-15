@@ -24,15 +24,14 @@ import java.io.IOException;
 
 import static bigbrain.java_bureau.Main.primaryStage;
 
-import java.io.IOException;
-
-import static bigbrain.java_bureau.Main.primaryStage;
 
 //le bouton renvoie que la production est lancé peu importe le niveau d'activation,
 // alors que tout est bien défini dans la méthode handleValidateProduction
 //les tableviews se remplissent avec les données de fichier chaine,
 // alors qu'ils doivent avoir les elements spécifiques qui sont dans TestChaineProduction et jsp quoi faire avec ça
 //j'en peux plus
+
+
 public class ChaineController {
     @FXML private TableView<Element> tableInputElements;
     @FXML private TableView<Element> tableOutputElements;
@@ -42,7 +41,7 @@ public class ChaineController {
     @FXML private TableColumn<Element, String> nomColumnOutput;
     @FXML private TableColumn<Element, Double> quantityColumnOutput;
 
-    private ChaineProduction chaineProduction = new ChaineProduction("DefaultCode", "DefaultChaine");
+    private ChaineProduction selectedChaine;
 
     @FXML
     public void initialize() {
@@ -59,50 +58,55 @@ public class ChaineController {
     }
 
     private void setupChoiceBox() {
-        activationLevel.getItems().addAll(0, 1);
-        activationLevel.setValue(1);
+        activationLevel.getItems().addAll(0, 1, 2, 3, 4, 5);
+        activationLevel.setValue(0);
         activationLevel.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                chaineProduction.setNiveauActivation(newVal);
-                System.out.println("Niveau d'activation réglé sur : " + newVal);
+            if (selectedChaine != null && newVal != null) {
+                selectedChaine.setNiveauActivation(newVal);
+                updateTableData();
             }
         });
     }
 
+    private void updateTableData() {
+        ObservableList<Element> inputElements = FXCollections.observableArrayList();
+        selectedChaine.getElementEntree().forEach((element, qty) -> {
+            element.setQuantiteStock(qty * selectedChaine.getNiveauActivation());
+            inputElements.add(element);
+        });
 
+        ObservableList<Element> outputElements = FXCollections.observableArrayList();
+        selectedChaine.getElementSortie().forEach((element, qty) -> {
+            element.setQuantiteStock(qty * selectedChaine.getNiveauActivation());
+            outputElements.add(element);
+        });
 
-    private void loadInitialData() {
-        ObservableList<Element> inputElements = FXCollections.observableArrayList(Stocks.getStockItems().values());
-        ObservableList<Element> outputElements = FXCollections.observableArrayList(Stocks.getStockItems().values());
         tableInputElements.setItems(inputElements);
         tableOutputElements.setItems(outputElements);
     }
 
-    @FXML
-    private void handleValidateProduction() {
-        if (activationLevel.getValue() > 0) {
-            boolean result = false;
-            try {
-                result = chaineProduction.valider();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-            if (result) {
-                showAlert("Production Réalisée", "La production a été réalisée avec succès.", AlertType.INFORMATION);
-            } else {
-                showAlert("Erreur de Production", "Éléments en stock insuffisants pour réaliser la production.", AlertType.ERROR);
-            }
-        } else {
-            showAlert("Production Inactive", "Le niveau d'activation est défini à 0, aucune production n'est réalisée.", AlertType.INFORMATION);
-        }
-        EcrireCSV a = new EcrireCSV();
-
-        a.clearCSVFile("src/main/resources/bigbrain/fichierscsv/elements.csv");
-        a.writeElementsToCSV("src/main/resources/bigbrain/fichierscsv/elements.csv", Stocks.EStock);
-        a.clearCSVFile("src/main/resources/bigbrain/fichierscsv/historique.csv");
-        a.writeModificationsToCSV("src/main/ressources/bigbrain/fichierscsv/historique.csv", Historique.historiqueModifications);
+    private void loadInitialData() {
+        selectedChaine = new ChaineProduction("C001", "Chaine de Test");  // Exemple de création d'une chaîne
+        // Supposé ajout d'éléments en entrée et sortie
+        Element inputElement = new Element("E001", "Plastique", 100, "kg", 5.0, 6.0);
+        Element outputElement = new Element("P001", "Produit Fini", 0, "unité", 15.0, 20.0);
+        selectedChaine.ajouterElementEntree(inputElement, 10);
+        selectedChaine.ajouterElementSortie(outputElement, 1);
+        updateTableData();
     }
 
+    @FXML
+    private void handleValidateProduction() {
+        try {
+            if (selectedChaine != null && selectedChaine.getNiveauActivation() > 0 && selectedChaine.valider()) {
+                showAlert("Production Réalisée", "La production a été réalisée avec succès.", Alert.AlertType.INFORMATION);
+            } else {
+                showAlert("Erreur de Production", "Problème de validation de la production ou niveau d'activation à 0.", Alert.AlertType.ERROR);
+            }
+        } catch (Exception e) {
+            showAlert("Erreur Système", "Erreur lors de la validation de la production: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 
     private void showAlert(String title, String content, Alert.AlertType type) {
         Alert alert = new Alert(type);
@@ -111,8 +115,6 @@ public class ChaineController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
 
 
 

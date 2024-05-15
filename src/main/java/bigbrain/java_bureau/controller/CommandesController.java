@@ -49,9 +49,9 @@ public class CommandesController {
 
         if (elem != null) {
             elem.acheter(qte);
-            EcrireCSV.clearCSVFile("/bigbrain/fichierscsv/elements.csv");
+           EcrireCSV.clearCSVFile("/bigbrain/fichierscsv/elements.csv");
             EcrireCSV.writeElementsToCSV("/bigbrain/fichierscsv/elements.csv", new ArrayList<>(Stocks.getStockItems().values()));
-            EcrireCSV.clearCSVFile("/bigbrain/fichierscsv/historique.csv");
+           EcrireCSV.clearCSVFile("/bigbrain/fichierscsv/historique.csv");
             EcrireCSV.writeModificationsToCSV("/bigbrain/fichierscsv/historique.csv", Historique.getHistoriqueModifications());
             showAlert(AlertType.INFORMATION, "Achat réussi", "Commande existante réussie.");
         } else {

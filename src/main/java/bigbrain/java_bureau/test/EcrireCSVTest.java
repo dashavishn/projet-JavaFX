@@ -23,13 +23,16 @@ public class EcrireCSVTest {
         modifications.add(new ModificationStockElement("E002", "Element 2", 75, "kg", 20.0, 30.0, "vente"));
 
         EcrireCSV csvWriter = new EcrireCSV();
+    }
 
-        csvWriter.clearCSVFile(elementsFilePath);
+       /* csvWriter.clearCSVFile(elementsFilePath);
         csvWriter.writeElementsToCSV(elementsFilePath, elements);
         System.out.println("Éléments écrits dans: " + elementsFilePath);
 
         csvWriter.clearCSVFile(modificationsFilePath);
         csvWriter.writeModificationsToCSV(modificationsFilePath, modifications);
         System.out.println("Modifications écrites dans: " + modificationsFilePath);
-    }
+
+
+        */
 }

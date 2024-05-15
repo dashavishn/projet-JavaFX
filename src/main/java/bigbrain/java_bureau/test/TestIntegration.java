@@ -1,4 +1,6 @@
-/*package bigbrain.java_bureau.test;
+
+/*
+package bigbrain.java_bureau.test;
 
 import bigbrain.java_bureau.classe_java.ChaineProduction;
 import bigbrain.java_bureau.classe_java.Element;

@@ -74,14 +74,7 @@ public class Element {
         return null;
     }
 
-    // Méthodes d'affaires
-    /*
-    public void acheter(Element elem, double quantite) {
-        this.quantiteStock += quantite;
-        Stocks.ajouterElem(this, quantite);
-        Historique.ajouterChangement(new ModificationStockElement(code, nom, quantite, uniteMesure, quantite * prixAchat, 0, "acheter"));
-    }
-*/
+
     public void acheter(double quantite) {
         // je n'ajuste pas quantiteStock ici, c'est  Stocks qui va gérer ça
         Stocks.ajouterElem(this, quantite);

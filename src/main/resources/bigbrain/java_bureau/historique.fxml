@@ -25,7 +25,7 @@
         <TableColumn fx:id="colPrixVente" prefWidth="125.0" text="Prix Vente" />
       </columns>
     </TableView>
-    <Text fx:id="textResultat" layoutX="20" layoutY="360" strokeType="OUTSIDE" strokeWidth="0.0" text="test">
+    <Text fx:id="textResultat" layoutX="20" layoutY="360" strokeType="OUTSIDE" strokeWidth="0.0" >
       <font>
         <Font size="16.0" />
       </font>

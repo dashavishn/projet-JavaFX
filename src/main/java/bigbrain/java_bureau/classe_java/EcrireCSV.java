@@ -16,7 +16,9 @@ public class EcrireCSV {
      * Efface le contenu d'un fichier CSV.
      * @param filePath Chemin d'accès au fichier CSV.
      */
+
     public static void clearCSVFile(String filePath) {
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("");  // Écrire une chaîne vide pour effacer le fichier.
         } catch (IOException e) {
@@ -24,6 +26,8 @@ public class EcrireCSV {
             e.printStackTrace();
         }
     }
+
+
 
     /**
      * Écrit les données des éléments dans un fichier CSV.

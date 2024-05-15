@@ -1,5 +1,6 @@
-/*package bigbrain.java_bureau.classe_java;
+package bigbrain.java_bureau.classe_java;
 
+/*
 public class testAjoutElements {
     public static void main(String[] args) {
         ChaineProduction chaine = new ChaineProduction("C001", "Test Chaine");
