@@ -8,8 +8,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+//import static bigbrain.java_bureau.classe_java.CSV.lireChaines;
+//import static bigbrain.java_bureau.classe_java.CSV.lireElements;
+
 public class Main extends Application {
 
+    public Entrepot entrepot;
     public static Stage primaryStage;
 
     @Override
@@ -19,34 +23,19 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         primaryStage.setTitle("Gestion de Chaînes de Production");
         primaryStage.setScene(scene);
-        primaryStage.setMinHeight(500);
-        primaryStage.setMinWidth(1000);
         primaryStage.show();
-    }
 
-    public static void main(String[] args) {
-        initialiserDonnees();
-        launch(args);
-    }
 
-    private static void initialiserDonnees() {
+        entrepot = new Entrepot();
+        //entrepot.addChaines(lireChaines());
+        //entrepot.addElement(lireElements());
+        Historique.initialiserHistorique();
         CSV csv = new CSV();
         csv.lireElements();
         csv.lireChaines();
-        Historique.initialiserHistorique();
     }
 
-    public static void chargerPage(String page) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource(page));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public static void main(String[] args) {
+        launch(args);
     }
-
-    /*
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
-     */
 }

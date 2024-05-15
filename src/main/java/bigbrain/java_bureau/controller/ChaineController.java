@@ -1,18 +1,33 @@
 package bigbrain.java_bureau.controller;
 
 import bigbrain.java_bureau.classe_java.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import bigbrain.java_bureau.classe_java.*;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
 import static bigbrain.java_bureau.Main.primaryStage;
+import static bigbrain.java_bureau.classe_java.Entrepot.getChaine;
 
 
 //le bouton renvoie que la production est lancé peu importe le niveau d'activation,
@@ -23,67 +38,33 @@ import static bigbrain.java_bureau.Main.primaryStage;
 
 
 public class ChaineController {
-    @FXML private TableView<Element> tableInputElements;
-    @FXML private TableView<Element> tableOutputElements;
-    @FXML private ChoiceBox<Integer> activationLevel;
-    @FXML private TableColumn<Element, String> nomColumnInput;
-    @FXML private TableColumn<Element, Double> quantityColumnInput;
-    @FXML private TableColumn<ChaineProduction, String> nomColumnOutput;
-    @FXML private TableColumn<ChaineProduction, Double> quantityColumnOutput;
+    public TableColumn<ChaineProduction, String> chaineNom;
+    public TableColumn<ChaineProduction, String> chaineCode;
+    public TableColumn<ChaineProduction, String> chaineActivation;
+    public TableColumn<ChaineProduction, String> chaineUnite;
+    public TableColumn<ChaineProduction, String> chaineEntree;
+    public TableColumn<ChaineProduction, String> chaineSortie;
+
+    @FXML private TableView<ChaineProduction> tableChaine;
+
 
     private ChaineProduction selectedChaine;
 
     @FXML
     public void initialize() {
-        setupTableColumns();
-        setupChoiceBox();
-        loadInitialData();
+        chaineNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        chaineCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        chaineEntree.setCellValueFactory(new PropertyValueFactory<>("strEntree"));
+        chaineSortie.setCellValueFactory(new PropertyValueFactory<>("strSortie"));
+
+        ObservableList<String> activationOptions = FXCollections.observableArrayList("Activée", "Désactivée");
+        chaineActivation.setCellValueFactory(new PropertyValueFactory<>("activation"));
+
+
+        tableChaine.setItems(getChaine());
     }
 
-    private void setupTableColumns() {
-        nomColumnInput.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        quantityColumnInput.setCellValueFactory(new PropertyValueFactory<>("quantiteStock"));
-        nomColumnOutput.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        quantityColumnOutput.setCellValueFactory(new PropertyValueFactory<>("quantiteStock"));
-    }
 
-    private void setupChoiceBox() {
-        activationLevel.getItems().addAll(0, 1, 2, 3, 4, 5);
-        activationLevel.setValue(0);
-        activationLevel.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (selectedChaine != null && newVal != null) {
-                selectedChaine.setNiveauActivation(newVal);
-                updateTableData();
-            }
-        });
-    }
-
-    private void updateTableData() {
-        ObservableList<Element> inputElements = FXCollections.observableArrayList();
-        selectedChaine.getElementEntree().forEach((element, qty) -> {
-            element.setQuantiteStock(qty * selectedChaine.getNiveauActivation());
-            inputElements.add(element);
-        });
-
-        ObservableList<Element> outputElements = FXCollections.observableArrayList();
-        selectedChaine.getElementSortie().forEach((element, qty) -> {
-            element.setQuantiteStock(qty * selectedChaine.getNiveauActivation());
-            outputElements.add(element);
-        });
-
-        tableInputElements.setItems(inputElements);
-        tableOutputElements.setItems(outputElements);
-    }
-
-    private void loadInitialData() {
-        selectedChaine = new ChaineProduction("C001", "Chaine de Test");  // Exemple de création d'une chaîne
-        // Supposé ajout d'éléments en entrée et sortie
-        Element inputElement = new Element("E001", "Plastique", 100, "kg", 5.0, 6.0);
-        Element outputElement = new Element("P001", "Produit Fini", 0, "unité", 15.0, 20.0);
-        selectedChaine.ajouterElementEntree(inputElement, 10);
-        selectedChaine.ajouterElementSortie(outputElement, 1);
-        updateTableData();
-    }
 
     @FXML
     private void handleValidateProduction() {

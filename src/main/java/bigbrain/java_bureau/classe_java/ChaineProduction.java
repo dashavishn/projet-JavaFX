@@ -14,11 +14,37 @@ public class ChaineProduction {
     private Map<Element, Float> elementEntree;
     private Map<Element, Float> elementSortie;
 
+    private String strSortie;
+    private String strEntree;
+
     public ChaineProduction(String code, String nom) {
         this.code = code;
         this.nom = nom;
         this.elementEntree = new HashMap<>();
         this.elementSortie = new HashMap<>();
+    }
+
+    public ChaineProduction(String code, String nom, int niveauActivation, Map<Element, Float> elementEntree, Map<Element, Float> elementSortie) {
+        this.code = code;
+        this.nom = nom;
+        this.niveauActivation = niveauActivation;
+        this.elementEntree = elementEntree;
+        this.elementSortie = elementSortie;
+    }
+
+    public ChaineProduction(String code, String name, String part, String part1) {
+        this.code = code;
+        this.nom = name;
+        this.strEntree = part;
+        this.strSortie = part1;
+    }
+
+    public String getStrSortie() {
+        return strSortie;
+    }
+
+    public String getStrEntree() {
+        return strEntree;
     }
 
     public String getCode() {
@@ -42,6 +68,28 @@ public class ChaineProduction {
 
     public void ajouterElementSortie(Element element, float quantite) {
         this.elementSortie.put(element, quantite);
+    }
+
+    public String getStringElementEntree() {
+        StringBuilder str = new StringBuilder();
+        for (Map.Entry<Element, Float> entry : elementEntree.entrySet()) {
+            str.append(entry.getKey().getCode());
+            str.append(" * ");
+            str.append(entry.getValue());
+            str.append(", ");
+        }
+        return str.toString();
+    }
+
+    public String getStringElementSortie() {
+        StringBuilder str = new StringBuilder();
+        for (Map.Entry<Element, Float> entry : elementSortie.entrySet()) {
+            str.append(entry.getKey().getCode());
+            str.append(" * ");
+            str.append(entry.getValue());
+            str.append(", ");
+        }
+        return str.toString();
     }
     public Map<Element, Float> getElementEntree() {
         return new HashMap<>(this.elementEntree);

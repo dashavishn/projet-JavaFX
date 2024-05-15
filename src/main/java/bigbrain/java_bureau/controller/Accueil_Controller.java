@@ -25,7 +25,6 @@ public class Accueil_Controller implements Initializable {
     private Button commandes;
     @FXML
     private Button historique;
-    /*je meurs*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
