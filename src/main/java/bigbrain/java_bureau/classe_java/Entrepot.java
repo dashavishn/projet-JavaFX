@@ -3,13 +3,13 @@ package bigbrain.java_bureau.classe_java;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestionChaine {
-    private static final GestionChaine instance = new GestionChaine();
+public class Entrepot {
+    private static final Entrepot instance = new Entrepot();
     private List<ChaineProduction> chaines = new ArrayList<>();
 
-    private GestionChaine() {}
+    private Entrepot() {}
 
-    public static GestionChaine getInstance() {
+    public static Entrepot getInstance() {
         return instance;
     }
 

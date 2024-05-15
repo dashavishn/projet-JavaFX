@@ -8,17 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import bigbrain.java_bureau.classe_java.*;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -38,8 +28,8 @@ public class ChaineController {
     @FXML private ChoiceBox<Integer> activationLevel;
     @FXML private TableColumn<Element, String> nomColumnInput;
     @FXML private TableColumn<Element, Double> quantityColumnInput;
-    @FXML private TableColumn<Element, String> nomColumnOutput;
-    @FXML private TableColumn<Element, Double> quantityColumnOutput;
+    @FXML private TableColumn<ChaineProduction, String> nomColumnOutput;
+    @FXML private TableColumn<ChaineProduction, Double> quantityColumnOutput;
 
     private ChaineProduction selectedChaine;
 

@@ -19,6 +19,8 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         primaryStage.setTitle("Gestion de Chaînes de Production");
         primaryStage.setScene(scene);
+        primaryStage.setMinHeight(500);
+        primaryStage.setMinWidth(1000);
         primaryStage.show();
     }
 
