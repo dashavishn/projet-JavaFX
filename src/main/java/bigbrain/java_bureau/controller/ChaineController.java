@@ -97,10 +97,10 @@ public class ChaineController {
         }
         EcrireCSV a = new EcrireCSV();
 
-        a.clearCSVFile("src/main/ressources/fichierscsv/elements.csv");
-        a.writeElementsToCSV("src/main/ressources/fichierscsv/elements.csv", Stocks.EStock);
-        a.clearCSVFile("src/main/ressources/fichierscsv/historique.csv");
-        a.writeModificationsToCSV("src/main/ressources/fichierscsv/historique.csv", Historique.historiqueModifications);
+        a.clearCSVFile("src/main/resources/bigbrain/fichierscsv/elements.csv");
+        a.writeElementsToCSV("src/main/resources/bigbrain/fichierscsv/elements.csv", Stocks.EStock);
+        a.clearCSVFile("src/main/resources/bigbrain/fichierscsv/historique.csv");
+        a.writeModificationsToCSV("src/main/ressources/bigbrain/fichierscsv/historique.csv", Historique.historiqueModifications);
     }
 
 
