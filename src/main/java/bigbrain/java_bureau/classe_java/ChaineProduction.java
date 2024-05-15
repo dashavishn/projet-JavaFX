@@ -40,7 +40,7 @@ public class ChaineProduction {
     public void setNiveauActivation(int niveauActivation) {
         this.niveauActivation = niveauActivation;
     }
-
+/*
     // Simulation de la production qui calcule le coût des éléments manquants
     public double simulerProduction() {
         double totalAchat = 0.0;
@@ -79,7 +79,7 @@ public class ChaineProduction {
         // Retourner 0 si tout est suffisant, signifiant aucun coût d'achat supplémentaire n'est nécessaire
         return totalAchat;
     }
-
+*/
     public Boolean valider() throws Exception {
         for (HashMap.Entry<Element, Float> m : elementEntree.entrySet()) {
             for (Element e : Stocks.EStock) {
