@@ -14,7 +14,6 @@
             <Button onAction="#Page_Stock" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Voir Stock" />
         </HBox>
         <Label layoutX="289.0" layoutY="58.0" style="-fx-font-size: 30px; -fx-text-fill: black;" text="Chaîne de production" />
-        <Button layoutX="403.0" layoutY="600.0" onAction="#handleValidateProduction" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Valider" />
         <TableView fx:id="tableChaine" layoutX="15.0" layoutY="198.0" prefHeight="337.0" prefWidth="828.0" editable="true">
             <columns>
                 <TableColumn fx:id="chaineNom" maxWidth="5000.0" minWidth="10.0" prefWidth="148.0" text="Nom">
