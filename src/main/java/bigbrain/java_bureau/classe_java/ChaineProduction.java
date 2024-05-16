@@ -92,6 +92,7 @@ public class ChaineProduction {
 
     public boolean valider() throws Exception {
         if (niveauActivation == 0) {
+            System.out.println("Le niveau d'activation est de 0, la chaîne ne peut pas fonctionner.");
             return false;  // Retourne false au lieu de lancer une exception si le niveau d'activation est 0
         }
 
@@ -100,6 +101,7 @@ public class ChaineProduction {
             Element element = entry.getKey();
             float quantiteNecessaire = entry.getValue() * niveauActivation;
             if (element.getQuantiteStock() < quantiteNecessaire) {
+                System.out.println("Stock insuffisant pour l'élément: " + element.getCode() + ". Nécessaire: " + quantiteNecessaire + ", Disponible: " + element.getQuantiteStock());
                 return false;  // Pas assez de stock pour démarrer la production
             }
         }
@@ -109,6 +111,7 @@ public class ChaineProduction {
             Element element = entry.getKey();
             float quantiteNecessaire = entry.getValue() * niveauActivation;
             element.vendre(quantiteNecessaire);  // Utiliser la méthode vendre pour diminuer le stock
+            System.out.println("Consommation de l'élément: " + element.getCode() + ". Quantité consommée: " + quantiteNecessaire);
         }
 
         // Produire les éléments de sortie
@@ -116,11 +119,13 @@ public class ChaineProduction {
             Element element = entry.getKey();
             float quantiteProduite = entry.getValue() * niveauActivation;
             element.acheter(quantiteProduite);  // Utiliser la méthode acheter pour augmenter le stock
+            System.out.println("Production de l'élément: " + element.getCode() + ". Quantité produite: " + quantiteProduite);
         }
 
         return true;  // Production réussie
     }
-    }
+
+}
 
 
 

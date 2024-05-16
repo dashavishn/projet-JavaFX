@@ -27,6 +27,7 @@ import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
+import java.util.Map;
 
 import static bigbrain.java_bureau.Main.primaryStage;
 import static bigbrain.java_bureau.classe_java.Entrepot.getChaine;
@@ -41,7 +42,6 @@ public class ChaineController {
     private Button commandes;
     @FXML
     private Button historique;
-
 
     @FXML
     private TableView<ChaineProduction> tableChaine;
@@ -76,10 +76,8 @@ public class ChaineController {
             try {
                 if (!chaine.valider()) {
                     showAlert("Validation échouée", "Niveau d'activation non supporté par les stocks actuels pour la chaîne: " + chaine.getNom());
-                    // Réinitialiser la valeur si nécessaire ou notifier l'utilisateur
                 } else {
-                    // Si la validation passe, mettre à jour le niveau d'activation
-                    chaine.setNiveauActivation(newLevel);
+                    showAlert("Validation réussie", "La chaîne de production " + chaine.getNom() + " a été activée avec succès au niveau " + newLevel);
                 }
             } catch (Exception e) {
                 showAlert("Erreur lors de la validation", "Erreur lors de la validation de la chaîne: " + chaine.getNom() + " Error: " + e.getMessage());
@@ -101,6 +99,12 @@ public class ChaineController {
         boolean allValid = true;
         for (ChaineProduction chaine : chaines) {
             try {
+                System.out.println("Vérification des stocks avant validation pour la chaîne: " + chaine.getNom());
+                for (Map.Entry<Element, Float> entry : chaine.getElementEntree().entrySet()) {
+                    Element element = entry.getKey();
+                    float quantiteNecessaire = entry.getValue() * chaine.getNiveauActivation();
+                    System.out.println("Stock de " + element.getCode() + ": " + element.getQuantiteStock() + ", Nécessaire: " + quantiteNecessaire);
+                }
                 if (!chaine.valider()) {  // Supposons que valider() vérifie si la chaîne peut être activée avec les stocks actuels
                     allValid = false;
                     showAlert("Validation échouée", "Validation échouée pour la chaîne: " + chaine.getNom());
@@ -126,7 +130,6 @@ public class ChaineController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 
 
     @FXML

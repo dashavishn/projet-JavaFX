@@ -74,25 +74,24 @@ public class Element {
         return null;
     }
 
-
     public void acheter(double quantite) {
-        // je n'ajuste pas quantiteStock ici, c'est  Stocks qui va gérer ça
-        Stocks.ajouterElem(this, quantite);
+        System.out.println("Avant achat - Stock de " + this.code + ": " + this.quantiteStock);
+        this.quantiteStock += quantite;
+        System.out.println("Après achat - Stock de " + this.code + ": " + this.quantiteStock);
         Historique.ajouterChangement(new ModificationStockElement(code, nom, quantite, uniteMesure, quantite * prixAchat, 0, "acheter"));
     }
-
-
-
-
 
     public void vendre(double quantite) throws Exception {
         if (quantite > quantiteStock) {
             throw new IllegalArgumentException("Quantité demandée excède le stock disponible.");
         }
+        System.out.println("Avant vente - Stock de " + this.code + ": " + this.quantiteStock);
         this.quantiteStock -= quantite;
-        Stocks.enleverElem(String.valueOf(this), quantite);
+        System.out.println("Après vente - Stock de " + this.code + ": " + this.quantiteStock);
         Historique.ajouterChangement(new ModificationStockElement(code, nom, -quantite, uniteMesure, 0, quantite * prixVente, "vente"));
     }
+
+
 
     @Override
     public String toString() {
