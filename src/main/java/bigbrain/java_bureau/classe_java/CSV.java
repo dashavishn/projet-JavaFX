@@ -24,7 +24,7 @@ public class CSV {
      * Les éléments sont ajoutés à l'inventaire global.
      */
     public void lireElements() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(ELEMENTS_FILE_PATH)))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(ELEMENTS_FILE_PATH))) {
             reader.readLine(); // Ignorer l'en-tête
             String line;
             while ((line = reader.readLine()) != null) {
@@ -44,7 +44,7 @@ public class CSV {
      * Les chaînes sont stockées dans une liste statique et peuvent être ajoutées à un entrepôt de données.
      */
     public void lireChaines() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(CHAINES_FILE_PATH)))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(CHAINES_FILE_PATH))) {
             reader.readLine(); // Ignorer l'en-tête
             String line;
             while ((line = reader.readLine()) != null) {
