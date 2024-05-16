@@ -9,15 +9,4 @@ public class GestionChaine {
 
     private GestionChaine() {}
 
-    public static GestionChaine getInstance() {
-        return instance;
-    }
-
-    public void addChaine(ChaineProduction chaine) {
-        chaines.add(chaine);
-    }
-
-    public List<ChaineProduction> getChaines() {
-        return chaines;
-    }
 }

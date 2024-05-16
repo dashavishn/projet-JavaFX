@@ -3,12 +3,26 @@ package bigbrain.java_bureau.classe_java;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * Classe responsable de la lecture des données des chaînes de production et des éléments à partir de fichiers CSV.
+ */
 public class CSV {
+    /**
+     * Liste stockant toutes les chaînes de production chargées.
+     */
     public static ArrayList<ChaineProduction> liste = new ArrayList<ChaineProduction>();
+    /**
+     * Chemin d'accès au fichier CSV contenant les informations sur les éléments.
+     */
     private static final String ELEMENTS_FILE_PATH = "/bigbrain/fichierscsv/elements.csv";
+    /**
+     * Chemin d'accès au fichier CSV contenant les informations sur les chaînes de production.
+     */
     private static final String CHAINES_FILE_PATH = "/bigbrain/fichierscsv/chaines.csv";
-
+    /**
+     * Une méthode qui lit et charge les éléments à partir du fichier element.csv.
+     * Les éléments sont ajoutés à l'inventaire global.
+     */
     public void lireElements() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(ELEMENTS_FILE_PATH)))) {
             reader.readLine(); // Ignorer l'en-tête
@@ -24,7 +38,10 @@ public class CSV {
             System.err.println("Erreur lors de la lecture du fichier des éléments: " + e.getMessage());
         }
     }
-
+    /**
+     * Une méthode qui lit et charge les chaînes de production à partir du fichier chaines.csv.
+     * Les chaînes sont stockées dans une liste statique et peuvent être ajoutées à un entrepôt de données.
+     */
     public void lireChaines() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(CHAINES_FILE_PATH)))) {
             reader.readLine(); // Ignorer l'en-tête
@@ -48,6 +65,13 @@ public class CSV {
         }
     }
 
+    /**
+     * Analyse une chaîne de caractères contenant des données d'éléments et les convertit en une map.
+     * Chaque élément est associé à sa quantité nécessaire ou produite.
+     *
+     * @param elementData Données brutes des éléments sous forme de chaîne.
+     * @return Une map associant chaque élément à sa quantité.
+     */
     private HashMap<Element, Float> parseElements(String elementData) {
         HashMap<Element, Float> elements = new HashMap<>();
         if (elementData.isEmpty()) return elements;  // Retourner une map vide si la chaîne est vide
@@ -68,5 +92,6 @@ public class CSV {
         }
         return elements;
     }
+
 
 }

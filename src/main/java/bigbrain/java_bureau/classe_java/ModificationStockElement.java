@@ -35,7 +35,7 @@ public class ModificationStockElement {
         this.prixVente = prixVente;
         this.origine = origine;
     }
-
+    // Getters pour accéder aux propriétés de l'objet.
     public String getCode() {
         return code;
     }

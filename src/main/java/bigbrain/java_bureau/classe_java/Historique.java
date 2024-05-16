@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * Cette classe enregistre les changements apportés au stock.
- * @author HanjaRajaobelison
  */
 public class Historique {
     public static List<ModificationStockElement> historiqueModifications = new ArrayList<>();
@@ -13,9 +12,7 @@ public class Historique {
     /**
      * Initialise l'historique, potentiellement en chargeant des données depuis un fichier ou une source externe.
      */
-    public static void initialiserHistorique() {
-
-    }
+    public static void initialiserHistorique() {}
 
     /**
      * va ajouter un changement à l'historique.

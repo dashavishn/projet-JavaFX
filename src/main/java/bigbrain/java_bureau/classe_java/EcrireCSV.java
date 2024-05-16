@@ -17,7 +17,6 @@ public class EcrireCSV {
      * Efface le contenu d'un fichier CSV.
      * @param filePath Chemin d'accès au fichier CSV.
      */
-
     public static void clearCSVFile(String filePath) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -25,11 +24,7 @@ public class EcrireCSV {
         } catch (IOException e) {
             System.err.println("Erreur lors de l'effacement du fichier CSV : " + filePath);
             e.printStackTrace();
-        }
-    }
-
-
-
+        }}
     /**
      * Écrit les données des éléments dans un fichier CSV.
      * @param filePath Chemin d'accès au fichier CSV.
@@ -71,24 +66,4 @@ public class EcrireCSV {
         }
     }
 
-    public static void writeChainesToCSV(String filePath, List<ChaineProduction> chaines) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("Code;Nom;Entree (code,qte);Sortie (code,qte)");
-            writer.newLine();
-            for (ChaineProduction chaine : chaines) {
-                String entrees = chaine.getElementEntree().entrySet().stream()
-                        .map(entry -> "(" + entry.getKey().getCode() + ":" + entry.getValue() + ")")
-                        .collect(Collectors.joining(","));
-                String sorties = chaine.getElementSortie().entrySet().stream()
-                        .map(entry -> "(" + entry.getKey().getCode() + ":" + entry.getValue() + ")")
-                        .collect(Collectors.joining(","));
-                String line = String.format("%s;%s;%s;%s", chaine.getCode(), chaine.getNom(), entrees, sorties);
-                writer.write(line);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Erreur lors de l'écriture des chaînes dans le fichier CSV : " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 }

@@ -1,49 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?scenebuilder-background-color 0xfffdccff?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.ChaineController" prefHeight="760.0" prefWidth="858.0" style="-fx-background-color: lightblue;">
-    <children>
-        <HBox layoutX="168.0" layoutY="14.0" spacing="10.0">
-            <Button onAction="#Page_Accueil" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Accueil" />
-            <Button onAction="#Page_Commandes" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Commandes" />
-            <Button onAction="#Page_Historique" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Historiques" />
-            <Button onAction="#Page_Stock" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Voir Stock" />
-        </HBox>
-        <Label layoutX="289.0" layoutY="58.0" style="-fx-font-size: 30px; -fx-text-fill: black;" text="Chaîne de production" />
-        <Button fx:id="exportButton" layoutX="403.0" layoutY="650.0" onAction="#handleExport" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Exporter l'historique" />
-
-        <TableView fx:id="tableChaine" layoutX="15.0" layoutY="198.0" prefHeight="337.0" prefWidth="828.0" editable="true">
-            <columns>
-                <TableColumn fx:id="chaineNom" maxWidth="5000.0" minWidth="10.0" prefWidth="148.0" text="Nom">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="nom" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn fx:id="chaineCode" prefWidth="96.0" text="Code">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="code" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn fx:id="chaineActivation" prefWidth="179.0" text="Niveau activation">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="niveauActivation" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn fx:id="chaineEntree" prefWidth="111.0" text="Entree">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="stringElementEntree" />
-                    </cellValueFactory>
-                </TableColumn>
-                <TableColumn fx:id="chaineSortie" prefWidth="269.0" text="Sortie">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="stringElementSortie" />
-                    </cellValueFactory>
-                </TableColumn>
-            </columns>
-        </TableView>
-    </children>
+<AnchorPane prefHeight="760.0" prefWidth="858.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.ChaineController">
+  <children>
+    <HBox layoutX="168.0" layoutY="14.0" spacing="10.0">
+      <Button onAction="#Page_Accueil" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Accueil">
+        <font>
+          <Font size="18.0" fx:id="x1" />
+        </font>
+      </Button>
+      <Button onAction="#Page_Commandes" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Commandes">
+            <font>
+               <Font size="18.0" />
+            </font></Button>
+      <Button onAction="#Page_Historique" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Historiques">
+            <font>
+               <Font size="18.0" />
+            </font></Button>
+      <Button onAction="#Page_Stock" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Voir Stock">
+            <font>
+               <Font size="18.0" />
+            </font></Button>
+    </HBox>
+    <Label layoutX="290.0" layoutY="81.0" style="-fx-font-size: 30px; -fx-text-fill: black;" text="Chaîne de production" />
+    <Button fx:id="exportButton" font="$x1" layoutX="324.0" layoutY="614.0" onAction="#handleExport" style="-fx-background-color: darkblue; -fx-text-fill: white;" text="Exporter l'historique" />
+    <TableView fx:id="tableChaine" editable="true" layoutX="15.0" layoutY="198.0" prefHeight="337.0" prefWidth="828.0">
+      <columns>
+        <TableColumn fx:id="chaineNom" maxWidth="5000.0" minWidth="10.0" prefWidth="80.00000762939453" text="Nom">
+          <cellValueFactory>
+            <PropertyValueFactory property="nom" />
+          </cellValueFactory>
+        </TableColumn>
+        <TableColumn fx:id="chaineCode" prefWidth="79.0" text="Code">
+          <cellValueFactory>
+            <PropertyValueFactory property="code" />
+          </cellValueFactory>
+        </TableColumn>
+        <TableColumn fx:id="chaineActivation" prefWidth="114.66665649414062" text="Niveau activation">
+          <cellValueFactory>
+            <PropertyValueFactory property="niveauActivation" />
+          </cellValueFactory>
+        </TableColumn>
+        <TableColumn fx:id="chaineEntree" prefWidth="377.3333740234375" text="Entree">
+          <cellValueFactory>
+            <PropertyValueFactory property="stringElementEntree" />
+          </cellValueFactory>
+        </TableColumn>
+        <TableColumn fx:id="chaineSortie" prefWidth="174.6666259765625" text="Sortie">
+          <cellValueFactory>
+            <PropertyValueFactory property="stringElementSortie" />
+          </cellValueFactory>
+        </TableColumn>
+      </columns>
+    </TableView>
+  </children>
 </AnchorPane>

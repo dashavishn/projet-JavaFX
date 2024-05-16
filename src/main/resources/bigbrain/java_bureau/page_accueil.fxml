@@ -4,21 +4,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane style="-fx-background-color: lightblue" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.Accueil_Controller" prefHeight="668.0" prefWidth="856.0" >
+<AnchorPane prefHeight="668.0" prefWidth="856.0" style="-fx-background-color: lightblue" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bigbrain.java_bureau.controller.Accueil_Controller">
     <children>
-        <VBox alignment="CENTER" spacing="20" layoutX="228.0" layoutY="150.0">
+        <VBox alignment="CENTER" layoutX="228.0" layoutY="150.0" spacing="20">
             <children>
-                <Button fx:id="stock" mnemonicParsing="false" onAction="#Page_Stock" text="Stock" style="-fx-font-size: 24;"/>
-                <Button fx:id="chaine" mnemonicParsing="false" onAction="#Page_Chaine" text="Chaîne de production" style="-fx-font-size: 24;"/>
-                <Button fx:id="commandes" mnemonicParsing="false" onAction="#Page_Commandes" text="Commandes" style="-fx-font-size: 24;"/>
-                <Button fx:id="historique" mnemonicParsing="false" onAction="#Page_Historique" text="Historique" style="-fx-font-size: 24;"/>
+                <Button fx:id="stock" mnemonicParsing="false" onAction="#Page_Stock" style="-fx-font-size: 24;" text="Stock" />
+                <Button fx:id="chaine" mnemonicParsing="false" onAction="#Page_Chaine" style="-fx-font-size: 24;" text="Chaîne de production" />
+                <Button fx:id="commandes" mnemonicParsing="false" onAction="#Page_Commandes" style="-fx-font-size: 24;" text="Commandes" />
+                <Button fx:id="historique" mnemonicParsing="false" onAction="#Page_Historique" style="-fx-font-size: 24;" text="Historique" />
             </children>
         </VBox>
-        <Text layoutX="228.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application de bureau">
+        <Text layoutX="177.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application de bureau">
             <font>
                 <Font name="System Bold" size="48.0" />
             </font>
         </Text>
-        <Label fx:id="errorMsg" layoutX="228.0" layoutY="500.0" textFill="red" style="-fx-font-size: 18;"/>
+        <Label fx:id="errorMsg" layoutX="228.0" layoutY="500.0" style="-fx-font-size: 18;" textFill="red" />
     </children>
 </AnchorPane>
