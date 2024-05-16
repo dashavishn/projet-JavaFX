@@ -34,14 +34,6 @@ import static bigbrain.java_bureau.classe_java.Entrepot.getChaine;
 
 public class ChaineController {
 
-    @FXML
-    private Button btnAccueil;
-    @FXML
-    private Button btnCommandes;
-    @FXML
-    private Button commandes;
-    @FXML
-    private Button historique;
 
     @FXML
     private TableView<ChaineProduction> tableChaine;
@@ -56,6 +48,8 @@ public class ChaineController {
     private TableColumn<ChaineProduction, String> chaineEntree;
     @FXML
     private TableColumn<ChaineProduction, String> chaineSortie;
+    @FXML
+    private Button exportButton;
 
     @FXML
     public void initialize() {
@@ -91,6 +85,13 @@ public class ChaineController {
         CSV csvUtil = new CSV();
         csvUtil.lireChaines();  // Cette méthode devrait déjà mettre à jour la liste des chaînes dans la classe Entrepot.
         tableChaine.setItems(Entrepot.getChaine());  // Définir les éléments de TableView avec les données chargées
+    }
+
+    @FXML
+    private void handleExport() {
+        String filePath = "historique_actions.txt";
+        EcrireFichier.ecrireHistorique(filePath);
+        showAlert("Exportation réussie", "L'historique des actions a été exporté vers " + filePath);
     }
 
     @FXML

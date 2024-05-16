@@ -1,0 +1,4 @@
+Consommation de 5.0 de E002 pour la chaîne Propulsion
+Consommation de 1.0 de E003 pour la chaîne Propulsion
+Consommation de 1.0 de E004 pour la chaîne Propulsion
+Production de 1.0 de E005 par la chaîne Propulsion

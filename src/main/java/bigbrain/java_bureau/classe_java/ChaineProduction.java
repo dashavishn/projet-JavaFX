@@ -112,6 +112,7 @@ public class ChaineProduction {
             float quantiteNecessaire = entry.getValue() * niveauActivation;
             element.vendre(quantiteNecessaire);  // Utiliser la méthode vendre pour diminuer le stock
             System.out.println("Consommation de l'élément: " + element.getCode() + ". Quantité consommée: " + quantiteNecessaire);
+            HistoriqueAction.ajouterAction("Consommation de " + quantiteNecessaire + " de " + element.getCode() + " pour la chaîne " + this.nom);
         }
 
         // Produire les éléments de sortie
@@ -120,6 +121,7 @@ public class ChaineProduction {
             float quantiteProduite = entry.getValue() * niveauActivation;
             element.acheter(quantiteProduite);  // Utiliser la méthode acheter pour augmenter le stock
             System.out.println("Production de l'élément: " + element.getCode() + ". Quantité produite: " + quantiteProduite);
+            HistoriqueAction.ajouterAction("Production de " + quantiteProduite + " de " + element.getCode() + " par la chaîne " + this.nom);
         }
 
         return true;  // Production réussie
