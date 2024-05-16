@@ -21,69 +21,109 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 
 import static bigbrain.java_bureau.Main.primaryStage;
 import static bigbrain.java_bureau.classe_java.Entrepot.getChaine;
 
-
-//le bouton renvoie que la production est lancé peu importe le niveau d'activation,
-// alors que tout est bien défini dans la méthode handleValidateProduction
-//les tableviews se remplissent avec les données de fichier chaine,
-// alors qu'ils doivent avoir les elements spécifiques qui sont dans TestChaineProduction et jsp quoi faire avec ça
-//j'en peux plus
-
-
 public class ChaineController {
-    public TableColumn<ChaineProduction, String> chaineNom;
-    public TableColumn<ChaineProduction, String> chaineCode;
-    public TableColumn<ChaineProduction, String> chaineActivation;
-    public TableColumn<ChaineProduction, String> chaineUnite;
-    public TableColumn<ChaineProduction, String> chaineEntree;
-    public TableColumn<ChaineProduction, String> chaineSortie;
 
-    @FXML private TableView<ChaineProduction> tableChaine;
+    @FXML
+    private Button btnAccueil;
+    @FXML
+    private Button btnCommandes;
+    @FXML
+    private Button commandes;
+    @FXML
+    private Button historique;
 
 
-    private ChaineProduction selectedChaine;
+    @FXML
+    private TableView<ChaineProduction> tableChaine;
+
+    @FXML
+    private TableColumn<ChaineProduction, String> chaineNom;
+    @FXML
+    private TableColumn<ChaineProduction, String> chaineCode;
+    @FXML
+    private TableColumn<ChaineProduction, Integer> chaineActivation;
+    @FXML
+    private TableColumn<ChaineProduction, String> chaineEntree;
+    @FXML
+    private TableColumn<ChaineProduction, String> chaineSortie;
 
     @FXML
     public void initialize() {
+        tableChaine.setEditable(true);
+
         chaineNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         chaineCode.setCellValueFactory(new PropertyValueFactory<>("code"));
-        chaineEntree.setCellValueFactory(new PropertyValueFactory<>("strEntree"));
-        chaineSortie.setCellValueFactory(new PropertyValueFactory<>("strSortie"));
+        chaineActivation.setCellValueFactory(new PropertyValueFactory<>("niveauActivation"));
+        chaineEntree.setCellValueFactory(new PropertyValueFactory<>("stringElementEntree"));
+        chaineSortie.setCellValueFactory(new PropertyValueFactory<>("stringElementSortie"));
 
-        ObservableList<String> activationOptions = FXCollections.observableArrayList("Activée", "Désactivée");
-        chaineActivation.setCellValueFactory(new PropertyValueFactory<>("activation"));
+        // Configurer la colonne d'activation pour utiliser TextFieldTableCell
+        chaineActivation.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        chaineActivation.setOnEditCommit(event -> {
+            ChaineProduction chaine = event.getRowValue();
+            int newLevel = event.getNewValue();
+            chaine.setNiveauActivation(newLevel);
+            try {
+                if (!chaine.valider()) {
+                    showAlert("Validation échouée", "Niveau d'activation non supporté par les stocks actuels pour la chaîne: " + chaine.getNom());
+                    // Réinitialiser la valeur si nécessaire ou notifier l'utilisateur
+                } else {
+                    // Si la validation passe, mettre à jour le niveau d'activation
+                    chaine.setNiveauActivation(newLevel);
+                }
+            } catch (Exception e) {
+                showAlert("Erreur lors de la validation", "Erreur lors de la validation de la chaîne: " + chaine.getNom() + " Error: " + e.getMessage());
+            }
+        });
 
-
-        tableChaine.setItems(getChaine());
+        loadChaineData();  // Charger les données à l'initialisation
     }
 
-
+    private void loadChaineData() {
+        CSV csvUtil = new CSV();
+        csvUtil.lireChaines();  // Cette méthode devrait déjà mettre à jour la liste des chaînes dans la classe Entrepot.
+        tableChaine.setItems(Entrepot.getChaine());  // Définir les éléments de TableView avec les données chargées
+    }
 
     @FXML
     private void handleValidateProduction() {
-        try {
-            if (selectedChaine != null && selectedChaine.getNiveauActivation() > 0 && selectedChaine.valider()) {
-                showAlert("Production Réalisée", "La production a été réalisée avec succès.", Alert.AlertType.INFORMATION);
-            } else {
-                showAlert("Erreur de Production", "Problème de validation de la production ou niveau d'activation à 0.", Alert.AlertType.ERROR);
+        ObservableList<ChaineProduction> chaines = tableChaine.getItems();
+        boolean allValid = true;
+        for (ChaineProduction chaine : chaines) {
+            try {
+                if (!chaine.valider()) {  // Supposons que valider() vérifie si la chaîne peut être activée avec les stocks actuels
+                    allValid = false;
+                    showAlert("Validation échouée", "Validation échouée pour la chaîne: " + chaine.getNom());
+                    break;
+                }
+            } catch (Exception e) {
+                allValid = false;
+                showAlert("Erreur lors de la validation", "Erreur lors de la validation de la chaîne: " + chaine.getNom() + " Error: " + e.getMessage());
+                break;
             }
-        } catch (Exception e) {
-            showAlert("Erreur Système", "Erreur lors de la validation de la production: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+        if (allValid) {
+            showAlert("Validation réussie", "Toutes les chaînes sont validées avec succès.");
+        } else {
+            showAlert("Validation échouée", "Certaines chaînes ne peuvent pas être activées selon les niveaux d'activation et les stocks.");
         }
     }
 
-    private void showAlert(String title, String content, Alert.AlertType type) {
-        Alert alert = new Alert(type);
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(content);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 

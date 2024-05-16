@@ -8,27 +8,25 @@ import java.util.List;
 
 public class Entrepot {
     private static ObservableList<ChaineProduction> chaines = FXCollections.observableArrayList();
-
-    private static ObservableList<Element> elements = FXCollections.observableArrayList();;
-
+    private static ObservableList<Element> elements = FXCollections.observableArrayList();
 
     public Entrepot() {
-
+        // Constructeur vide
     }
 
     public static ObservableList<Element> getElements() {
         return FXCollections.unmodifiableObservableList(elements);
     }
 
-    public void addChaine(ChaineProduction chaine) {
+    public static void addChaine(ChaineProduction chaine) {
         chaines.add(chaine);
     }
 
-    public void addChaines(ArrayList<ChaineProduction> chaine) {
+    public static void addChaines(ArrayList<ChaineProduction> chaine) {
         chaines.addAll(chaine);
     }
 
-    public void addElement(ArrayList<Element> e) {
+    public static void addElement(ArrayList<Element> e) {
         elements.addAll(e);
     }
 
@@ -36,4 +34,3 @@ public class Entrepot {
         return FXCollections.unmodifiableObservableList(chaines);
     }
 }
-

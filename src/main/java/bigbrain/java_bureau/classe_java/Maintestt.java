@@ -14,7 +14,7 @@ public class Maintestt extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        testLoadFXML("/bigbrain/java_bureau/stock.fxml");
+        testLoadFXML("/bigbrain/java_bureau/chaine.fxml");
     }
 
     private void testLoadFXML(String fxmlPath) {

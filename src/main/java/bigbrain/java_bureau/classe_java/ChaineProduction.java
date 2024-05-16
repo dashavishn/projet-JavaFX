@@ -6,6 +6,7 @@ import java.util.Map;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ChaineProduction {
     private String code;
@@ -71,25 +72,15 @@ public class ChaineProduction {
     }
 
     public String getStringElementEntree() {
-        StringBuilder str = new StringBuilder();
-        for (Map.Entry<Element, Float> entry : elementEntree.entrySet()) {
-            str.append(entry.getKey().getCode());
-            str.append(" * ");
-            str.append(entry.getValue());
-            str.append(", ");
-        }
-        return str.toString();
+        return elementEntree.entrySet().stream()
+                .map(entry -> entry.getKey().getNom() + ": " + entry.getValue())
+                .collect(Collectors.joining(", "));
     }
 
     public String getStringElementSortie() {
-        StringBuilder str = new StringBuilder();
-        for (Map.Entry<Element, Float> entry : elementSortie.entrySet()) {
-            str.append(entry.getKey().getCode());
-            str.append(" * ");
-            str.append(entry.getValue());
-            str.append(", ");
-        }
-        return str.toString();
+        return elementSortie.entrySet().stream()
+                .map(entry -> entry.getKey().getNom() + ": " + entry.getValue())
+                .collect(Collectors.joining(", "));
     }
     public Map<Element, Float> getElementEntree() {
         return new HashMap<>(this.elementEntree);
@@ -99,9 +90,9 @@ public class ChaineProduction {
         return new HashMap<>(this.elementSortie);
     }
 
-    public Boolean valider() throws Exception {
+    public boolean valider() throws Exception {
         if (niveauActivation == 0) {
-            throw new IllegalStateException("Le niveau d'activation est de 0, la chaîne ne peut pas fonctionner.");
+            return false;  // Retourne false au lieu de lancer une exception si le niveau d'activation est 0
         }
 
         // Vérifier les stocks pour chaque élément en entrée
@@ -129,7 +120,7 @@ public class ChaineProduction {
 
         return true;  // Production réussie
     }
+    }
 
 
 
-}

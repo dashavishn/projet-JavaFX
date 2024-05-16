@@ -41,6 +41,7 @@ public class CSV {
                 ChaineProduction chaine = new ChaineProduction(data[0], data[1]);
                 entree.forEach(chaine::ajouterElementEntree);
                 sortie.forEach(chaine::ajouterElementSortie);
+                Entrepot.addChaine(chaine);  // Assurez-vous d'ajouter la chaîne à votre entrepôt de données
             }
         } catch (IOException e) {
             System.err.println("Erreur lors de la lecture du fichier des chaînes: " + e.getMessage());

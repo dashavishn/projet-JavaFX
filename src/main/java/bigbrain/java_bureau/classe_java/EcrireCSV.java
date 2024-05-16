@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Cette classe gère l'écriture des données dans des fichiers CSV.
@@ -66,6 +67,27 @@ public class EcrireCSV {
             System.out.println("Données de l'ArrayList reportées dans le fichier CSV : " + filePath);
         } catch (IOException e) {
             System.err.println("Erreur lors de l'écriture de l'historique des modifications dans le fichier CSV : " + filePath);
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeChainesToCSV(String filePath, List<ChaineProduction> chaines) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("Code;Nom;Entree (code,qte);Sortie (code,qte)");
+            writer.newLine();
+            for (ChaineProduction chaine : chaines) {
+                String entrees = chaine.getElementEntree().entrySet().stream()
+                        .map(entry -> "(" + entry.getKey().getCode() + ":" + entry.getValue() + ")")
+                        .collect(Collectors.joining(","));
+                String sorties = chaine.getElementSortie().entrySet().stream()
+                        .map(entry -> "(" + entry.getKey().getCode() + ":" + entry.getValue() + ")")
+                        .collect(Collectors.joining(","));
+                String line = String.format("%s;%s;%s;%s", chaine.getCode(), chaine.getNom(), entrees, sorties);
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur lors de l'écriture des chaînes dans le fichier CSV : " + e.getMessage());
             e.printStackTrace();
         }
     }
