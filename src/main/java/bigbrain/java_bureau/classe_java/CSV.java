@@ -14,11 +14,11 @@ public class CSV {
     /**
      * Chemin d'accès au fichier CSV contenant les informations sur les éléments.
      */
-    private static final String ELEMENTS_FILE_PATH = "/bigbrain/fichierscsv/elements.csv";
+    private static final String ELEMENTS_FILE_PATH = "C:\\HanjaDashaManel\\fichierscsv\\elements.csv";
     /**
      * Chemin d'accès au fichier CSV contenant les informations sur les chaînes de production.
      */
-    private static final String CHAINES_FILE_PATH = "/bigbrain/fichierscsv/chaines.csv";
+    private static final String CHAINES_FILE_PATH = "C:\\HanjaDashaManel\\fichierscsv\\chaines.csv";
     /**
      * Une méthode qui lit et charge les éléments à partir du fichier element.csv.
      * Les éléments sont ajoutés à l'inventaire global.
@@ -35,6 +35,7 @@ public class CSV {
                 Stocks.getInstance().ajouterElem(element, Double.parseDouble(data[2]));
             }
         } catch (IOException e) {
+            System.err.println("Erreur lors de la lecture du fichier des éléments: " + e.getMessage());
             System.err.println("Erreur lors de la lecture du fichier des éléments: " + e.getMessage());
         }
     }
