@@ -10,9 +10,10 @@ import java.util.List;
 public class EcrireCSVTest {
 
     public static void main(String[] args) {
-        String basePath = "src/main/resources/bigbrain/fichierscsv";
-        String elementsFilePath = basePath + "/historique.csv";
-        String modificationsFilePath = basePath + "/bonjourbonsoir.csv";
+        String basePath = "C:\\HanjaDashaManel\\fichierscsv";
+        String elementsFilePath = basePath + "\\historique.csv";
+        String modificationsFilePath = basePath + "\\bonjourbonsoir.csv";
+
 
         List<Element> elements = new ArrayList<>();
         elements.add(new Element("E001", "Element 1", 100, "kg", 10.0, 15.0));

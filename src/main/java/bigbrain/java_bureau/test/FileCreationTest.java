@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class FileCreationTest {
     public static void main(String[] args) {
-        String directoryPath = "src/main/resources/bigbrain/fichierscsv";
+        String directoryPath = "C:\\HanjaDashaManel\\fichierscsv";
         File directory = new File(directoryPath);
         if (!directory.exists()) {
             if (directory.mkdirs()) {
