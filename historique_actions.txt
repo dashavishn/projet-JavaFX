@@ -1,0 +1,3 @@
+Consommation de 4.0 de E006 pour la chaîne Drones
+Consommation de 24.0 de E005 pour la chaîne Drones
+Production de 4.0 de E007 par la chaîne Drones
